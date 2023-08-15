@@ -5,31 +5,31 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['standard-with-typescript', 'plugin:react/recommended', 'prettier'],
+  extends: ["standard-with-typescript", "plugin:react/recommended", "prettier"],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: ['.eslintrc.{js,cjs}'],
+      files: [".eslintrc.{js,cjs}"],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: "script",
       },
     },
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json"],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react', 'prettier'],
+  plugins: ["react", "prettier"],
   rules: {
-    'prettier/prettier': ['error'],
+    "prettier/prettier": ["error"],
   },
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
   },
 };

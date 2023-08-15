@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -31,10 +34,6 @@
       "react-app/jest"
     ]
   },
-  "prettier": {
-    "singleQuote": true,
-    "printWidth": 80
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,7 +46,12 @@
       "last 1 safari version"
     ]
   },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "all"
+  },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
@@ -66,5 +70,10 @@
   "lint-staged": {
     "*.{ts, js}": "npm run lint",
     "*.{ts,js,css,md,html,json}": "npm run format"
+  },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
   }
 }
