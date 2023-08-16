@@ -1,7 +1,12 @@
 import React from "react";
+import LanguageSelect from "./components/languageSelect";
 
-function App() {
-  return <div className="App"></div>;
+function App(): React.ReactElement {
+  return (
+    <div>
+      <LanguageSelect/>
+    </div>
+  );
 }
 
 export default App;
