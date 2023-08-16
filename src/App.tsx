@@ -4,7 +4,7 @@ import LanguageSelect from "./components/languageSelect";
 function App(): React.ReactElement {
   return (
     <div>
-      <LanguageSelect/>
+      <LanguageSelect />
     </div>
   );
 }
