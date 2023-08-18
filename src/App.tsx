@@ -1,11 +1,12 @@
 import React from "react";
-import LanguageSelect from "./components/languageSelect";
-
-function App(): React.ReactElement {
+import ProductDetails from "./app/product/product-details.page";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./assets/themes";
+function App(): JSX.Element {
   return (
-    <div>
-      <LanguageSelect />
-    </div>
+    <ThemeProvider theme={theme}>
+      <ProductDetails />
+    </ThemeProvider>
   );
 }
 

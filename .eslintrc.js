@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-  parser: "@typescript-eslint/parcer",
   env: {
     browser: true,
     es2021: true,
@@ -13,6 +12,7 @@ module.exports = {
     "plugin:react/recommended",
     "prettier",
   ],
+  parser: "@typescript-eslint/parser",
   overrides: [
     {
       env: {
