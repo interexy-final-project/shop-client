@@ -33,7 +33,7 @@ const ResetPassword = () => {
         justifyContent={"center"}
       >
         <Box component={"img"} src={img} />
-        <Box padding={3} sx={{alignSelf: "center"}}>
+        <Box padding={3} sx={{ alignSelf: "center" }}>
           <Typography component="h1" variant="h4">
             {l("resetPassword.title")}
           </Typography>

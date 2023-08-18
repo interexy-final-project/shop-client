@@ -27,8 +27,8 @@ const LanguageSelect = () => {
       <Select variant="standard" value={language} onChange={handleChange}>
         <MenuItem value={"ru"}>
           <Stack direction={"row"} alignItems={"center"}>
-          {l("language.russian")}
-          {<Box sx={{ width: 20}} component="img" src={ru_flag} />}
+            {l("language.russian")}
+            {<Box sx={{ width: 20 }} component="img" src={ru_flag} />}
           </Stack>
         </MenuItem>
         <MenuItem value={"en"}>

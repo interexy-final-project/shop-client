@@ -40,7 +40,7 @@ const SignIn = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            alignSelf: "center"
+            alignSelf: "center",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
