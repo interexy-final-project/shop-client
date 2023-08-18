@@ -1,10 +1,10 @@
 import React from "react";
-import LanguageSelect from "./components/languageSelect";
+import { CssBaseline } from "@mui/material";
 
 function App(): React.ReactElement {
   return (
     <div>
-      <LanguageSelect />
+      <CssBaseline/>
     </div>
   );
 }
