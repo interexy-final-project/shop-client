@@ -12,7 +12,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductImage = styled("img")(({ width, height }) => ({
+const ProductImage = styled("img")(() => ({
   flexShrink: 1,
   width: "282px",
   height: "370px",

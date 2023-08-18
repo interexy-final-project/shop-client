@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import { type PaletteColorOptions, createTheme } from "@mui/material";
 
 declare module "@mui/material/Button" {

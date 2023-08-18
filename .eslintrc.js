@@ -1,11 +1,18 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
     node: true,
     jest: true,
   },
-  extends: ["standard-with-typescript", "plugin:react/recommended", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier",
+  ],
+  parser: "@typescript-eslint/parser",
   overrides: [
     {
       env: {
@@ -23,7 +30,7 @@ module.exports = {
     project: ["./tsconfig.json"],
     tsconfigRootDir: __dirname,
   },
-  plugins: ["react", "prettier"],
+  plugins: ["react", "prettier", "@typescript-eslint"],
   rules: {
     "prettier/prettier": ["error"],
   },

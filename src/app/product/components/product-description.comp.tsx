@@ -1,7 +1,7 @@
 import { Stack, Box, Typography, styled } from "@mui/material";
 import React from "react";
 
-const TextBox = styled("p")(({ theme }) => ({
+const TextBox = styled("p")(() => ({
   width: "50%",
 }));
 

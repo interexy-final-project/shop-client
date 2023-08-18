@@ -40,7 +40,7 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
     setSelectedColor(color);
   };
 
-  const handleAddToCard = (): void => {};
+  // const handleAddToCard = (): void => {};
   return (
     <Stack spacing={2}>
       <Item>
@@ -74,14 +74,11 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
         <Stack direction="row" spacing={4}>
           <Button
             variant="shop-add-to-card"
-            onClick={handleAddToCard}
             startIcon={<AddShoppingCartIcon />}
           >
             Add to Cart
           </Button>
-          <Button variant="shop-price-button" onClick={handleAddToCard}>
-            Price
-          </Button>
+          <Button variant="shop-price-button">Price</Button>
         </Stack>
       </Item>
     </Stack>
