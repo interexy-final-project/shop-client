@@ -1,11 +1,12 @@
 import React from "react";
-import { CssBaseline } from "@mui/material";
-
-function App(): React.ReactElement {
+import ProductDetails from "./app/product/product-details.page";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./assets/themes";
+function App(): JSX.Element {
   return (
-    <div>
-      <CssBaseline/>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ProductDetails />
+    </ThemeProvider>
   );
 }
 
