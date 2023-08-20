@@ -1,11 +1,14 @@
 import React from "react";
-import ProductDetails from "./app/product/product-details.page";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./assets/themes";
+import { CssBaseline } from "@mui/material";
+import UserOrderList from "./app/user/components/user-orders-list";
+import UserContacts from "./app/user/components/user-contacts";
 function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
-      <ProductDetails />
+      <CssBaseline/>
+      <UserContacts />
     </ThemeProvider>
   );
 }
