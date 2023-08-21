@@ -33,6 +33,9 @@ module.exports = {
   plugins: ["react", "prettier", "@typescript-eslint"],
   rules: {
     "prettier/prettier": ["error"],
+    "explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": 0,
+    "react/react-in-jsx-scope": "off",
   },
   settings: {
     react: {

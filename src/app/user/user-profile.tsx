@@ -71,16 +71,12 @@ const UserProfile = () => {
             />
           </Tabs>
         </Stack>
-        <TabPanel
-          value={currentTabIndex}
-          index={0}
-          children={<UserContacts />}
-        />
-        <TabPanel
-          value={currentTabIndex}
-          index={1}
-          children={<UserOrderList />}
-        />
+        <TabPanel value={currentTabIndex} index={0}>
+          <UserOrderList />
+        </TabPanel>
+        <TabPanel value={currentTabIndex} index={1}>
+          <UserOrderList />
+        </TabPanel>
       </Stack>
       <Footer />
     </Stack>

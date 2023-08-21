@@ -1,9 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
-import "./assets/styles.css";
-import "./i18n";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./themes";
+import "../src/assets/style.css";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
-root.render(<App />);
+root.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+);
