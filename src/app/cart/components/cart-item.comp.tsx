@@ -41,9 +41,9 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
     // dispatch(addItem({ id, color, size } as CartItem));
   };
 
-  const onClickMinus = () => {};
+  // const onClickMinus = () => {};
 
-  const onCLickRemove = () => {};
+  // const onCLickRemove = () => {};
 
   return (
     <Stack
