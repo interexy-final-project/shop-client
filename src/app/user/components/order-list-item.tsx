@@ -12,20 +12,32 @@ const OrderListItem = () => {
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Box>
             <Typography gutterBottom>{l("orderItem.orderDate")}</Typography>
-            <Typography gutterBottom>{l("orderItem.orderEstimation")}</Typography>
+            <Typography gutterBottom>
+              {l("orderItem.orderEstimation")}
+            </Typography>
           </Box>
           <Box>
             <Typography gutterBottom>{l("orderItem.orderStatus")}</Typography>
-            <Typography gutterBottom>{l("orderItem.orderPaymentMethod")}</Typography>
+            <Typography gutterBottom>
+              {l("orderItem.orderPaymentMethod")}
+            </Typography>
           </Box>
         </Stack>
       </Paper>
-      <Stack marginTop={2} direction={"row"} spacing={1} useFlexGap flexWrap="wrap">
-        <OrderItem/>
-        <OrderItem/>
-        <OrderItem/>
+      <Stack
+        marginTop={2}
+        direction={"row"}
+        spacing={1}
+        useFlexGap
+        flexWrap="wrap"
+      >
+        <OrderItem />
+        <OrderItem />
+        <OrderItem />
       </Stack>
-      <Typography variant="h6" marginTop={2}>{l('orderItem.total')}</Typography>
+      <Typography variant="h6" marginTop={2}>
+        {l("orderItem.total")}
+      </Typography>
     </Box>
   );
 };

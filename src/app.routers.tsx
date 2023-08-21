@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import SignIn from "./app/auth/sign-in-page";
 import SignUp from "./app/auth/sign-up-page";
@@ -11,7 +12,7 @@ const AppRoutes = () => {
       <Route path={"/auth/sign-in"} element={<SignIn />} />
       <Route path={"/auth/sign-up"} element={<SignUp />} />
       <Route path={"/auth/reset-password"} element={<ResetPassword />} />
-      <Route path={'/user/profile'} element={<UserProfile/>} />
+      <Route path={"/user/profile"} element={<UserProfile />} />
     </Routes>
   );
 };

@@ -33,7 +33,13 @@ const UserContacts = () => {
         />
       </Stack>
       <Typography variant="h5">Address</Typography>
-      <Stack marginTop={2} direction={"row"} spacing={1} useFlexGap flexWrap="wrap">
+      <Stack
+        marginTop={2}
+        direction={"row"}
+        spacing={1}
+        useFlexGap
+        flexWrap="wrap"
+      >
         <AddressItem />
         <AddressItem />
         <AddressItem />
