@@ -26,6 +26,8 @@ module.exports = {
   plugins: ["react", "prettier"],
   rules: {
     "prettier/prettier": ["error"],
+    "explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": 0,
   },
   settings: {
     react: {
