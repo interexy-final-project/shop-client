@@ -6,6 +6,7 @@ import ProductDescription from "./components/product-description.comp";
 import SimilarProducts from "./components/similar-products.comp";
 const products = [
   {
+    id: "1",
     name: "product1",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -15,6 +16,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "2",
     name: "product2",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -24,6 +26,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "3",
     name: "product3",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -33,6 +36,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "4",
     name: "product4",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -42,6 +46,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "6",
     name: "product5",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -51,6 +56,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "5",
     name: "product5",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -60,6 +66,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "7",
     name: "product5",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",
@@ -69,6 +76,7 @@ const products = [
     matte-finish HD prints.`,
   },
   {
+    id: "8",
     name: "product5",
     img: "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
     price: "22$",

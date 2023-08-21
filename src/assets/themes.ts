@@ -43,6 +43,7 @@ declare module "@mui/material/styles" {
     t7: React.CSSProperties;
     t8: React.CSSProperties;
     t9: React.CSSProperties;
+    t10: React.CSSProperties;
     productDescription: React.CSSProperties;
   }
 
@@ -57,6 +58,7 @@ declare module "@mui/material/styles" {
     t7: React.CSSProperties;
     t8: React.CSSProperties;
     t9: React.CSSProperties;
+    t10: React.CSSProperties;
   }
 }
 
@@ -72,6 +74,7 @@ declare module "@mui/material/Typography" {
     t7: true;
     t8: true;
     t9: true; // breadCrumbs
+    t10: true; //types-filter
   }
 }
 
@@ -105,6 +108,23 @@ export const theme = createTheme({
       fontWeight: 600,
       lineHeight: "normal",
     },
+    t3: {
+      color: "#3F4646",
+      fontFamily: "Poppins",
+      fontSize: "22px",
+      fontStyle: "normal",
+      fontWeight: 600,
+      lineHeight: "normal",
+    },
+    t4: {
+      color: "#807D7E",
+      fontFamily: "Poppins",
+      fontSize: "22px",
+      fontStyle: "normal",
+      fontWeight: 600,
+      lineHeight: "normal",
+      letterSpacing: "0.44px",
+    },
     t7: {
       fontFamily: "Poppins",
       fontSize: "16px",
@@ -129,6 +149,15 @@ export const theme = createTheme({
       fontStyle: "normal",
       fontWeight: 500,
       lineHeight: "normal",
+    },
+    t10: {
+      fontFamily: "Poppins",
+      fontSize: "16px",
+      fontWeight: 600,
+      lineHeight: "19px",
+      letterSpacing: "0em",
+      textAlign: "left",
+      color: "#8A8989",
     },
   },
   palette: {

@@ -17,23 +17,21 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
   return (
     <Stack spacing={3}>
       <Typography variant="t2">Colors available</Typography>
-      <ButtonGroup>
-        {availableColors.map((color) => (
-          <IconButton
-            key={color}
-            onClick={() => {
-              onSelectColor(color);
-            }}
-            style={{ color }}
-          >
-            {selectedColor === color ? (
-              <CheckCircleOutlinedIcon />
-            ) : (
-              <Brightness1Icon />
-            )}
-          </IconButton>
-        ))}
-      </ButtonGroup>
+      {availableColors.map((color) => (
+        <IconButton
+          key={color}
+          onClick={() => {
+            onSelectColor(color);
+          }}
+          style={{ color }}
+        >
+          {selectedColor === color ? (
+            <CheckCircleOutlinedIcon />
+          ) : (
+            <Brightness1Icon />
+          )}
+        </IconButton>
+      ))}
     </Stack>
   );
 };
