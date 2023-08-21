@@ -11,7 +11,7 @@ function App(): JSX.Element {
       <BrowserRouter>
         <CssBaseline />
         <AppRoutes />
-        <ProductDetails />
+        <CategoryPage />
       </BrowserRouter>
     </ThemeProvider>
   );
