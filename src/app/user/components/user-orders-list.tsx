@@ -8,7 +8,6 @@ const UserOrderList = () => {
         <Stack spacing={4} divider={<Divider/>}>
             <OrderListItem/>
             <OrderListItem/>
-            <OrderListItem/>
         </Stack>
     )
 }

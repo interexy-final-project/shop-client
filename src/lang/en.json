@@ -43,7 +43,15 @@
   "userContacts": {
     "contactsTitle": "My Info",
     "contactsDetails": "Contact Details",
-    "changeInfo": "Change"
-
+    "changeInfo": "Change",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone number",
+    "password": "Password"
+  },
+  "userProfile": {
+    "myInfo": "My Info",
+    "myOrders": "My Orders",
+    "signOut": "Sign Out"
   }
 }

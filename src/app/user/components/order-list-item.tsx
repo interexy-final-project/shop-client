@@ -1,6 +1,6 @@
-import { Paper, Button, Box, Typography, Stack } from "@mui/material";
+import { Paper, Box, Typography, Stack } from "@mui/material";
 import l from "../../../lang/l";
-import img from '../../../assets/images/product-img.jpg'
+import OrderItem from "./order-item";
 
 const OrderListItem = () => {
   return (
@@ -20,20 +20,12 @@ const OrderListItem = () => {
           </Box>
         </Stack>
       </Paper>
-      <Box sx={{marginTop: 5}}>
-        <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
-          <Stack direction={"row"} spacing={2}>
-            <Box component={"img"} src={img}/>
-            <Box>
-              <Typography>Black Printed T-shirt</Typography>
-              <Typography>{l('orderItem.color')}</Typography>
-              <Typography>{l('orderItem.quantity')}</Typography>
-              <Typography>{l('orderItem.total')}</Typography>
-            </Box>
-          </Stack>
-          <Button variant="contained">{l('orderItem.detailButton')}</Button>
-        </Stack>
-      </Box>
+      <Stack marginTop={2} direction={"row"} spacing={1} useFlexGap flexWrap="wrap">
+        <OrderItem/>
+        <OrderItem/>
+        <OrderItem/>
+      </Stack>
+      <Typography variant="h6" marginTop={2}>{l('orderItem.total')}</Typography>
     </Box>
   );
 };

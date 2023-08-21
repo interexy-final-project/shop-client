@@ -1,6 +1,8 @@
-import { Box, Typography, Stack, Button, TextField } from "@mui/material";
-import l from "../../../lang/l";
+import { Box, Typography, Stack, TextField } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
 import { useState } from "react";
+import EditButton from "./edit-button";
 
 type ContactItemType = {
   variant: "common" | "secured";
@@ -12,10 +14,19 @@ type ContactItemType = {
 
 const ContactItem = ({ variant, data }: ContactItemType) => {
   const [disabledInput, setDisable] = useState(true);
+  const [buttonText, setButtonText] = useState<'Change' | 'Confirm'>('Change')
+  const [buttonIcon, setButtonIcon] = useState(<EditIcon/>)
+
+
+  const handleClick =() => {
+    setDisable(!disabledInput)
+    setButtonIcon(buttonText==='Change'? <CheckIcon/> : <EditIcon/>)
+    setButtonText(buttonText==='Change'? 'Confirm': 'Change')
+  }
 
   return (
     <Box>
-      <Typography>{data.name}</Typography>
+      <Typography >{data.name}</Typography>
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -28,12 +39,9 @@ const ContactItem = ({ variant, data }: ContactItemType) => {
             defaultValue={data.value}
           />
         ) : (
-          <Typography>{data.value}</Typography>
+          <Typography variant="body2">{data.value}</Typography>
         )}
-        <Button onClick={() => setDisable(false)}>
-          {l("userContacts.changeInfo")}
-        </Button>
-        {disabledInput? <></> : <Button>Confirm</Button>}
+        <EditButton variant="text" buttonIcon={buttonIcon} buttonText={buttonText} handleClick={handleClick} />
       </Stack>
     </Box>
   );
