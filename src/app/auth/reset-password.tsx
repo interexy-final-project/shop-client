@@ -7,7 +7,6 @@ import {
   Button,
   Link,
   Stack,
-  Paper,
 } from "@mui/material";
 import LoginHeader from "../components/login-header";
 import l from "../../lang/l";
