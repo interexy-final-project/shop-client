@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, IconButton } from "@mui/material";
+import CropSquareIcon from "@mui/icons-material/CropSquare";
+import SquareIcon from "@mui/icons-material/Square";
 
 interface MultipleColorSelectorProps {
   availableColors: string[];
@@ -29,13 +31,13 @@ const MultipleColorsSelector: React.FC<MultipleColorSelectorProps> = ({
   return (
     <div>
       {availableColors.map((color) => (
-        <Button
+        <IconButton
           key={color}
-          variant={isColorSelected(color) ? "contained" : "outlined"}
           onClick={() => handleColorToggle(color)}
+          style={{ color }}
         >
-          {color}
-        </Button>
+          {selectedColors.includes(color) ? <SquareIcon /> : <CropSquareIcon />}
+        </IconButton>
       ))}
     </div>
   );

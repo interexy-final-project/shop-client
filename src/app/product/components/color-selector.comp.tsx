@@ -15,7 +15,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
   onSelectColor,
 }) => {
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} direction={"row"}>
       <Typography variant="t2">Colors available</Typography>
       {availableColors.map((color) => (
         <IconButton
