@@ -3,7 +3,6 @@ import CommonBreadcrumbs from "../components/breadcrumbs";
 import CommonHeader from "../components/common-header";
 import Footer from "../components/footer";
 import { Box, Stack, Tabs, Tab, Typography } from "@mui/material";
-import UserContacts from "./components/user-contacts";
 import UserOrderList from "./components/user-orders-list";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
