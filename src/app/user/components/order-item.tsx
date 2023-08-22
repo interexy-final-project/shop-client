@@ -4,7 +4,7 @@ import l from "../../../lang/l";
 
 const OrderItem = () => {
   return (
-    <Paper sx={{ marginTop: 5, padding: 1 }}>
+    <Box component={Paper} marginTop={5} padding={1}>
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -20,7 +20,7 @@ const OrderItem = () => {
           </Box>
         </Stack>
       </Stack>
-    </Paper>
+    </Box>
   );
 };
 

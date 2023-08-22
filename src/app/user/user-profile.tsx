@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CommonBreadcrumbs from "../components/breadcrumbs";
 import CommonHeader from "../components/common-header";
 import Footer from "../components/footer";
 import { Box, Stack, Tabs, Tab, Typography } from "@mui/material";
@@ -41,7 +40,6 @@ const UserProfile = () => {
   return (
     <Stack height={"100vh"}>
       <CommonHeader />
-      <CommonBreadcrumbs />
       <Stack
         padding={3}
         spacing={2}
@@ -49,14 +47,16 @@ const UserProfile = () => {
         justifyContent={"space-between"}
       >
         <Stack>
-          <Typography variant="h4">Hello Boyyy</Typography>
-          <Typography>Welcome to your Account</Typography>
-          <Tabs
+          <Typography variant="h4">{l("userProfile.hello")}</Typography>
+          <Typography>{l("userProfile.welcome")}</Typography>
+          <Box
+            component={Tabs}
             variant="fullWidth"
             orientation="vertical"
             value={currentTabIndex}
             onChange={handleTabChange}
-            sx={{ width: 200, padding: 0 }}
+            width={200}
+            padding={0}
           >
             <Tab
               icon={<PersonIcon />}
@@ -68,7 +68,7 @@ const UserProfile = () => {
               label={l("userProfile.myOrders")}
               iconPosition="start"
             />
-          </Tabs>
+          </Box>
         </Stack>
         <TabPanel value={currentTabIndex} index={0}>
           <UserOrderList />

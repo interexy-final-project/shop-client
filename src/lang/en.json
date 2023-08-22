@@ -47,11 +47,50 @@
     "name": "Your Name",
     "email": "Email Address",
     "phone": "Phone number",
-    "password": "Password"
+    "password": "Password",
+    "address": "Address"
   },
   "userProfile": {
     "myInfo": "My Info",
     "myOrders": "My Orders",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "hello": "Hello,",
+    "welcome": "Welcome to your Account"
+  },
+  "emptyCart": {
+    "sadCart": "Your cart is empty and sad :(",
+    "makeHappy": "Add something to make it happy!",
+    "continue": "Continue Shopping"
+  },
+  "notFoundPage": {
+    "oops": "Oops! Page not found",
+    "unavalible": "The page you are looking for might have been removed or temporarily unavailable.",
+    "back": "Back to Home Page"
+  },
+  "filter": {
+    "title": "Filter",
+    "color": "Color",
+    "size": "Size",
+    "category": "Category"
+  },
+  "sizeSelector": {
+    "title": "Select Size:"
+  },
+  "colorSelector": {
+    "available": "Colors available"
+  },
+  "productConfiguration": {
+    "add": "Add to Cart",
+    "price": "Price"
+  },
+  "productDescription": {
+    "title": "Product description"
+  },
+  "slider": {
+    "title": "Slider"
+  },
+  "addressItem": {
+    "buttonChange": "Change",
+    "buttonConfirm": "Confirm"
   }
 }

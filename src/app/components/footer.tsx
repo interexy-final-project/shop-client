@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import l from "../../lang/l";

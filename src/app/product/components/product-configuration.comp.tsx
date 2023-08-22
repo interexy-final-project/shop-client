@@ -7,6 +7,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
+import l from "../../../lang/l";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -76,9 +77,12 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
             variant="shop-add-to-card"
             startIcon={<AddShoppingCartIcon />}
           >
-            Add to Cart
+            {l("productConfiguration.add")}
           </Button>
-          <Button variant="shop-price-button">Price</Button>
+          <Button variant="shop-price-button">
+            {" "}
+            {l("productConfiguration.price")}
+          </Button>
         </Stack>
       </Item>
     </Stack>

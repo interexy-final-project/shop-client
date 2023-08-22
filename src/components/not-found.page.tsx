@@ -1,6 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import NotFoundImage from "../assets/imgs/not-found.png";
+import l from "../lang/l";
 
 export const NotFound: React.FC = () => {
   return (
@@ -8,13 +9,10 @@ export const NotFound: React.FC = () => {
       <Stack alignItems="center">
         <img src={NotFoundImage} alt="not-found" />
         <Stack alignItems="center">
-          <Typography variant="h1">Oops! Page not found</Typography>
-          <Typography>
-            The page you are looking for might have been removed or temporarily
-            unavailable.
-          </Typography>
+          <Typography variant="h1">{l("notFoundPage.oops")}</Typography>
+          <Typography>{l("notFoundPage.unavalible")}</Typography>
         </Stack>
-        <Button>Back to Home Page</Button>
+        <Button>{l("notFoundPage.back")}</Button>
       </Stack>
     </Box>
   );
