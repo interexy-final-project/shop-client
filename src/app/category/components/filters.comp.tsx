@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import TypesFilter from "./types-filter.comp";
-import { findNodePath } from "../tree-utils";
+import { findNodePath } from "../utils/tree-utils";
 import { TreeNode } from "../types/tree-node.type";
 
 const NameBox = styled(Box)(({ theme }) => ({

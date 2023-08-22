@@ -13,7 +13,7 @@ import { ProductListParams, fetchProducts } from "./services/productService";
 import TypesFilter from "./components/types-filter.comp";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { findNodePath } from "./tree-utils";
+import { findNodePath } from "./utils/tree-utils";
 import { TreeNode } from "./types/tree-node.type";
 import { Product } from "./types/product.type";
 import MultipleSizesSelector from "./components/multiple-sizes-selector.comp";
@@ -88,7 +88,7 @@ const NameBox = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
 
-const CategoryPage = () => {
+const Category = () => {
   const [selectedPath, setSelectedPath] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
@@ -223,4 +223,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default Category;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Typography } from "@mui/material";
-import { findNodePath } from "../tree-utils";
+import { findNodePath } from "../utils/tree-utils";
 import { TreeNode } from "../types/tree-node.type";
 import { TreeItem, TreeView } from "@mui/lab";
 

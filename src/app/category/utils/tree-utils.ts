@@ -1,4 +1,4 @@
-import { TreeNode } from "./types/tree-node.type";
+import { TreeNode } from "../types/tree-node.type";
 
 export function findNodePath(
   tree: TreeNode[],
