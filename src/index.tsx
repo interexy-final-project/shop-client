@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { theme } from "./themes";
+import { theme } from "./assets/themes";
 import "../src/assets/style.css";
 
 const root = ReactDOM.createRoot(

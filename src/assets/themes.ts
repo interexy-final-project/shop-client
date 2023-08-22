@@ -17,8 +17,16 @@ declare module "@mui/material" {
   interface CustomPalette {
     ["red"]: PaletteColorOptions;
     ["green"]: PaletteColorOptions;
-    ["black"]: PaletteColorOptions;
     ["lightgray"]: PaletteColorOptions;
+    ["primary"]?: PaletteColorOptions;
+    ["primaryButtonHoverAndFocused"]?: PaletteColorOptions;
+    ["primaryButtonDisabled"]?: PaletteColorOptions;
+    ["black"]?: PaletteColorOptions;
+    ["white"]?: PaletteColorOptions;
+    ["secondary"]?: PaletteColorOptions;
+    ["mainText"]?: PaletteColorOptions;
+    ["greyMain"]?: PaletteColorOptions;
+    ["lightGrey"]?: PaletteColorOptions;
   }
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPalette {}
@@ -43,7 +51,12 @@ declare module "@mui/material/styles" {
     t7: React.CSSProperties;
     t8: React.CSSProperties;
     t9: React.CSSProperties;
+    t10: React.CSSProperties;
     productDescription: React.CSSProperties;
+    p: React.CSSProperties;
+    label: React.CSSProperties;
+    small: React.CSSProperties;
+    tiny: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -57,6 +70,11 @@ declare module "@mui/material/styles" {
     t7: React.CSSProperties;
     t8: React.CSSProperties;
     t9: React.CSSProperties;
+    t10: React.CSSProperties;
+    p?: React.CSSProperties;
+    label?: React.CSSProperties;
+    small?: React.CSSProperties;
+    tiny?: React.CSSProperties;
   }
 }
 
@@ -72,18 +90,35 @@ declare module "@mui/material/Typography" {
     t7: true;
     t8: true;
     t9: true; // breadCrumbs
+    t10: true; //types-filter
+    p: true;
+    label: true;
+    small: true;
+    tiny: true;
+  }
+}
+
+declare module "@mui/material" {
+  interface Color {
+    main: string;
   }
 }
 
 export const colors = {
-  primary: "#DDD571",
   primaryPressed: "#63c8f4",
-  secondary: "#60dcba",
-  white: "#FFFFFF",
   red: "#DC143C",
   green: "#00FF00",
-  black: "#000000",
   lightgray: "#F6F6F6",
+  primary: "#8A33FD",
+  primaryButtonHoverAndFocused: "#6620C1",
+  primaryButtonDisabled: "#EAEAEA",
+
+  black: "#000000",
+  white: "#FFFFFF",
+  secondary: "#3C4242", // footer, some text
+  mainText: "#807D7E",
+  greyMain: "#F6F6F6", // inputs, counter buttons, etc.
+  lightGrey: "#BEBCBD", // tiny text
 };
 
 export const theme = createTheme({
@@ -104,6 +139,23 @@ export const theme = createTheme({
       fontStyle: "normal",
       fontWeight: 600,
       lineHeight: "normal",
+    },
+    t3: {
+      color: "#3F4646",
+      fontFamily: "Poppins",
+      fontSize: "22px",
+      fontStyle: "normal",
+      fontWeight: 600,
+      lineHeight: "normal",
+    },
+    t4: {
+      color: "#807D7E",
+      fontFamily: "Poppins",
+      fontSize: "22px",
+      fontStyle: "normal",
+      fontWeight: 600,
+      lineHeight: "normal",
+      letterSpacing: "0.44px",
     },
     t7: {
       fontFamily: "Poppins",
@@ -130,19 +182,80 @@ export const theme = createTheme({
       fontWeight: 500,
       lineHeight: "normal",
     },
+    t10: {
+      fontFamily: "Poppins",
+      fontSize: "16px",
+      fontWeight: 600,
+      lineHeight: "19px",
+      letterSpacing: "0em",
+      textAlign: "left",
+      color: "#8A8989",
+    },
+    h1: {
+      fontWeight: "bold",
+      fontSize: "56px",
+    },
+    h2: {
+      fontWeight: "",
+      fontSize: "48px",
+    },
+    h3: {
+      fontWeight: "",
+      fontSize: "40px",
+    },
+    h4: {
+      fontWeight: "",
+      fontSize: "32px",
+    },
+    h5: {
+      fontWeight: "",
+      fontSize: "24px",
+    },
+    h6: {
+      fontWeight: "",
+      fontSize: "20px",
+    },
+    p: { fontWeight: "", fontSize: "16px" },
+    label: { fontWeight: "", fontSize: "14px", color: colors.mainText },
+    small: { fontWeight: "", fontSize: "12px" },
+    tiny: { fontWeight: "", fontSize: "10px" },
   },
   palette: {
     red: {
       main: colors.red,
-    },
-    black: {
-      main: colors.black,
     },
     green: {
       main: colors.green,
     },
     lightgray: {
       main: colors.lightgray,
+    },
+    primary: {
+      main: colors.primary,
+    },
+    primaryButtonHoverAndFocused: {
+      main: colors.primaryButtonHoverAndFocused,
+    },
+    primaryButtonDisabled: {
+      main: colors.primaryButtonDisabled,
+    },
+    black: {
+      main: colors.black,
+    },
+    white: {
+      main: colors.white,
+    },
+    secondary: {
+      main: colors.secondary,
+    },
+    mainText: {
+      main: colors.mainText,
+    },
+    greyMain: {
+      main: colors.greyMain,
+    },
+    lightGrey: {
+      main: colors.lightGrey,
     },
   },
   components: {

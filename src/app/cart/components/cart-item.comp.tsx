@@ -8,7 +8,7 @@ import { addItem } from "../store/cart.slice";
 import { CartItem } from "../types/cart.types";
 
 import ItemImage from "../../../assets/imgs/item.png";
-import { theme } from "../../../themes";
+import { theme } from "../../../assets/themes";
 
 type TCartItemProps = {
   id: string;

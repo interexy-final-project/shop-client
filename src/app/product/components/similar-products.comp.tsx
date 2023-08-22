@@ -1,12 +1,13 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import ProductCard from "./product-card.comp";
+import ProductCard from "../../components/product-card.comp";
 
 interface Product {
+  id: string;
   name: string;
-  img: string;
-  price: string;
-  description: string;
+  img?: string;
+  price?: string;
+  description?: string;
 }
 
 interface SimilarProductsProps {
