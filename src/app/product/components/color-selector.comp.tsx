@@ -1,7 +1,8 @@
 import React from "react";
-import { ButtonGroup, IconButton, Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+import l from "../../../lang/l";
 
 interface ColorSelectorProps {
   availableColors: string[];
@@ -16,7 +17,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
 }) => {
   return (
     <Stack spacing={3} direction={"row"}>
-      <Typography variant="t2">Colors available</Typography>
+      <Typography variant="t2">{l("colorSelector.available")}</Typography>
       {availableColors.map((color) => (
         <IconButton
           key={color}

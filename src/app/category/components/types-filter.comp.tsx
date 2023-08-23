@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Typography } from "@mui/material";
-import { findNodePath } from "../utils/tree-utils";
 import { TreeNode } from "../types/tree-node.type";
 import { TreeItem, TreeView } from "@mui/lab";
 
@@ -41,7 +40,6 @@ const TypesFilter = (props: TypesFilterProps): JSX.Element => {
       selected={selected}
       expanded={props.selectedPath}
       onNodeSelect={handleNodeSelection}
-      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: "auto" }}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
     >

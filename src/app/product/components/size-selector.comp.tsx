@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
+import l from "../../../lang/l";
 
 interface SizeSelectorProps {
   availableSizes: string[];
@@ -14,7 +15,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
 }) => {
   return (
     <Stack direction={"column"} spacing={3}>
-      <Typography variant="t2">Select size </Typography>
+      <Typography variant="t2">{l("sizeSelector.title")}</Typography>
       <ButtonGroup>
         <Stack direction="row" spacing={4}>
           {availableSizes.map((size) => (
