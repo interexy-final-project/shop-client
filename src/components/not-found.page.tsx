@@ -8,11 +8,17 @@ export const NotFound: React.FC = () => {
     <Box display="flex" justifyContent="center">
       <Stack alignItems="center">
         <img src={NotFoundImage} alt="not-found" />
-        <Stack alignItems="center">
-          <Typography variant="h1">{l("notFoundPage.oops")}</Typography>
-          <Typography>{l("notFoundPage.unavalible")}</Typography>
+        <Stack alignItems="center" p="2rem 0">
+          <Typography variant="h1" p="0.5rem 0">
+            {l("notFoundPage.oops")}
+          </Typography>
+          <Typography variant="p" p="0.5rem 0">
+            {l("notFoundPage.unavalible")}
+          </Typography>
         </Stack>
-        <Button>{l("notFoundPage.back")}</Button>
+        <Button variant="shop-purple-filled" sx={{ margin: "1rem 0" }}>
+          {l("notFoundPage.back")}
+        </Button>
       </Stack>
     </Box>
   );

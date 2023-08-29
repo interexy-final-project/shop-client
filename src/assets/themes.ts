@@ -10,6 +10,8 @@ declare module "@mui/material/Button" {
     "shop-add-to-card": true;
     "shop-price-button": true;
     "shop-price-button-similar-bar": true;
+    "shop-purple-filled": true;
+    "shop-white-button": true;
   }
 }
 
@@ -17,7 +19,6 @@ declare module "@mui/material" {
   interface CustomPalette {
     ["red"]: PaletteColorOptions;
     ["green"]: PaletteColorOptions;
-    ["lightgray"]: PaletteColorOptions;
     ["primary"]?: PaletteColorOptions;
     ["primaryButtonHoverAndFocused"]?: PaletteColorOptions;
     ["primaryButtonDisabled"]?: PaletteColorOptions;
@@ -25,8 +26,8 @@ declare module "@mui/material" {
     ["white"]?: PaletteColorOptions;
     ["secondary"]?: PaletteColorOptions;
     ["mainText"]?: PaletteColorOptions;
-    ["greyMain"]?: PaletteColorOptions;
-    ["lightGrey"]?: PaletteColorOptions;
+    ["grayMain"]?: PaletteColorOptions;
+    ["lightGray"]?: PaletteColorOptions;
   }
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPalette {}
@@ -108,7 +109,6 @@ export const colors = {
   primaryPressed: "#63c8f4",
   red: "#DC143C",
   green: "#00FF00",
-  lightgray: "#F6F6F6",
   primary: "#8A33FD",
   primaryButtonHoverAndFocused: "#6620C1",
   primaryButtonDisabled: "#EAEAEA",
@@ -117,8 +117,8 @@ export const colors = {
   white: "#FFFFFF",
   secondary: "#3C4242", // footer, some text
   mainText: "#807D7E",
-  greyMain: "#F6F6F6", // inputs, counter buttons, etc.
-  lightGrey: "#BEBCBD", // tiny text
+  grayMain: "#F6F6F6", // inputs, counter buttons, etc.
+  lightGray: "#BEBCBD", // tiny text
 };
 
 export const theme = createTheme({
@@ -196,29 +196,30 @@ export const theme = createTheme({
       fontSize: "56px",
     },
     h2: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "48px",
     },
     h3: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "40px",
     },
     h4: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "32px",
     },
     h5: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "24px",
     },
     h6: {
-      fontWeight: "",
+      fontFamily: "Poppins",
+      fontWeight: 500,
       fontSize: "20px",
     },
-    p: { fontWeight: "", fontSize: "16px" },
-    label: { fontWeight: "", fontSize: "14px", color: colors.mainText },
-    small: { fontWeight: "", fontSize: "12px" },
-    tiny: { fontWeight: "", fontSize: "10px" },
+    p: { fontWeight: 400, fontSize: "16px", color: colors.mainText },
+    label: { fontWeight: "bold", fontSize: "14px", color: colors.mainText },
+    small: { fontWeight: "bold", fontSize: "12px" },
+    tiny: { fontWeight: "bold", fontSize: "10px" },
   },
   palette: {
     red: {
@@ -226,9 +227,6 @@ export const theme = createTheme({
     },
     green: {
       main: colors.green,
-    },
-    lightgray: {
-      main: colors.lightgray,
     },
     primary: {
       main: colors.primary,
@@ -251,11 +249,11 @@ export const theme = createTheme({
     mainText: {
       main: colors.mainText,
     },
-    greyMain: {
-      main: colors.greyMain,
+    grayMain: {
+      main: colors.grayMain,
     },
-    lightGrey: {
-      main: colors.lightGrey,
+    lightGray: {
+      main: colors.lightGray,
     },
   },
   components: {
@@ -404,6 +402,51 @@ export const theme = createTheme({
 
             "&:active": {
               backgroundColor: colors.primaryPressed,
+            },
+          },
+        },
+        {
+          props: { variant: "shop-white-button" },
+          style: {
+            color: colors.secondary,
+            textAlign: "center",
+            fontFamily: "Poppins",
+            fontSize: "1.5rem",
+            fontStyle: "normal",
+            fontWeight: 700,
+            lineHeight: "1.8rem",
+            background: colors.white,
+            padding: "1rem 4.5rem ",
+            textTransform: "inherit",
+            "&:hover": {
+              backgroundColor: colors.lightGray,
+              color: colors.white,
+            },
+          },
+        },
+        {
+          props: { variant: "shop-purple-filled" },
+          style: {
+            color: colors.white,
+            textAlign: "center",
+            fontFamily: "Poppins",
+            fontSize: "1.125rem",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal",
+            borderRadius: "0.5rem",
+            background: colors.primary,
+            textTransform: "none",
+            padding: "1rem 1.25rem",
+            gap: "0.75rem",
+            height: "2.75rem",
+            width: "17rem",
+            "&:hover": {
+              backgroundColor: colors.primaryButtonHoverAndFocused,
+            },
+
+            "&:active": {
+              backgroundColor: colors.primaryButtonHoverAndFocused,
             },
           },
         },
