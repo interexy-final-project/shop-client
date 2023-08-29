@@ -1,4 +1,7 @@
 @font-face {
   font-family: "Poppins";
-  src: url("../assets/fonts/Poppins-Bold.ttf") format("opentype");
+  src:
+    url("../assets/fonts/Poppins-Bold.ttf") format("opentype"),
+    url("../assets//fonts/Poppins-Thin.ttf") format("opentype"),
+    url("../assets/fonts/Poppins-Medium.ttf") format("opentype");
 }

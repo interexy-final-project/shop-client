@@ -7,14 +7,18 @@ export const NotFound: React.FC = () => {
     <Box display="flex" justifyContent="center">
       <Stack alignItems="center">
         <img src={NotFoundImage} alt="not-found" />
-        <Stack alignItems="center">
-          <Typography variant="h1">Oops! Page not found</Typography>
-          <Typography>
+        <Stack alignItems="center" p="2rem 0">
+          <Typography variant="h1" p="0.5rem 0">
+            Oops! Page not found
+          </Typography>
+          <Typography variant="p" p="0.5rem 0">
             The page you are looking for might have been removed or temporarily
             unavailable.
           </Typography>
         </Stack>
-        <Button>Back to Home Page</Button>
+        <Button variant="shop-purple-filled" sx={{ margin: "1rem 0" }}>
+          Back to Home Page
+        </Button>
       </Stack>
     </Box>
   );

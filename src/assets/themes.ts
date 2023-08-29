@@ -10,7 +10,7 @@ declare module "@mui/material/Button" {
     "shop-add-to-card": true;
     "shop-price-button": true;
     "shop-price-button-similar-bar": true;
-
+    "shop-purple-filled": true;
     "shop-white-button": true;
   }
 }
@@ -196,29 +196,30 @@ export const theme = createTheme({
       fontSize: "56px",
     },
     h2: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "48px",
     },
     h3: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "40px",
     },
     h4: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "32px",
     },
     h5: {
-      fontWeight: "",
+      fontWeight: "bold",
       fontSize: "24px",
     },
     h6: {
-      fontWeight: "",
+      fontFamily: "Poppins",
+      fontWeight: 500,
       fontSize: "20px",
     },
-    p: { fontWeight: "", fontSize: "16px" },
-    label: { fontWeight: "", fontSize: "14px", color: colors.mainText },
-    small: { fontWeight: "", fontSize: "12px" },
-    tiny: { fontWeight: "", fontSize: "10px" },
+    p: { fontWeight: 400, fontSize: "16px", color: colors.mainText },
+    label: { fontWeight: "bold", fontSize: "14px", color: colors.mainText },
+    small: { fontWeight: "bold", fontSize: "12px" },
+    tiny: { fontWeight: "bold", fontSize: "10px" },
   },
   palette: {
     red: {
@@ -420,6 +421,32 @@ export const theme = createTheme({
             "&:hover": {
               backgroundColor: colors.lightGray,
               color: colors.white,
+            },
+          },
+        },
+        {
+          props: { variant: "shop-purple-filled" },
+          style: {
+            color: colors.white,
+            textAlign: "center",
+            fontFamily: "Poppins",
+            fontSize: "1.125rem",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal",
+            borderRadius: "0.5rem",
+            background: colors.primary,
+            textTransform: "none",
+            padding: "1rem 1.25rem",
+            gap: "0.75rem",
+            height: "2.75rem",
+            width: "17rem",
+            "&:hover": {
+              backgroundColor: colors.primaryButtonHoverAndFocused,
+            },
+
+            "&:active": {
+              backgroundColor: colors.primaryButtonHoverAndFocused,
             },
           },
         },

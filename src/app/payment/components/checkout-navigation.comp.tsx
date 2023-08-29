@@ -4,7 +4,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 export const CheckoutNavigation: React.FC = () => {
   return (
-    <Box>
+    <Box padding={1}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
