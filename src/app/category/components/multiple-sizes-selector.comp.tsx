@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Button, ButtonGroup, Grid, Stack } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
+import l from "../../../lang/l";
 
 interface SizeSelectorProps {
   availableSizes: string[];
@@ -28,7 +29,7 @@ const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
 
   return (
     <div>
-      <h3>Select Size:</h3>
+      <h3>{l("sizeSelector.title")}</h3>
       <Grid container direction="row" gap={2}>
         {availableSizes.map((size) => (
           <Box key={size}>

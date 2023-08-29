@@ -24,26 +24,24 @@ const SignIn = () => {
   };
 
   return (
-    <Stack component="main" sx={{ height: "100vh" }}>
+    <Stack component="main" height={"100vh"}>
       <LoginHeader />
       <Stack
         spacing={3}
         direction={"row"}
-        sx={{ overflow: "hidden" }}
+        overflow={"hidden"}
         justifyContent={"center"}
       >
+        {/* TODO Change img for responsive */}
         <Box component={"img"} src={img} />
         <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            alignSelf: "center",
-          }}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          alignSelf={"center"}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          {/* TODO Avatar styling */}
+          <Avatar />
           <Typography component="h1" variant="h5">
             {l("signin.signin")}
           </Typography>
@@ -51,7 +49,7 @@ const SignIn = () => {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+            marginTop={1}
           >
             <TextField
               margin="normal"
@@ -73,26 +71,19 @@ const SignIn = () => {
               id="password"
               autoComplete="current-password"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              <Typography>{l("signin.signin")}</Typography>
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  <Typography>{l("signin.forgot")}</Typography>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  <Typography>{l("signin.noaccount")}</Typography>
-                </Link>
-              </Grid>
-            </Grid>
+            <Box marginBottom={3} marginTop={3}>
+              <Button type="submit" fullWidth variant="contained">
+                {l("signin.signin")}
+              </Button>
+            </Box>
+            <Stack direction={"row"} justifyContent={"space-between"}>
+              <Link href="#" variant="body2">
+                <Typography>{l("signin.forgot")}</Typography>
+              </Link>
+              <Link href="#" variant="body2">
+                <Typography>{l("signin.noaccount")}</Typography>
+              </Link>
+            </Stack>
           </Box>
         </Box>
       </Stack>

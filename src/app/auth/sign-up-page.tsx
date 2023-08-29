@@ -23,26 +23,24 @@ const SignUp = () => {
   };
 
   return (
-    <Stack component="main" sx={{ height: "100vh" }}>
+    <Stack component="main" height={"100vh"}>
       <LoginHeader />
       <Stack
         spacing={3}
         direction={"row"}
-        sx={{ overflow: "hidden" }}
+        overflow={"hidden"}
         justifyContent={"center"}
       >
+        {/* TODO Change img for responsive */}
         <Box component={"img"} src={img} />
         <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            alignSelf: "center",
-          }}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          alignSelf={"center"}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          {/* TODO Avatar styling */}
+          <Avatar />
           <Typography component="h1" variant="h5">
             {l("signup.signup")}
           </Typography>
@@ -50,7 +48,7 @@ const SignUp = () => {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+            marginTop={1}
           >
             <TextField
               margin="normal"
@@ -72,14 +70,11 @@ const SignUp = () => {
               id="password"
               autoComplete="current-password"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              <Typography>{l("signup.signup")}</Typography>
-            </Button>
+            <Box marginBottom={3} marginTop={3}>
+              <Button type="submit" fullWidth variant="contained">
+                {l("signup.signup")}
+              </Button>
+            </Box>
             <Link href="#" variant="body2">
               <Typography>{l("signup.gotaccount")}</Typography>
             </Link>

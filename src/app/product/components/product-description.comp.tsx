@@ -1,5 +1,6 @@
 import { Stack, Box, Typography, styled } from "@mui/material";
 import React from "react";
+import l from "../../../lang/l";
 
 const TextBox = styled("p")(() => ({
   width: "50%",
@@ -22,7 +23,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
   return (
     <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>
       <Box>
-        <Typography variant="t1">Product description </Typography>
+        <Typography variant="t1">{l("productDescription.title")}</Typography>
       </Box>
       <TextBox>
         <Typography variant="t7">{product.description}</Typography>

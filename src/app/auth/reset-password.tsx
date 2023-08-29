@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Stack,
-} from "@mui/material";
+import { Box, Typography, TextField, Button, Link, Stack } from "@mui/material";
 import LoginHeader from "../components/login-header";
 import l from "../../lang/l";
 import img from "../../assets/resetpassword.jpg";
@@ -23,16 +15,17 @@ const ResetPassword = () => {
   };
 
   return (
-    <Stack component="main" sx={{ height: "100vh" }}>
+    <Stack component="main" height={"100vh"}>
       <LoginHeader />
       <Stack
         spacing={3}
         direction={"row"}
-        sx={{ overflow: "hidden" }}
+        overflow={"hidden"}
         justifyContent={"center"}
       >
+        {/* TODO Change img for responsive */}
         <Box component={"img"} src={img} />
-        <Box padding={3} sx={{ alignSelf: "center" }}>
+        <Box padding={3} alignSelf={"center"}>
           <Typography component="h1" variant="h4">
             {l("resetPassword.title")}
           </Typography>
@@ -46,7 +39,8 @@ const ResetPassword = () => {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+            marginTop={1}
+            gap={3}
           >
             <TextField
               margin="normal"
@@ -58,21 +52,14 @@ const ResetPassword = () => {
               autoComplete="email"
               autoFocus
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              <Typography>{l("signin.signin")}</Typography>
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  <Typography>{l("resetPassword.login")}</Typography>
-                </Link>
-              </Grid>
-            </Grid>
+            <Box marginBottom={3} marginTop={3}>
+              <Button type="submit" fullWidth variant="contained">
+                {l("signin.signin")}
+              </Button>
+            </Box>
+            <Link href="#" variant="body2">
+              <Typography>{l("resetPassword.login")}</Typography>
+            </Link>
           </Box>
         </Box>
       </Stack>

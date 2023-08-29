@@ -32,7 +32,7 @@ const UserContacts = () => {
           data={{ name: l("userContacts.password"), value: "Name" }}
         />
       </Stack>
-      <Typography variant="h5">Address</Typography>
+      <Typography variant="h5">{l("userContacts.address")}</Typography>
       <Stack
         marginTop={2}
         direction={"row"}

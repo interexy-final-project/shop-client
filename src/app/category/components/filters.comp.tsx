@@ -1,11 +1,10 @@
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box, Stack, styled } from "@mui/system";
-import React, { useState } from "react";
+import { useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import TypesFilter from "./types-filter.comp";
-import { findNodePath } from "../utils/tree-utils";
-import { TreeNode } from "../types/tree-node.type";
+
+import l from "../../../lang/l";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -90,7 +89,7 @@ function Filters() {
       <Box>
         <Stack>
           <NameBox justifyContent={"space-between"}>
-            <Typography variant="t4">Filter</Typography>
+            <Typography variant="t4">{l("filter.title")}</Typography>
 
             <Typography variant="t4">
               <FilterListIcon fontSize="large" />
@@ -109,7 +108,7 @@ function Filters() {
         <Stack>
           <NameBox>
             {" "}
-            <Typography variant="t4">Color</Typography>
+            <Typography variant="t4">{l("filter.color")}</Typography>
             <Typography variant="t4">
               <KeyboardArrowUpIcon fontSize="large" />
             </Typography>
@@ -121,7 +120,7 @@ function Filters() {
         <Stack>
           <NameBox>
             {" "}
-            <Typography variant="t4">Size</Typography>
+            <Typography variant="t4">{l("filter.size")}</Typography>
             <Typography variant="t4">
               <KeyboardArrowUpIcon fontSize="large" />
             </Typography>

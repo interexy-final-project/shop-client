@@ -5,7 +5,7 @@ import OrderItem from "./order-item";
 const OrderListItem = () => {
   return (
     <Box>
-      <Paper sx={{ bgcolor: "#F6F6F6" }}>
+      <Box component={Paper} bgcolor={"#F6F6F6"}>
         <Typography variant="h5" gutterBottom>
           {l("orderItem.orderTitle")}
         </Typography>
@@ -23,7 +23,7 @@ const OrderListItem = () => {
             </Typography>
           </Box>
         </Stack>
-      </Paper>
+      </Box>
       <Stack
         marginTop={2}
         direction={"row"}

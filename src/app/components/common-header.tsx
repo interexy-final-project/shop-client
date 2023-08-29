@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Button, Paper, Stack } from "@mui/material";
 import Logo from "../../assets/Logo.png";
 import LanguageSelect from "./languageSelect";

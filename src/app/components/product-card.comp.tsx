@@ -1,6 +1,5 @@
 import { Stack, Box, Typography, styled, Button } from "@mui/material";
 import React from "react";
-import { TreeNode } from "../category/types/tree-node.type";
 
 interface Product {
   id: string;
