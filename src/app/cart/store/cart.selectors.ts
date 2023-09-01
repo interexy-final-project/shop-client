@@ -1,3 +1,4 @@
 import { type RootState } from "../../../store";
-
-export const selectCart = (state: RootState) => state.cartSlice;
+import { type ICartSliceState } from "../types/cart.types";
+export const selectCart = (state: RootState): ICartSliceState =>
+  state.cartSlice;

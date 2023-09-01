@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./assets/themes";
 import "../src/assets/style.css";
-import App from "./app";
+import App from "./App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

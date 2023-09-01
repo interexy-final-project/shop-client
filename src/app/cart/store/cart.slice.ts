@@ -5,8 +5,8 @@ import { calcTotalPrice, getCartFromDb } from "../../../utils/calcTotalPrice";
 const { items, totalPrice } = getCartFromDb();
 
 const initialState: ICartSliceState = {
-  totalPrice: totalPrice,
-  items: items,
+  totalPrice,
+  items,
 };
 
 export const cartSlice = createSlice({

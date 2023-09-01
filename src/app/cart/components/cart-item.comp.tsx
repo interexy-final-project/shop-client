@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React from "react";
 import { useAppDispatch } from "../../../store";
-import { addItem, minusItem, removeItem } from "../store/cart.slice";
+import { addItem } from "../store/cart.slice";
 import { CartItem } from "../types/cart.types";
 
 import ItemImage from "../../../assets/imgs/item.png";
@@ -17,6 +17,7 @@ type TCartItemProps = {
   size: string;
   color: string;
   price: number;
+  shipping: string;
   subtotal: number;
 
   count: number;
@@ -29,24 +30,20 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
   size,
   color,
   price,
+  shipping,
   subtotal,
   count,
 }) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const onCLickPlus = () => {
-    dispatch(addItem({ id, color, size } as CartItem));
+    count++;
+    // dispatch(addItem({ id, color, size } as CartItem));
   };
 
-  const onClickMinus = () => {
-    dispatch(minusItem({ id, color, size } as CartItem));
-  };
+  // const onClickMinus = () => {};
 
-  const onCLickRemove = () => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      dispatch(removeItem({ id, color, size } as CartItem));
-    }
-  };
+  // const onCLickRemove = () => {};
 
   return (
     <Stack
@@ -62,7 +59,7 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
       <Stack direction="row" spacing={3}>
         <Box
           component="img"
-          src={imageUrl}
+          src={ItemImage}
           alt="product-image"
           width="105px"
           height="120px"
@@ -70,7 +67,7 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
 
         <Stack>
           <Typography variant="h6" sx={{ mb: 1 }}>
-            {title}
+            Kind of production {}
           </Typography>
           <Typography variant="label">Color: {color}</Typography>
           <Typography variant="label">Size: {size}</Typography>
@@ -89,7 +86,7 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
         <Typography variant="h6">${price}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <IconButton onClick={onClickMinus} disabled={count === 1}>
+          <IconButton>
             <RemoveIcon />
           </IconButton>
           <Typography variant="h6">{count}</Typography>
@@ -98,9 +95,11 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
           </IconButton>
         </Stack>
 
+        <Typography variant="h6">{shipping}</Typography>
+
         <Typography variant="h6">${subtotal} </Typography>
 
-        <IconButton color="primary" onClick={onCLickRemove}>
+        <IconButton color="primary">
           <DeleteOutlineOutlinedIcon />
         </IconButton>
       </Stack>
