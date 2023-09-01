@@ -6,11 +6,12 @@ import UserProfile from "./app/user/user-profile";
 import Category from "./app/category/category.page";
 import ProductDetails from "./app/product/product-details.page";
 import { CartPage } from "./app/cart/cart.page";
+import { MainPage } from "./components/main-page";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={"/"} />
+      <Route path={"/"} element={<MainPage />} />
       <Route path={"/auth/sign-in"} element={<SignIn />} />
       <Route path={"/auth/sign-up"} element={<SignUp />} />
       <Route path={"/auth/reset-password"} element={<ResetPassword />} />

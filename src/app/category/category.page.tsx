@@ -151,6 +151,18 @@ const Category = () => {
               </NameBox>
             </Stack>
           </Box>
+
+          <Box>
+            <Stack>
+              <NameBox>
+                <Typography variant="t4">{l("filter.price")}</Typography>
+                <Typography variant="t4">
+                  <KeyboardArrowUpIcon fontSize="large" />
+                </Typography>
+              </NameBox>
+            </Stack>
+          </Box>
+
           <Box>
             <Stack>
               <NameBox>
