@@ -2,11 +2,15 @@ import React from "react";
 import { IconButton } from "@mui/material";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import SquareIcon from "@mui/icons-material/Square";
+import { useDispatch } from "react-redux";
+import { setColors } from "../store/category.slice";
+import { AppDispatch } from "../../../store";
+import { ProductColors } from "../../../enums/product-colors.enum";
 
 interface MultipleColorSelectorProps {
-  availableColors: string[];
-  selectedColors: string[];
-  onSelectColor: (sizes: string[]) => void;
+  availableColors: ProductColors[];
+  selectedColors: ProductColors[];
+  onSelectColor: (colors: ProductColors[]) => void;
 }
 
 const MultipleColorsSelector: React.FC<MultipleColorSelectorProps> = ({
@@ -14,17 +18,21 @@ const MultipleColorsSelector: React.FC<MultipleColorSelectorProps> = ({
   selectedColors,
   onSelectColor,
 }) => {
-  const isColorSelected = (size: string) => selectedColors.includes(size);
+  const isColorSelected = (color: ProductColors) =>
+    selectedColors.includes(color);
+  const dispatch: AppDispatch = useDispatch();
 
-  const handleColorToggle = (size: string) => {
-    let updatedColors: string[];
-    if (isColorSelected(size)) {
+  const handleColorToggle = (color: ProductColors) => {
+    let updatedColors: ProductColors[];
+    if (isColorSelected(color)) {
       updatedColors = selectedColors.filter(
-        (selectedColor) => selectedColor !== size,
+        (selectedColor) => selectedColor !== color,
       );
     } else {
-      updatedColors = [...selectedColors, size];
+      updatedColors = [...selectedColors, color];
     }
+
+    dispatch(setColors(updatedColors));
     onSelectColor(updatedColors);
   };
 

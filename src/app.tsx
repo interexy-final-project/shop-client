@@ -14,7 +14,7 @@ function App(): JSX.Element {
       {/* <CheckoutPage /> */}
       {/* <NotFound /> */}
       {/* <EmptyCart /> */}
-      <CartPage />
+      {/* <CartPage /> */}
     </BrowserRouter>
   );
 }
