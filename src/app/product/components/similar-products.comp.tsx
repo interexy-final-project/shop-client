@@ -1,17 +1,9 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import ProductCard from "../../components/product-card.comp";
-
-interface Product {
-  id: string;
-  name: string;
-  img?: string;
-  price?: string;
-  description?: string;
-}
-
+import { ProductDto } from "../../category/types/product-dto.type";
 interface SimilarProductsProps {
-  products: Product[];
+  products: ProductDto[];
 }
 const SimilarProducts: React.FC<SimilarProductsProps> = ({
   products,

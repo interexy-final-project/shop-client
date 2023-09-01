@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Typography } from "@mui/material";
+import {
+  Box,
+  ListItem,
+  MenuItem,
+  MenuList,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { TreeNode } from "../types/tree-node.type";
-import { TreeItem, TreeView } from "@mui/lab";
+import { TreeItem } from "@mui/lab";
+import { ProductTypes } from "../../../enums/product-types.enum";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { setType } from "../store/category.slice";
 
 const MenuNode = ({ node }: { node: TreeNode }) => (
   <TreeItem
@@ -15,38 +25,40 @@ const MenuNode = ({ node }: { node: TreeNode }) => (
 );
 
 interface TypesFilterProps {
-  tree: TreeNode[];
-  selectedPath: string[];
-  onNodeSelect: (selectedNodeId: string) => void;
+  types: ProductTypes[];
 }
 
 const TypesFilter = (props: TypesFilterProps): JSX.Element => {
-  console.log(props, "props");
-  const selected =
-    props.selectedPath.length > 0
-      ? props.selectedPath[props.selectedPath.length - 1]
-      : "";
-
-  const handleNodeSelection = (event: React.SyntheticEvent, nodeId: string) => {
-    if (nodeId === selected) {
-      return;
-    }
-    props.onNodeSelect(nodeId);
+  const [selectedType, setSelectedType] = useState<ProductTypes | null>(null);
+  const dispatch: AppDispatch = useDispatch();
+  const handleItemClick = (type: ProductTypes): void => {
+    setSelectedType(type);
+    dispatch(setType(type));
   };
-
   return (
-    <TreeView
-      aria-label="types filter"
-      selected={selected}
-      expanded={props.selectedPath}
-      onNodeSelect={handleNodeSelection}
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    >
-      {props.tree.map((node) => (
-        <MenuNode key={node.id} node={node} />
+    <MenuList component={Stack} direction={"column"} width={"100%"}>
+      {props.types.map((type) => (
+        <MenuItem
+          component={Box}
+          key={type}
+          sx={{
+            backgroundColor: selectedType === type ? "#E5CCFF" : "white",
+          }}
+        >
+          <Stack
+            direction={"row"}
+            justifyContent={"space-between"}
+            width={"100%"}
+          >
+            <ListItem onClick={() => handleItemClick(type)}>
+              <Typography variant="t10"> {type} </Typography>
+            </ListItem>
+
+            <ChevronRightIcon></ChevronRightIcon>
+          </Stack>
+        </MenuItem>
       ))}
-    </TreeView>
+    </MenuList>
   );
 };
 
