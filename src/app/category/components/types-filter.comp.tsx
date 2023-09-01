@@ -1,28 +1,15 @@
 import React, { useState } from "react";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Box,
-  Divider,
-  Grid,
   ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   MenuItem,
   MenuList,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import { TreeNode } from "../types/tree-node.type";
-import { TreeItem, TreeView } from "@mui/lab";
-import {
-  ContentCut,
-  ContentCopy,
-  ContentPaste,
-  Cloud,
-} from "@mui/icons-material";
+import { TreeItem } from "@mui/lab";
 import { ProductTypes } from "../../../enums/product-types.enum";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";

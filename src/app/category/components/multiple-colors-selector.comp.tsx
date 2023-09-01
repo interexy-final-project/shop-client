@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import SquareIcon from "@mui/icons-material/Square";
 import { useDispatch } from "react-redux";
-import { setColors, setSizes } from "../store/category.slice";
+import { setColors } from "../store/category.slice";
 import { AppDispatch } from "../../../store";
 import { ProductColors } from "../../../enums/product-colors.enum";
 
