@@ -11,7 +11,7 @@ import {
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { CartItemBlock } from "./components/cart-item.comp";
 import { useSelector } from "react-redux";
-import { selectCart } from "./store/cart.selectors";
+// import { selectCart } from "./store/cart.selectors";
 
 export const CartPage: React.FC = () => {
   // const { totalPrice, items } = useSelector(selectCart);

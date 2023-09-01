@@ -1,6 +1,7 @@
 import { Stack, Box, Typography, styled } from "@mui/material";
 import React from "react";
 import l from "../../../lang/l";
+import { ProductDto } from "../../category/types/product-dto.type";
 
 const TextBox = styled("p")(() => ({
   width: "50%",
@@ -14,7 +15,7 @@ interface Product {
 }
 
 interface ProductDescriptionProps {
-  product: Product;
+  product: ProductDto;
 }
 
 const ProductDescription: React.FC<ProductDescriptionProps> = ({

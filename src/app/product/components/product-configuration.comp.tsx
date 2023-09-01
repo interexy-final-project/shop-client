@@ -8,21 +8,15 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
 import l from "../../../lang/l";
+import { ProductDto } from "../../category/types/product-dto.type";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
   paddingTop: theme.spacing(2.2),
 }));
 
-interface Product {
-  name: string;
-  img: string;
-  price: string;
-  description: string;
-}
-
 interface ProductConfigurationProps {
-  product: Product;
+  product: ProductDto;
 }
 
 const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
