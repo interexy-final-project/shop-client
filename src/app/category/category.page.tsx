@@ -16,10 +16,11 @@ import MultipleColorsSelector from "./components/multiple-colors-selector.comp";
 import l from "../../lang/l";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { getProducts } from "./store/category.actions";
+import { getColors, getProducts, getSizes } from "./store/category.actions";
 import { ProductSizes } from "../../enums/product-sizes.enum";
 import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
+import { Root } from "react-dom/client";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -37,13 +38,12 @@ const Category = () => {
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
   const products = useSelector((state: RootState) => state.products.products);
   const filter = useSelector((state: RootState) => state.products.filter);
-  const availableColors = [
-    ProductColors.BLACK,
-    ProductColors.BLUE,
-    ProductColors.RED,
-    ProductColors.WHITE,
-  ];
-  const availableSizes = [ProductSizes.M, ProductSizes.S, ProductSizes.XS];
+  const availableColors = useSelector(
+    (state: RootState) => state.products.colors,
+  );
+  const availableSizes = useSelector(
+    (state: RootState) => state.products.sizes,
+  );
   const menu = [ProductTypes.JEANS, ProductTypes.SHIRT, ProductTypes.TSHIRT];
 
   const dispatch: AppDispatch = useDispatch();
@@ -67,6 +67,8 @@ const Category = () => {
     };
 
     loadProducts();
+    dispatch(getColors());
+    dispatch(getSizes());
   }, []);
 
   useEffect(() => {

@@ -6,6 +6,8 @@ import { ProductCategories } from "../../../enums/product-categories.enum";
 
 const initialState: CategoryState = {
   products: [],
+  colors: [],
+  sizes: [],
   filter: {
     category: null,
     type: null,
@@ -14,9 +16,13 @@ const initialState: CategoryState = {
   },
   pending: {
     products: false,
+    colors: false,
+    sizes: false,
   },
   errors: {
     products: null,
+    colors: null,
+    sizes: null,
   },
 };
 
@@ -80,54 +86,35 @@ export const productsSlice = createSlice({
         },
       );
 
-    // // ============ GET COLORS ============ //
-    // builder
-    //   .addCase(getColors.pending, (state) => {
-    //     state.pending.colors = true;
-    //     state.errors.colors = null;
-    //   })
-    //   .addCase(getColors.fulfilled, (state, { payload }) => {
-    //     state.pending.colors = false;
-    //     state.colors = payload.map((colorObject) => colorObject.color);
-    //   })
-    //   .addCase(getColors.rejected, (state, action: any & { payload: any }) => {
-    //     state.pending.colors = false;
-    //     state.errors.colors = action.payload.message;
-    //   });
+    // ============ GET COLORS ============ //
+    builder
+      .addCase(getColors.pending, (state) => {
+        state.pending.colors = true;
+        state.errors.colors = null;
+      })
+      .addCase(getColors.fulfilled, (state, { payload }) => {
+        state.pending.colors = false;
+        state.colors = payload.map((colorObject) => colorObject.color);
+      })
+      .addCase(getColors.rejected, (state, action: any & { payload: any }) => {
+        state.pending.colors = false;
+        state.errors.colors = action.payload.message;
+      });
 
-    // // ============ GET SIZES ============ //
-    // builder
-    //   .addCase(getSizes.pending, (state) => {
-    //     state.pending.sizes = true;
-    //     state.errors.sizes = null;
-    //   })
-    //   .addCase(getSizes.fulfilled, (state, { payload }) => {
-    //     state.pending.sizes = false;
-    //     state.sizes = payload.map((sizeObject) => sizeObject.size);
-    //   })
-    //   .addCase(getSizes.rejected, (state, action: any & { payload: any }) => {
-    //     state.pending.sizes = false;
-    //     state.errors.sizes = action.payload.message;
-    //   });
-
-    // // ============ GET PRODUCTS BY SIZES ============ //
-
-    // builder
-    //   .addCase(getProductsBySizes.pending, (state) => {
-    //     state.pending.products = true;
-    //     state.errors.products = null;
-    //   })
-    //   .addCase(getProductsBySizes.fulfilled, (state, { payload }) => {
-    //     state.pending.products = false;
-    //     state.products = payload;
-    //   })
-    //   .addCase(
-    //     getProductsBySizes.rejected,
-    //     (state, action: any & { payload: any }) => {
-    //       state.pending.products = false;
-    //       state.errors.products = action.payload.message;
-    //     },
-    //   );
+    // ============ GET SIZES ============ //
+    builder
+      .addCase(getSizes.pending, (state) => {
+        state.pending.sizes = true;
+        state.errors.sizes = null;
+      })
+      .addCase(getSizes.fulfilled, (state, { payload }) => {
+        state.pending.sizes = false;
+        state.sizes = payload.map((sizeObject) => sizeObject.size);
+      })
+      .addCase(getSizes.rejected, (state, action: any & { payload: any }) => {
+        state.pending.sizes = false;
+        state.errors.sizes = action.payload.message;
+      });
   },
 });
 
