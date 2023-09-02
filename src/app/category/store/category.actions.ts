@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk<ProductDto[], Filter>(
   async (filter, { rejectWithValue }) => {
     try {
       console.log(filter, "filter");
-      const response = await repository.get("/products/", {
+      const response = await repository.get("/products/byFilters", {
         params: filter,
       });
       return response.data;
@@ -47,20 +47,3 @@ export const getSizes = createAsyncThunk<SizeDto[]>(
     }
   },
 );
-
-// export const getProductsBySizes = createAsyncThunk<
-//   ProductDto[],
-//   ProductSizes[]
-// >(
-//   "GET/products by sizes",
-//   async (sizes: ProductSizes[], { rejectWithValue }) => {
-//     try {
-//       const response = await repository.get("/products/bySizes", {
-//         params: { sizes },
-//       });
-//       return response.data;
-//     } catch (error: any) {
-//       return rejectWithValue(error);
-//     }
-//   },
-// );
