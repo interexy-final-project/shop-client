@@ -6,6 +6,9 @@ import UserProfile from "./app/user/user-profile";
 import Category from "./app/category/category.page";
 import ProductDetails from "./app/product/product-details.page";
 import { CartPage } from "./app/cart/cart.page";
+import { MainPage } from "./components/main-page";
+import { CheckoutPage } from "./app/payment/checkout.page";
+import { NotFound } from "./components/not-found.page";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +21,8 @@ const AppRoutes = () => {
       <Route path={"/category"} element={<Category />} />
       <Route path={"/product-details"} element={<ProductDetails />} />
       <Route path={"/cart-page"} element={<CartPage />} />
+      <Route path={"/checkout"} element={<CheckoutPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
