@@ -5,9 +5,7 @@ export interface CartItem {
   size: string;
   color: string;
   price: number;
-  shipping: string;
   subtotal: number;
-
   count: number;
 }
 
