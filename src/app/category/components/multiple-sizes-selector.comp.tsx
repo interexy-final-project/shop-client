@@ -1,11 +1,15 @@
 import React from "react";
 import { Box, Button, Grid } from "@mui/material";
 import l from "../../../lang/l";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
+import { setSizes } from "../store/category.slice";
 
 interface SizeSelectorProps {
-  availableSizes: string[];
-  selectedSizes: string[];
-  onSelectSize: (sizes: string[]) => void;
+  availableSizes: ProductSizes[];
+  selectedSizes: ProductSizes[];
+  onSelectSize: (sizes: ProductSizes[]) => void;
 }
 
 const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
@@ -13,10 +17,11 @@ const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
   selectedSizes,
   onSelectSize,
 }) => {
-  const isSizeSelected = (size: string) => selectedSizes.includes(size);
+  const isSizeSelected = (size: ProductSizes) => selectedSizes.includes(size);
+  const dispatch: AppDispatch = useDispatch();
 
-  const handleSizeToggle = (size: string) => {
-    let updatedSizes: string[];
+  const handleSizeToggle = (size: ProductSizes) => {
+    let updatedSizes: ProductSizes[];
     if (isSizeSelected(size)) {
       updatedSizes = selectedSizes.filter(
         (selectedSize) => selectedSize !== size,
@@ -24,6 +29,7 @@ const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
     } else {
       updatedSizes = [...selectedSizes, size];
     }
+    dispatch(setSizes(updatedSizes));
     onSelectSize(updatedSizes);
   };
 

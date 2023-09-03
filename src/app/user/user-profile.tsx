@@ -6,6 +6,7 @@ import UserOrderList from "./components/user-orders-list";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import l from "../../lang/l";
+import UserContacts from "./components/user-contacts";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -71,7 +72,7 @@ const UserProfile = () => {
           </Box>
         </Stack>
         <TabPanel value={currentTabIndex} index={0}>
-          <UserOrderList />
+          <UserContacts />
         </TabPanel>
         <TabPanel value={currentTabIndex} index={1}>
           <UserOrderList />

@@ -63,35 +63,38 @@ export const CartPage: React.FC = () => {
             </Stack>
           </Stack>
 
-          <Box>
+          <Stack
+            direction="row"
+            sx={{
+              bgcolor: "secondary.main",
+              p: 5,
+            }}
+          >
             <Stack
               direction="row"
-              sx={{
-                bgcolor: "secondary.main",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                p: 5,
-              }}
+              display="flex"
+              justifyContent="space-between"
+              width="100%"
             >
-              <Stack direction="row" spacing={50}>
+              <Stack>
                 <Typography sx={{ color: "white.main" }}>
                   PRODUCT DETAILS
                 </Typography>
-                <Stack direction="row" spacing={28}>
-                  <Typography sx={{ color: "white.main" }}>PRICE</Typography>
-                  <Typography sx={{ color: "white.main" }}>QUANTITY</Typography>
-                  <Typography sx={{ color: "white.main" }}>SUBTOTAL</Typography>
-                  <Typography sx={{ color: "white.main" }}>DELETE</Typography>
-                </Stack>
+              </Stack>
+
+              <Stack direction="row" spacing={16}>
+                <Typography sx={{ color: "white.main" }}>PRICE</Typography>
+                <Typography sx={{ color: "white.main" }}>QUANTITY</Typography>
+                <Typography sx={{ color: "white.main" }}>SUBTOTAL</Typography>
+                <Typography sx={{ color: "white.main" }}>DELETE</Typography>
               </Stack>
             </Stack>
+          </Stack>
 
-            <Box>
-              {items.map((item: any) => (
-                <CartItemBlock key={item.id} {...item} />
-              ))}
-            </Box>
+          <Box>
+            {items.map((item: any) => (
+              <CartItemBlock key={item.id} {...item} />
+            ))}
           </Box>
 
           <Box bgcolor="greyMain.main" sx={{ p: 6 }}>

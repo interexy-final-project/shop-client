@@ -14,7 +14,7 @@ const StyledImage = styled("img")({
 });
 
 const SliderBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.lightgray.main,
+  backgroundColor: theme.palette.lightGray.main,
 }));
 
 const ProductSlider: React.FC = () => {

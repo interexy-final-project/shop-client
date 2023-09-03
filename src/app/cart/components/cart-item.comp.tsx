@@ -52,11 +52,11 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
     <Stack
       component="div"
       direction="row"
+      display="flex"
+      justifyContent="space-between"
+      width="100%"
       sx={{
         p: 6,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
       }}
     >
       <Stack direction="row" spacing={3}>
@@ -72,8 +72,8 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
           <Typography variant="h6" sx={{ mb: 1 }}>
             {title}
           </Typography>
-          <Typography variant="label">Color: {color}</Typography>
-          <Typography variant="label">Size: {size}</Typography>
+          <Typography variant="label">Color: {color} </Typography>
+          <Typography variant="label">Size: {size} </Typography>
         </Stack>
       </Stack>
 
@@ -84,15 +84,15 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
           justifyContent: "space-between",
         }}
         direction="row"
-        spacing={30}
+        spacing={18}
       >
-        <Typography variant="h6">${price}</Typography>
+        <Typography variant="h6">$ {price}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <IconButton onClick={onClickMinus} disabled={count === 1}>
+          <IconButton onClick={onClickMinus}>
             <RemoveIcon />
           </IconButton>
-          <Typography variant="h6">{count}</Typography>
+          <Typography variant="h6"> {count}</Typography>
           <IconButton onClick={onCLickPlus}>
             <AddIcon />
           </IconButton>

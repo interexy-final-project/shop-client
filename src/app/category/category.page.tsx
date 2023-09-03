@@ -8,74 +8,18 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import ProductCard from "../../app/components/product-card.comp";
-import { ProductListParams, fetchProducts } from "./services/productService";
 import TypesFilter from "./components/types-filter.comp";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { findNodePath } from "./utils/tree-utils";
-import { Product } from "./types/product.type";
 import MultipleSizesSelector from "./components/multiple-sizes-selector.comp";
 import MultipleColorsSelector from "./components/multiple-colors-selector.comp";
 import l from "../../lang/l";
-
-const menu = [
-  {
-    id: "1",
-    name: "trousers",
-    kinds: [
-      {
-        id: "2",
-        name: "jeans",
-      },
-      {
-        id: "3",
-        name: "breeches",
-      },
-    ],
-  },
-  {
-    id: "4",
-    name: "skirts",
-    kinds: [
-      {
-        id: "5",
-        name: "mini",
-      },
-      {
-        id: "6",
-        name: "not-mini",
-      },
-    ],
-  },
-  {
-    id: "7",
-    name: "shirts",
-    kinds: [
-      {
-        id: "8",
-        name: "short",
-      },
-      {
-        id: "9",
-        name: "long",
-      },
-    ],
-  },
-  {
-    id: "10",
-    name: "pants",
-    kinds: [
-      {
-        id: "11",
-        name: "nice",
-      },
-      {
-        id: "12",
-        name: "not nice",
-      },
-    ],
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { getProducts } from "./store/category.actions";
+import { ProductSizes } from "../../enums/product-sizes.enum";
+import { ProductColors } from "../../enums/product-colors.enum";
+import { ProductTypes } from "../../enums/product-types.enum";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -88,47 +32,47 @@ const NameBox = styled(Box)(({ theme }) => ({
 }));
 
 const Category = () => {
-  const [selectedPath, setSelectedPath] = useState<string[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const availableSizes = ["XS", "S", "M", "L", "XL"];
-  const availableColors = ["Red", "Blue", "Green", "Orange", "Teal"];
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
+  const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
+  const products = useSelector((state: RootState) => state.products.products);
+  const filter = useSelector((state: RootState) => state.products.filter);
+  const availableColors = [
+    ProductColors.BLACK,
+    ProductColors.BLUE,
+    ProductColors.RED,
+    ProductColors.WHITE,
+  ];
+  const availableSizes = [ProductSizes.M, ProductSizes.S, ProductSizes.XS];
+  const menu = [ProductTypes.JEANS, ProductTypes.SHIRT, ProductTypes.TSHIRT];
 
-  const handleSizeSelection = (sizes: string[]) => {
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleSizeSelection = (sizes: ProductSizes[]) => {
     setSelectedSizes(sizes);
   };
 
-  const handleColorSelection = (colors: string[]) => {
+  const handleColorSelection = (colors: ProductColors[]) => {
     setSelectedColors(colors);
   };
 
   useEffect(() => {
     const loadProducts = async () => {
       setLoadingProducts(true);
-
-      const paramsMapping: Array<keyof ProductListParams> = ["type", "kind"];
-      const params = selectedPath.reduce((acc, id, index) => {
-        acc[paramsMapping[index]] = id;
-        return acc;
-      }, {} as ProductListParams);
-
       try {
-        const response: Product[] = await fetchProducts(params);
-        setProducts(response);
+        dispatch(getProducts(filter));
       } finally {
         setLoadingProducts(false);
       }
     };
 
     loadProducts();
-  }, [selectedPath]);
+  }, []);
 
-  const handleNodeSelection = (selectedNodeId: string) => {
-    const expandedNodes = findNodePath(menu, selectedNodeId) ?? [];
-    setSelectedPath(expandedNodes);
-  };
+  useEffect(() => {
+    dispatch(getProducts(filter));
+  }, [filter]);
+
   return (
     <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
       <Grid item xs={3}>
@@ -143,11 +87,7 @@ const Category = () => {
                 </Typography>
               </NameBox>
               <NameBox>
-                <TypesFilter
-                  tree={menu}
-                  selectedPath={selectedPath}
-                  onNodeSelect={handleNodeSelection}
-                ></TypesFilter>
+                <TypesFilter types={menu}></TypesFilter>
               </NameBox>
             </Stack>
           </Box>
