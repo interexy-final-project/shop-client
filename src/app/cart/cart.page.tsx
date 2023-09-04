@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -10,11 +10,36 @@ import {
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { CartItemBlock } from "./components/cart-item.comp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { getCartItems, getProducts } from "./store/cart.actions";
+import { setProducts } from "./store/cart.slice";
+import { CartItemDto } from "./types/cart-item-dto.type";
 // import { selectCart } from "./store/cart.selectors";
 
 export const CartPage: React.FC = () => {
-  // const { totalPrice, items } = useSelector(selectCart);
+  const userId = "7a530b8e-2968-41ec-8b0f-8e83b6e453c8";
+  const dispatch: AppDispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  console.log(cartItems);
+  useEffect(() => {
+    const loadCartItems = async () => {
+      try {
+        dispatch(getCartItems(userId));
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
+
+    loadCartItems();
+  }, []);
+
+  function calculateTotalPrice(cartItems: CartItemDto[]) {
+    return cartItems.reduce((accumulator: number, cartItem) => {
+      return accumulator + cartItem.product.price * cartItem.quantity;
+    }, 0);
+  }
+
   return (
     <Box>
       <Stack spacing={5} sx={{ p: 6 }}>
@@ -70,29 +95,21 @@ export const CartPage: React.FC = () => {
         </Stack>
 
         <Box>
-          <CartItemBlock
-            id=""
-            title=""
-            imageUrl=""
-            size={"s"}
-            color=""
-            price={7}
-            shipping="free"
-            subtotal={5}
-            count={5}
-          />
-
-          <CartItemBlock
-            id=""
-            title=""
-            imageUrl=""
-            size={"s"}
-            color=""
-            price={7}
-            shipping="free"
-            subtotal={5}
-            count={5}
-          />
+          {cartItems.map((cart) => (
+            <CartItemBlock
+              key={cart.product.id + cart.color + cart.size}
+              id={cart.product.id}
+              title={cart.product.name}
+              imageUrl={cart.product.images[0]}
+              size={cart.size}
+              color={cart.color}
+              price={cart.product.price}
+              shipping="free"
+              subtotal={cart.product.price * cart.quantity}
+              count={cart.quantity}
+              cartItemId={cart.id}
+            />
+          ))}
         </Box>
       </Box>
 
@@ -113,17 +130,17 @@ export const CartPage: React.FC = () => {
         >
           <Stack>
             <Stack sx={{ display: "flex", flexDirection: "row" }}>
+              <Typography> Total: </Typography>
+              <Typography>{calculateTotalPrice(cartItems)}$</Typography>
+            </Stack>
+            {/* <Stack sx={{ display: "flex", flexDirection: "row" }}>
               <Typography> Subtotal</Typography>
               <Typography> Subtotal</Typography>
             </Stack>
             <Stack sx={{ display: "flex", flexDirection: "row" }}>
               <Typography> Subtotal</Typography>
               <Typography> Subtotal</Typography>
-            </Stack>
-            <Stack sx={{ display: "flex", flexDirection: "row" }}>
-              <Typography> Subtotal</Typography>
-              <Typography> Subtotal</Typography>
-            </Stack>
+            </Stack> */}
           </Stack>
           <Divider variant="middle" />
           <Box>

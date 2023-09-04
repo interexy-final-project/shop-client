@@ -13,7 +13,6 @@ export const getProducts = createAsyncThunk<ProductDto[], Filter>(
   "GET/products",
   async (filter, { rejectWithValue }) => {
     try {
-      console.log(filter, "filter");
       const response = await repository.get("/products/byFilters", {
         params: filter,
       });

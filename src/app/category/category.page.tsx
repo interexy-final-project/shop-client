@@ -32,7 +32,7 @@ const NameBox = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
 
-const Category = () => {
+const Category: React.FC = () => {
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
