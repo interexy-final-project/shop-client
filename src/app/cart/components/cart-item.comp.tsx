@@ -2,22 +2,26 @@ import { Box, Typography, Stack, IconButton, Divider } from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import React from "react";
-import { useAppDispatch } from "../../../store";
-import { addItem, minusItem, removeItem } from "../store/cart.slice";
+import React, { useCallback, useMemo } from "react";
+import { AppDispatch, useAppDispatch } from "../../../store";
 import { CartItem } from "../types/cart.types";
-
+import debounce from "lodash.debounce";
 import ItemImage from "../../../assets/imgs/item.png";
 import { theme } from "../../../assets/themes";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
+import { ProductColors } from "../../../enums/product-colors.enum";
+import { useDispatch } from "react-redux";
+import { deleteCartItem, updateCartItem } from "../store/cart.actions";
 
 type TCartItemProps = {
   id: string;
   imageUrl: string;
   title: string;
-  size: string;
-  color: string;
+  size: ProductSizes;
+  color: ProductColors;
   price: number;
   subtotal: number;
+  cartItemId: string;
 
   count: number;
 };
@@ -31,23 +35,41 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
   price,
   subtotal,
   count,
+  cartItemId,
 }) => {
-  const dispatch = useAppDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
-  const onCLickPlus = () => {
-    dispatch(addItem({ id, color, size } as CartItem));
+  const handleAddItem = () => {
+    dispatch(
+      updateCartItem({
+        id: cartItemId,
+        quantity: count + 1,
+      }),
+    );
   };
 
-  const onClickMinus = () => {
-    dispatch(minusItem({ id, color, size } as CartItem));
+  const handleMinusItem = () => {
+    dispatch(
+      updateCartItem({
+        id: cartItemId,
+        quantity: count - 1,
+      }),
+    );
   };
 
-  const onCLickRemove = () => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      dispatch(removeItem({ id, color, size } as CartItem));
-    }
+  const handleDeleteItem = () => {
+    dispatch(deleteCartItem(cartItemId));
   };
 
+  const debouncedAddItemHandler = useMemo(
+    () => debounce(handleAddItem, 300),
+    [handleAddItem],
+  );
+
+  const debouncedMinusItemHandler = useMemo(
+    () => debounce(handleMinusItem, 300),
+    [handleMinusItem],
+  );
   return (
     <Stack
       component="div"
@@ -89,18 +111,22 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
         <Typography variant="h6">$ {price}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <IconButton onClick={onClickMinus}>
+          <IconButton
+            disabled={count <= 1}
+            onClick={() => debouncedMinusItemHandler()}
+          >
             <RemoveIcon />
           </IconButton>
-          <Typography variant="h6"> {count}</Typography>
-          <IconButton onClick={onCLickPlus}>
+
+          <Typography variant="h6">{count}</Typography>
+          <IconButton onClick={() => debouncedAddItemHandler()}>
             <AddIcon />
           </IconButton>
         </Stack>
 
         <Typography variant="h6">${subtotal} </Typography>
 
-        <IconButton color="primary" onClick={onCLickRemove}>
+        <IconButton color="primary" onClick={handleDeleteItem}>
           <DeleteOutlineOutlinedIcon />
         </IconButton>
       </Stack>

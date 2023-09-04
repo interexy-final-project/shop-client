@@ -33,8 +33,7 @@ i18n
       ],
     },
   })
-  .catch((error) => {
-    console.log(error);
-  });
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  .catch((error) => {});
 
 export default i18n;

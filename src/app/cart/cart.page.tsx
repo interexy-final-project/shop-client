@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -11,28 +11,48 @@ import {
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { CartItemBlock } from "./components/cart-item.comp";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCart } from "./store/cart.selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { getCartItems, getProducts } from "./store/cart.actions";
+import { setProducts } from "./store/cart.slice";
+import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
+// import { selectCart } from "./store/cart.selectors";
+
+const SubtotalBox = styled(Stack)(({ theme }) => ({
+  backgroundColor: theme.palette.grayMain?.main,
+  borderRadius: "0,75rem",
+  padding: "2.8rem 1.75rem",
+  display: "flex",
+  alignItems: "flex-end",
+}));
 
 export const CartPage: React.FC = () => {
-  const dispatch = useDispatch();
-  const { totalPrice, items } = useSelector(selectCart);
-  const totalCount = items
-    .reduce((sum: number, item: any) => sum + item.count, 0)
-    .toFixed(2);
+  const userId = "7a530b8e-2968-41ec-8b0f-8e83b6e453c8";
+  const dispatch: AppDispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  console.log(cartItems);
+  useEffect(() => {
+    const loadCartItems = async () => {
+      try {
+        dispatch(getCartItems(userId));
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    };
 
-  const SubtotalBox = styled(Stack)(({ theme }) => ({
-    backgroundColor: theme.palette.grayMain?.main,
-    borderRadius: "0,75rem",
-    padding: "2.8rem 1.75rem",
-    display: "flex",
-    alignItems: "flex-end",
-  }));
+    loadCartItems();
+  }, []);
+
+  function calculateTotalPrice(cartItems: CartItemDto[]) {
+    return cartItems.reduce((accumulator: number, cartItem) => {
+      return accumulator + cartItem.product.price * cartItem.quantity;
+    }, 0);
+  }
 
   return (
     <Box>
-      {!totalPrice ? (
+      {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (
         <>
@@ -92,8 +112,19 @@ export const CartPage: React.FC = () => {
           </Stack>
 
           <Box>
-            {items.map((item: any) => (
-              <CartItemBlock key={item.id} {...item} />
+            {cartItems.map((cart) => (
+              <CartItemBlock
+                key={cart.product.id + cart.color + cart.size}
+                id={cart.product.id}
+                title={cart.product.name}
+                imageUrl={cart.product.images[0]}
+                size={cart.size}
+                color={cart.color}
+                price={cart.product.price}
+                subtotal={cart.product.price * cart.quantity}
+                count={cart.quantity}
+                cartItemId={cart.id}
+              />
             ))}
           </Box>
 
@@ -102,7 +133,7 @@ export const CartPage: React.FC = () => {
               <Stack>
                 <Stack sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography> Total price:</Typography>
-                  <Typography> {totalPrice}</Typography>
+                  <Typography> {calculateTotalPrice(cartItems)}</Typography>
                 </Stack>
               </Stack>
               <Stack>
