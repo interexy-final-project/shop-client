@@ -9,6 +9,9 @@ import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
 import l from "../../../lang/l";
 import { ProductDto } from "../../category/types/product-dto.type";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../cart/store/cart.actions";
+import { AppDispatch } from "../../../store";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -35,7 +38,12 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
     setSelectedColor(color);
   };
 
-  // const handleAddToCard = (): void => {};
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <Stack spacing={2}>
       <Item>
@@ -68,6 +76,7 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
       <Item>
         <Stack direction="row" spacing={4}>
           <Button
+            onClick={handleAddToCart}
             variant="shop-add-to-card"
             startIcon={<AddShoppingCartIcon />}
           >

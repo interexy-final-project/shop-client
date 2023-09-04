@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React from "react";
 import { useAppDispatch } from "../../../store";
-import { addItem, minusItem, removeItem } from "../store/cart.slice";
+// import { addItem, minusItem, removeItem } from "../store/cart.slice";
 import { CartItem } from "../types/cart.types";
 
 import ItemImage from "../../../assets/imgs/item.png";
@@ -34,19 +34,19 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const onCLickPlus = () => {
-    dispatch(addItem({ id, color, size } as CartItem));
-  };
+  // const onCLickPlus = () => {
+  //   dispatch(addItem({ id, color, size } as CartItem));
+  // };
 
-  const onClickMinus = () => {
-    dispatch(minusItem({ id, color, size } as CartItem));
-  };
+  // const onClickMinus = () => {
+  //   dispatch(minusItem({ id, color, size } as CartItem));
+  // };
 
-  const onCLickRemove = () => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      dispatch(removeItem({ id, color, size } as CartItem));
-    }
-  };
+  // const onCLickRemove = () => {
+  //   if (window.confirm("Are you sure you want to delete this item?")) {
+  //     dispatch(removeItem({ id, color, size } as CartItem));
+  //   }
+  // };
 
   return (
     <Stack
@@ -89,18 +89,18 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
         <Typography variant="h6">$ {price}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <IconButton onClick={onClickMinus}>
+          <IconButton>
             <RemoveIcon />
           </IconButton>
           <Typography variant="h6"> {count}</Typography>
-          <IconButton onClick={onCLickPlus}>
+          <IconButton>
             <AddIcon />
           </IconButton>
         </Stack>
 
         <Typography variant="h6">${subtotal} </Typography>
 
-        <IconButton color="primary" onClick={onCLickRemove}>
+        <IconButton color="primary">
           <DeleteOutlineOutlinedIcon />
         </IconButton>
       </Stack>

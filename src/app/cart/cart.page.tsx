@@ -17,7 +17,7 @@ import { EmptyCart } from "./components/cart-empty.comp";
 
 export const CartPage: React.FC = () => {
   const dispatch = useDispatch();
-  const { totalPrice, items } = useSelector(selectCart);
+  const { items } = useSelector(selectCart);
   const totalCount = items
     .reduce((sum: number, item: any) => sum + item.count, 0)
     .toFixed(2);
@@ -32,88 +32,88 @@ export const CartPage: React.FC = () => {
 
   return (
     <Box>
-      {!totalPrice ? (
+      {/* {!totalPrice ? (
         <EmptyCart />
-      ) : (
-        <>
-          <Stack spacing={5} sx={{ p: 6 }}>
-            <Box>
-              <Breadcrumbs
-                separator={<NavigateNextIcon fontSize="small" />}
-                aria-label="breadcrumb"
-              >
-                <Link underline="hover" variant="h6" color={"mainText.main"}>
-                  Home
-                </Link>
-                <Typography variant="h6" color={"secondary.main"}>
-                  Add To Cart
-                </Typography>
-              </Breadcrumbs>
-            </Box>
+      ) : ( */}
+      <>
+        <Stack spacing={5} sx={{ p: 6 }}>
+          <Box>
+            <Breadcrumbs
+              separator={<NavigateNextIcon fontSize="small" />}
+              aria-label="breadcrumb"
+            >
+              <Link underline="hover" variant="h6" color={"mainText.main"}>
+                Home
+              </Link>
+              <Typography variant="h6" color={"secondary.main"}>
+                Add To Cart
+              </Typography>
+            </Breadcrumbs>
+          </Box>
 
-            <Stack>
-              <Typography variant="label">
-                Please fill in the fields below and click place order to
-                complete your purchase!
-              </Typography>
-              <Typography variant="label">
-                Already registered?
-                <Link underline="hover">Please login here</Link>
-              </Typography>
-            </Stack>
+          <Stack>
+            <Typography variant="label">
+              Please fill in the fields below and click place order to complete
+              your purchase!
+            </Typography>
+            <Typography variant="label">
+              Already registered?
+              <Link underline="hover">Please login here</Link>
+            </Typography>
           </Stack>
+        </Stack>
 
+        <Stack
+          direction="row"
+          sx={{
+            bgcolor: "secondary.main",
+            p: 5,
+          }}
+        >
           <Stack
             direction="row"
-            sx={{
-              bgcolor: "secondary.main",
-              p: 5,
-            }}
+            display="flex"
+            justifyContent="space-between"
+            width="100%"
           >
-            <Stack
-              direction="row"
-              display="flex"
-              justifyContent="space-between"
-              width="100%"
-            >
-              <Stack>
-                <Typography sx={{ color: "white.main" }}>
-                  PRODUCT DETAILS
-                </Typography>
-              </Stack>
+            <Stack>
+              <Typography sx={{ color: "white.main" }}>
+                PRODUCT DETAILS
+              </Typography>
+            </Stack>
 
-              <Stack direction="row" spacing={16}>
-                <Typography sx={{ color: "white.main" }}>PRICE</Typography>
-                <Typography sx={{ color: "white.main" }}>QUANTITY</Typography>
-                <Typography sx={{ color: "white.main" }}>SUBTOTAL</Typography>
-                <Typography sx={{ color: "white.main" }}>DELETE</Typography>
-              </Stack>
+            <Stack direction="row" spacing={16}>
+              <Typography sx={{ color: "white.main" }}>PRICE</Typography>
+              <Typography sx={{ color: "white.main" }}>QUANTITY</Typography>
+              <Typography sx={{ color: "white.main" }}>SUBTOTAL</Typography>
+              <Typography sx={{ color: "white.main" }}>DELETE</Typography>
             </Stack>
           </Stack>
+        </Stack>
 
-          <Box>
-            {items.map((item: any) => (
-              <CartItemBlock key={item.id} {...item} />
-            ))}
-          </Box>
+        <Box>
+          {items.map((item: any) => (
+            <CartItemBlock key={item.id} {...item} />
+          ))}
+        </Box>
 
-          <Box bgcolor="greyMain.main" sx={{ p: 6 }}>
-            <SubtotalBox spacing={4} divider={<Divider />}>
-              <Stack>
-                <Stack sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography> Total price:</Typography>
-                  <Typography> {totalPrice}</Typography>
-                </Stack>
+        <Box bgcolor="greyMain.main" sx={{ p: 6 }}>
+          <SubtotalBox spacing={4} divider={<Divider />}>
+            <Stack>
+              <Stack sx={{ display: "flex", flexDirection: "row" }}>
+                <Typography> Total price:</Typography>
+                {/* <Typography> {totalPrice}</Typography> */}
               </Stack>
-              <Stack>
-                <Button variant="shop-purple-filled" type="submit">
-                  Proceed To Checkout
-                </Button>
-              </Stack>
-            </SubtotalBox>
-          </Box>
-        </>
-      )}
+            </Stack>
+            <Stack>
+              <Button variant="shop-purple-filled" type="submit">
+                Proceed To Checkout
+              </Button>
+            </Stack>
+          </SubtotalBox>
+        </Box>
+      </>
+      {/* )} */}
     </Box>
   );
 };
