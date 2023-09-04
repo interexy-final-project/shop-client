@@ -71,7 +71,8 @@
     "title": "Filter",
     "color": "Color",
     "size": "Size",
-    "category": "Category"
+    "category": "Category",
+    "price": "Price"
   },
   "sizeSelector": {
     "title": "Select Size:"
