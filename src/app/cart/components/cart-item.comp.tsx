@@ -5,7 +5,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import React, { useCallback, useMemo, useState } from "react";
 import { AppDispatch, useAppDispatch } from "../../../store";
 import { CartItem } from "../types/cart.types";
-import debounce from "lodash.debounce";
 import { useDebouncedCallback } from "use-debounce";
 import ItemImage from "../../../assets/imgs/item.png";
 import { theme } from "../../../assets/themes";
