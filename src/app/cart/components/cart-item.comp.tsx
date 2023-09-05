@@ -2,10 +2,11 @@ import { Box, Typography, Stack, IconButton, Divider } from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { AppDispatch, useAppDispatch } from "../../../store";
 import { CartItem } from "../types/cart.types";
 import debounce from "lodash.debounce";
+import { useDebouncedCallback } from "use-debounce";
 import ItemImage from "../../../assets/imgs/item.png";
 import { theme } from "../../../assets/themes";
 import { ProductSizes } from "../../../enums/product-sizes.enum";
@@ -38,38 +39,47 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
   cartItemId,
 }) => {
   const dispatch: AppDispatch = useDispatch();
+  const [itemQuantity, setItemQuantity] = useState(count);
+  console.log(itemQuantity);
 
   const handleAddItem = () => {
-    dispatch(
-      updateCartItem({
-        id: cartItemId,
-        quantity: count + 1,
-      }),
-    );
+    setItemQuantity((prevState: number) => prevState + 1);
+    update();
   };
 
+  // const debouncedUpdate = useMemo(
+  //   () =>
+  //     debounce(() => {
+  //       dispatch(
+  //         updateCartItem({
+  //           id: cartItemId,
+  //           quantity: itemQuantity,
+  //         }),
+  //       );
+  //     }, 2000),
+  //   [handleAddItem],
+  // );
+
+  const update = useDebouncedCallback(
+    () =>
+      dispatch(
+        updateCartItem({
+          id: cartItemId,
+          quantity: itemQuantity,
+        }),
+      ),
+    1000,
+  );
+
   const handleMinusItem = () => {
-    dispatch(
-      updateCartItem({
-        id: cartItemId,
-        quantity: count - 1,
-      }),
-    );
+    setItemQuantity((prevState: number) => prevState - 1);
+    update();
   };
 
   const handleDeleteItem = () => {
     dispatch(deleteCartItem(cartItemId));
   };
 
-  const debouncedAddItemHandler = useMemo(
-    () => debounce(handleAddItem, 300),
-    [handleAddItem],
-  );
-
-  const debouncedMinusItemHandler = useMemo(
-    () => debounce(handleMinusItem, 300),
-    [handleMinusItem],
-  );
   return (
     <Stack
       component="div"
@@ -111,15 +121,12 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
         <Typography variant="h6">$ {price}</Typography>
 
         <Stack direction="row" alignItems="center">
-          <IconButton
-            disabled={count <= 1}
-            onClick={() => debouncedMinusItemHandler()}
-          >
+          <IconButton disabled={count <= 1} onClick={() => handleMinusItem()}>
             <RemoveIcon />
           </IconButton>
 
-          <Typography variant="h6">{count}</Typography>
-          <IconButton onClick={() => debouncedAddItemHandler()}>
+          <Typography variant="h6">{itemQuantity}</Typography>
+          <IconButton onClick={() => handleAddItem()}>
             <AddIcon />
           </IconButton>
         </Stack>
