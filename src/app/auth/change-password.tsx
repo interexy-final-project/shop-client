@@ -9,14 +9,16 @@ import {
 } from "@mui/material";
 import LoginHeader from "../components/login-header";
 import l from "../../lang/l";
-import img from "../../assets/signupimg.jpg";
-import { useDispatch } from "react-redux";
-import { signUp } from "./store/auth.actions";
-import { useForm } from "react-hook-form";
+import img from "../../assets/signinimg.jpg";
 import { RoutesEnum } from "../../routes.enum";
+import { useForm } from "react-hook-form";
+import { changePassword } from "./store/auth.actions";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector } from "./store/auth.selectors";
 
-const SignUp = () => {
+const ChangePassword = () => {
+  const { resetToken } = useSelector(authSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -26,14 +28,12 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const body = {
-    email: watch("email"),
     password: watch("password"),
     confirmPassword: watch("confirmPassword"),
   };
   const onSubmit = () => {
     try {
-      dispatch<any>(signUp(body));
-
+      dispatch<any>(changePassword({ body, resetToken }));
       navigate(RoutesEnum.MAIN);
     } catch {
       throw new Error();
@@ -58,7 +58,7 @@ const SignUp = () => {
         >
           <Avatar />
           <Typography component="h1" variant="h5">
-            {l("signup.signup")}
+            {l("signin.signin")}
           </Typography>
           <Box
             component="form"
@@ -70,17 +70,7 @@ const SignUp = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label={l("signup.email")}
-              autoComplete="email"
-              autoFocus
-              {...register("email")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label={l("signup.password")}
+              label={l("signin.password")}
               type="password"
               id="password"
               {...register("password")}
@@ -89,19 +79,24 @@ const SignUp = () => {
               margin="normal"
               required
               fullWidth
-              label={l("signup.password")}
+              label={l("signin.password")}
               type="password"
               id="confirmPassword"
               {...register("confirmPassword")}
             />
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
-                {l("signup.signup")}
+                {l("signin.signin")}
               </Button>
             </Box>
-            <Link href={RoutesEnum.SIGNIN} variant="body2">
-              <Typography>{l("signup.gotaccount")}</Typography>
-            </Link>
+            <Stack direction={"row"} justifyContent={"space-between"}>
+              <Link href={RoutesEnum.RESET} variant="body2">
+                <Typography>{l("signin.forgot")}</Typography>
+              </Link>
+              <Link href={RoutesEnum.SIGNUP} variant="body2">
+                <Typography>{l("signin.noaccount")}</Typography>
+              </Link>
+            </Stack>
           </Box>
         </Box>
       </Stack>
@@ -109,4 +104,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ChangePassword;
