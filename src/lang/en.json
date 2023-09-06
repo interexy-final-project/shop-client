@@ -13,6 +13,10 @@
     "email": "Email Address",
     "password": "Password"
   },
+  "errors": {
+    "email": "Value should be email",
+    "required": "Field shoudn't be empty"
+  },
   "signup": {
     "signup": "Sign up",
     "email": "E-mail",
