@@ -79,7 +79,7 @@ const ChangePassword = () => {
               margin="normal"
               required
               fullWidth
-              label={l("signin.password")}
+              label={l("signup.passwordConfirmation")}
               type="password"
               id="confirmPassword"
               {...register("confirmPassword")}

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { signUp, signIn, changePassword, resetPassword } from "./auth.actions";
 
 const initialState = {
-  user: "",
+  userId: "",
   resetToken: "",
   pending: false,
   errors: null,
@@ -21,7 +21,7 @@ export const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.pending = false;
         state.errors = null;
-        state.user = payload.id;
+        state.userId = payload.id;
       })
       .addCase(signUp.rejected, (state, action: any & { payload: any }) => {
         state.pending = false;
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.pending = false;
         state.errors = null;
-        state.user = payload.id;
+        state.userId = payload.id;
       })
       .addCase(signIn.rejected, (state, action: any & { payload: any }) => {
         state.pending = false;
@@ -47,7 +47,7 @@ export const authSlice = createSlice({
       .addCase(changePassword.fulfilled, (state, { payload }) => {
         state.pending = false;
         state.errors = null;
-        state.user = payload.id;
+        state.userId = payload.id;
       })
       .addCase(
         changePassword.rejected,
