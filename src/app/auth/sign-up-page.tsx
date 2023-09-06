@@ -64,7 +64,7 @@ const SignUp = () => {
             {l("signup.signup")}
           </Typography>
           <Box
-          padding={3}
+            padding={3}
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}

@@ -33,16 +33,22 @@ const PrivateRoute = (element: JSX.Element) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={"/"} element={ <MainPage />} />
+      <Route path={"/"} element={<MainPage />} />
       <Route path={RoutesEnum.SIGNIN} element={<SignIn />} />
       <Route path={RoutesEnum.SIGNUP} element={<SignUp />} />
       <Route path={RoutesEnum.RESET} element={<ResetPassword />} />
       <Route path={RoutesEnum.CHANGEPASS} element={<ChangePassword />} />
-      <Route path={RoutesEnum.USERPROFILE} element={PrivateRoute(<UserProfile />)} />
+      <Route
+        path={RoutesEnum.USERPROFILE}
+        element={PrivateRoute(<UserProfile />)}
+      />
       <Route path={RoutesEnum.CATEGORY} element={<Category />} />
       <Route path={RoutesEnum.PRODUCT} element={<ProductDetails />} />
       <Route path={RoutesEnum.CART} element={PrivateRoute(<CartPage />)} />
-      <Route path={RoutesEnum.CHECKOUT} element={PrivateRoute(<CheckoutPage />)} />
+      <Route
+        path={RoutesEnum.CHECKOUT}
+        element={PrivateRoute(<CheckoutPage />)}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
