@@ -11,7 +11,7 @@ import { resetPassword } from "./store/auth.actions";
 import { authSelector } from "./store/auth.selectors";
 
 const ResetPassword = () => {
-  const { resetToken } = useSelector(authSelector)
+  const { resetToken } = useSelector(authSelector);
   const dispatch = useDispatch();
   const {
     register,
@@ -66,7 +66,11 @@ const ResetPassword = () => {
               autoFocus
               {...register("email")}
             />
-            {resetToken && <Link href={`http://localhost:3000/auth/change-password/`}>Go to change</Link>}
+            {resetToken && (
+              <Link href={`http://localhost:3000/auth/change-password/`}>
+                Go to change
+              </Link>
+            )}
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
                 {l("signin.signin")}

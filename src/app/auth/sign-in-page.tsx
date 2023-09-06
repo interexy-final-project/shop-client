@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const SignIn = () => {
-  const  navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -30,9 +30,9 @@ const SignIn = () => {
     password: watch("password"),
   };
   const onSubmit = () => {
-    try{
+    try {
       dispatch<any>(signIn(body));
-      navigate(RoutesEnum.MAIN)
+      navigate(RoutesEnum.MAIN);
     } catch {
       throw new Error();
     }

@@ -10,8 +10,8 @@ const CommonHeader = () => {
   const navigate = useNavigate();
 
   const handleProfileIconClick = () => {
-    navigate(RoutesEnum.SIGNIN)
-  }
+    navigate(RoutesEnum.SIGNIN);
+  };
   return (
     <Box padding={1} component={Paper}>
       <Stack
