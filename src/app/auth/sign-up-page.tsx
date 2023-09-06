@@ -29,6 +29,9 @@ const SignUp = () => {
     email: watch("email"),
     password: watch("password"),
     confirmPassword: watch("confirmPassword"),
+    firstName: watch("firstName"),
+    lastName: watch("lastName"),
+    phone: watch("phone"),
   };
   const onSubmit = () => {
     try {
@@ -61,39 +64,73 @@ const SignUp = () => {
             {l("signup.signup")}
           </Typography>
           <Box
+            padding={3}
             component="form"
             noValidate
             onSubmit={handleSubmit(onSubmit)}
             marginTop={1}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={l("signup.email")}
-              autoComplete="email"
-              autoFocus
-              {...register("email")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label={l("signup.password")}
-              type="password"
-              id="password"
-              {...register("password")}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label={l("signup.password")}
-              type="password"
-              id="confirmPassword"
-              {...register("confirmPassword")}
-            />
+            <Stack flexDirection={"row"} gap={3}>
+              <Box>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label={l("signup.email")}
+                  autoComplete="email"
+                  autoFocus
+                  {...register("email")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={l("signup.password")}
+                  type="password"
+                  id="password"
+                  {...register("password")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={l("signup.passwordConfirmation")}
+                  type="password"
+                  id="confirmPassword"
+                  {...register("confirmPassword")}
+                />
+              </Box>
+              <Box>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={l("signup.firstName")}
+                  type="password"
+                  id="firstName"
+                  {...register("firstName")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={l("signup.lastName")}
+                  type="password"
+                  id="lastName"
+                  {...register("lastName")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={l("signup.phone")}
+                  type="tel"
+                  id="phone"
+                  {...register("phone")}
+                />
+              </Box>
+            </Stack>
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
                 {l("signup.signup")}

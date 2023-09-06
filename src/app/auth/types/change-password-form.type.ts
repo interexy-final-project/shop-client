@@ -1,3 +1,4 @@
-import { SignUpForm } from "./sign-up-form.type";
-
-export type ChangePasswordForm = Omit<SignUpForm, "email">;
+export interface ChangePasswordForm {
+  password: string;
+  confirmPassword: string;
+}
