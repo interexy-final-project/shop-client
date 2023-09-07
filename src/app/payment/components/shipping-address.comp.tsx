@@ -10,8 +10,11 @@ import {
   styled,
 } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const ShippingAddress: React.FC = () => {
+  const { t } = useTranslation();
+
   const ShippingBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.grayMain?.main,
     borderRadius: "0,75rem",
@@ -21,10 +24,10 @@ export const ShippingAddress: React.FC = () => {
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h5" sx={{ padding: "0.125rem 0" }}>
-          Shipping Address
+          {t("payment.shippingAddress")}
         </Typography>
         <Typography variant="p" sx={{ padding: "0.125rem 0" }}>
-          Select the address that matches your card or payment method.
+          {t("payment.selectAddress")}
         </Typography>
       </Stack>
 
@@ -38,7 +41,7 @@ export const ShippingAddress: React.FC = () => {
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
-                      Same as existing address
+                      {t("payment.sameAddress")}
                     </Typography>
                   }
                 />
@@ -49,7 +52,7 @@ export const ShippingAddress: React.FC = () => {
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
-                      Use a different shipping address
+                      {t("payment.selectOtherAddress")}
                     </Typography>
                   }
                 />

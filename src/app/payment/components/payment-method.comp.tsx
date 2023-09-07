@@ -22,6 +22,7 @@ import Visa from "../../../assets/imgs/visa.svg";
 import PayPass from "../../../assets/imgs/paypass.svg";
 import PayPal from "../../../assets/imgs/paypal.svg";
 import { theme } from "../../../assets/themes";
+import { useTranslation } from "react-i18next";
 
 export const PaymentMethod: React.FC = () => {
   const BillingTextField = styled(TextField)(({ theme }) => ({
@@ -45,6 +46,8 @@ export const PaymentMethod: React.FC = () => {
     },
   }));
 
+  const { t } = useTranslation();
+
   const PaymentBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.grayMain?.main,
     borderRadius: "0,75rem",
@@ -56,10 +59,11 @@ export const PaymentMethod: React.FC = () => {
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h5" sx={{ padding: "0.125rem 0" }}>
-          Payment Method
+          {" "}
+          {t("payment.paymentMethod")}
         </Typography>
         <Typography variant="p" sx={{ padding: "0.125rem 0" }}>
-          All transactions are secure and encrypted.
+          {t("payment.secureTransactions")}
         </Typography>
       </Stack>
 
@@ -74,9 +78,13 @@ export const PaymentMethod: React.FC = () => {
                 <FormControlLabel
                   value="Credit Card"
                   control={<Radio />}
-                  label={<Typography variant="h6">Credit Card</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.creditCard")}
+                    </Typography>
+                  }
                 />
-                <Typography>We accept all major credit cards.</Typography>
+                <Typography>{t("payment.acceptedCards")}</Typography>
 
                 <ImageList cols={4} sx={{ width: 500 }}>
                   <ImageListItem>
@@ -139,10 +147,14 @@ export const PaymentMethod: React.FC = () => {
                 <FormControlLabel
                   value="Cash on delivery"
                   control={<Radio />}
-                  label={<Typography variant="h6">Cash on delivery</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.cashOnDelivery")}
+                    </Typography>
+                  }
                 />
                 <Typography variant="p">
-                  Pay with cash upon delivery.
+                  {t("payment.cashUponDelivery")}
                 </Typography>
               </Stack>
             </Stack>
@@ -150,7 +162,7 @@ export const PaymentMethod: React.FC = () => {
         </FormControl>
       </PaymentBox>
       <Button variant="shop-purple-filled" type="submit">
-        Pay now
+        {t("payment.payNow")}
       </Button>
     </Box>
   );

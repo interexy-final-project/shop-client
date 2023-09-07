@@ -6,7 +6,7 @@ import UserProfile from "./app/user/user-profile";
 import Category from "./app/category/category.page";
 import ProductDetails from "./app/product/product-details.page";
 import { CartPage } from "./app/cart/cart.page";
-import { MainPage } from "./components/main-page";
+import { MainPage } from "./main/main-page";
 import { CheckoutPage } from "./app/payment/checkout.page";
 import { NotFound } from "./components/not-found.page";
 import { RoutesEnum } from "./routes.enum";

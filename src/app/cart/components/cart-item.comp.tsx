@@ -13,6 +13,7 @@ import { ProductColors } from "../../../enums/product-colors.enum";
 import { useDispatch } from "react-redux";
 import { deleteCartItem, updateCartItem } from "../store/cart.actions";
 import { debounce } from "lodash";
+import { useTranslation } from "react-i18next";
 
 type TCartItemProps = {
   id: string;
@@ -40,7 +41,6 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
   const [itemQuantity, setItemQuantity] = useState(count);
-  console.log(itemQuantity);
 
   const handleAddItem = () => {
     setItemQuantity((prevState: number) => prevState + 1);
@@ -89,6 +89,9 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
     () => debounce(handleMinusItem, 300),
     [handleMinusItem],
   );
+
+  const { t } = useTranslation();
+
   return (
     <Stack
       component="div"
@@ -113,8 +116,12 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
           <Typography variant="h6" sx={{ mb: 1 }}>
             {title}
           </Typography>
-          <Typography variant="label">Color: {color} </Typography>
-          <Typography variant="label">Size: {size} </Typography>
+          <Typography variant="label">
+            {t("filter.color")}: {color}
+          </Typography>
+          <Typography variant="label">
+            {t("filter.size")}: {size}
+          </Typography>
         </Stack>
       </Stack>
 
