@@ -2,9 +2,11 @@ import React from "react";
 import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavLink, useNavigate } from "react-router-dom";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
 
 export const CheckoutNavigation: React.FC = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   return (
@@ -19,7 +21,7 @@ export const CheckoutNavigation: React.FC = () => {
           onClick={() => navigate("/")}
           underline="hover"
         >
-          {l("navigation.home")}
+          {t("navigation.home")}
         </Link>
         <Link
           underline="hover"
@@ -27,10 +29,10 @@ export const CheckoutNavigation: React.FC = () => {
           color={"mainText.main"}
           onClick={() => navigate("/user/profile")}
         >
-          {l("navigation.myAccount")}
+          {t("navigation.myAccount")}
         </Link>
         <Typography variant="h6" color={"secondary.main"}>
-          {l("navigation.checkOut")}
+          {t("navigation.checkOut")}
         </Typography>
       </Breadcrumbs>
     </Box>

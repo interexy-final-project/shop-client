@@ -9,6 +9,11 @@ import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
 import { ProductDto } from "../../category/types/product-dto.type";
 import { useTranslation } from "react-i18next";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
+import { ProductColors } from "../../../enums/product-colors.enum";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store";
+import { addToCart } from "../../cart/store/cart.actions";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -23,10 +28,17 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
   const { t } = useTranslation();
-  const availableSizes = ["XS", "S", "M", "L", "XL"];
-  const availableColors = ["red", "green", "black", "orange"];
-  const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
+  const availableSizes = [ProductSizes.XS, ProductSizes.S, ProductSizes.M];
+  const availableColors = [
+    ProductColors.BLACK,
+    ProductColors.BLUE,
+    ProductColors.RED,
+    ProductColors.WHITE,
+  ];
+  const [selectedSize, setSelectedSize] = useState<ProductSizes | null>(null);
+  const [selectedColor, setSelectedColor] = useState<ProductColors | null>(
+    null,
+  );
 
   const handleSizeSelection = (size: ProductSizes): void => {
     setSelectedSize(size);
@@ -45,9 +57,6 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
   const productId = "87e331e0-0b1c-403a-a7da-729226dd2b5c";
-  const size = "";
-  const color = "";
-
   const products = useSelector((state: RootState) => state.cart.cartItems);
 
   console.log(products);

@@ -8,7 +8,7 @@ import {
   styled,
 } from "@mui/material";
 import React from "react";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -21,10 +21,12 @@ const NameBox = styled(Box)(({ theme }) => ({
 }));
 
 export const PriceFilter: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <NameBox>
-        <Typography variant="t4">{l("filter.price")}</Typography>
+        <Typography variant="t4">{t("filter.price")}</Typography>
         <Typography variant="t4"></Typography>
       </NameBox>
       <NameBox>
@@ -36,7 +38,7 @@ export const PriceFilter: React.FC = () => {
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>
-                    {l("filter.desc")}
+                    {t("filter.desc")}
                   </Typography>
                 }
               />
@@ -47,7 +49,7 @@ export const PriceFilter: React.FC = () => {
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>
-                    {l("filter.asc")}
+                    {t("filter.asc")}
                   </Typography>
                 }
               />
