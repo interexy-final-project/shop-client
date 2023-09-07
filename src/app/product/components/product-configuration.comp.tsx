@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
@@ -9,9 +9,11 @@ import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
 import l from "../../../lang/l";
 import { ProductDto } from "../../category/types/product-dto.type";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../cart/store/cart.actions";
-import { AppDispatch } from "../../../store";
+import { AppDispatch, RootState } from "../../../store";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
+import { ProductColors } from "../../../enums/product-colors.enum";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -25,23 +27,64 @@ interface ProductConfigurationProps {
 const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
-  const availableSizes = ["XS", "S", "M", "L", "XL"];
-  const availableColors = ["red", "green", "black", "orange"];
-  const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
+  const availableSizes = [ProductSizes.XS, ProductSizes.S, ProductSizes.M];
+  const availableColors = [
+    ProductColors.BLACK,
+    ProductColors.BLUE,
+    ProductColors.RED,
+    ProductColors.WHITE,
+  ];
+  const [selectedSize, setSelectedSize] = useState<ProductSizes | null>(null);
+  const [selectedColor, setSelectedColor] = useState<ProductColors | null>(
+    null,
+  );
 
-  const handleSizeSelection = (size: string): void => {
+  // const [selectedProduct, setSelectedProduct] = useState<ProductDto | null>(
+  //   null,
+  // );
+
+  const handleSizeSelection = (size: ProductSizes): void => {
     setSelectedSize(size);
+    console.log("size", size);
   };
 
-  const handleColorSelection = (color: string): void => {
+  const handleColorSelection = (color: ProductColors): void => {
     setSelectedColor(color);
+    console.log("color", color);
   };
+
+  // const handleProductSelection = (product: ProductDto): void => {
+  //   setSelectedProduct(product);
+  // };
 
   const dispatch = useDispatch<AppDispatch>();
+  const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
+  const productId = "87e331e0-0b1c-403a-a7da-729226dd2b5c";
+  const size = "";
+  const color = "";
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(product));
+  const products = useSelector((state: RootState) => state.cart.cartItems);
+
+  console.log(products);
+
+  const handleAddToCart = async () => {
+    try {
+      if (selectedSize && selectedColor) {
+        const cartItem = {
+          productId,
+          size: selectedSize,
+          color: selectedColor,
+          userId,
+          quantity: 1,
+        };
+
+        dispatch(addToCart(cartItem));
+      } else {
+        console.log("Please select a product, size, and color.");
+      }
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
   };
 
   return (

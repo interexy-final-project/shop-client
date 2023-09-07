@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { theme } from "../../../assets/themes";
+import l from "../../../lang/l";
 
 export const BillingDetails: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -57,10 +58,10 @@ export const BillingDetails: React.FC = () => {
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h4" p="0.25rem 0" sx={verticalLineStyle}>
-          Check Out
+          {l("navigation.checkOut")}
         </Typography>
         <Typography variant="h6" p="1.25rem 0">
-          Billing Details
+          {l("payment.billingDetails")}
         </Typography>
       </Stack>
       <FormControl component="form" onSubmit={handleSubmit}>
@@ -146,9 +147,6 @@ export const BillingDetails: React.FC = () => {
             />
           </Grid>
         </Grid>
-        <Button variant="shop-purple-filled" type="submit">
-          Continue to delivery
-        </Button>
       </FormControl>
     </Box>
   );

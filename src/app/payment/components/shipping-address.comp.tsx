@@ -38,7 +38,7 @@ export const ShippingAddress: React.FC = () => {
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
-                      Same as Billing address
+                      Same as existing address
                     </Typography>
                   }
                 />

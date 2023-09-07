@@ -1,11 +1,12 @@
 import React from "react";
 import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
 import l from "../../../lang/l";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
 
 interface SizeSelectorProps {
-  availableSizes: string[];
-  selectedSize: string;
-  onSelectSize: (size: string) => void;
+  availableSizes: ProductSizes[];
+  selectedSize: ProductSizes | null;
+  onSelectSize: (size: ProductSizes) => void;
 }
 
 const SizeSelector: React.FC<SizeSelectorProps> = ({

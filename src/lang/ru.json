@@ -35,5 +35,22 @@
     "orderEstimation": "Дата доставки:",
     "orderStatus": "Статус Заказа:",
     "orderPaymentMethod": "Метод Оплаты:"
+  },
+  "filter": {
+    "title": "Фильтрация",
+    "color": "Цвет",
+    "size": "Размер",
+    "category": "Категория",
+    "price": "Цена",
+    "desc": "по убыванию",
+    "asc": "по возрастанию"
+  },
+  "navigation": {
+    "home": "Главная",
+    "myAccount": "Мой Профиль",
+    "checkOut": "Оформление заказа"
+  },
+  "payment": {
+    "billingDetails": "Детали Платежа"
   }
 }

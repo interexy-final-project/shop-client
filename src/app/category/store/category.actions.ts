@@ -13,9 +13,22 @@ export const getProducts = createAsyncThunk<ProductDto[], Filter>(
   "GET/products",
   async (filter, { rejectWithValue }) => {
     try {
-      console.log(filter, "filter");
       const response = await repository.get("/products/byFilters", {
         params: filter,
+      });
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error);
+    }
+  },
+);
+// получаем типы для каждой категории
+export const getProductTypes = createAsyncThunk<ProductDto[]>(
+  "GET/products/types",
+  async (types, { rejectWithValue }) => {
+    try {
+      const response = await repository.get("/products/types", {
+        params: types,
       });
       return response.data;
     } catch (error: any) {

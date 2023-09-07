@@ -13,7 +13,7 @@ import { NotFound } from "./components/not-found.page";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={"/"} />
+      <Route path={"/"} element={<MainPage />} />
       <Route path={"/auth/sign-in"} element={<SignIn />} />
       <Route path={"/auth/sign-up"} element={<SignUp />} />
       <Route path={"/auth/reset-password"} element={<ResetPassword />} />
