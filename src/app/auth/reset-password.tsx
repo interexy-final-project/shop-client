@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
 import { Box, Typography, TextField, Button, Link, Stack } from "@mui/material";
 import LoginHeader from "../components/login-header";
-import l from "../../lang/l";
 import img from "../../assets/resetpassword.jpg";
 import { RoutesEnum } from "../../routes.enum";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { resetPassword } from "./store/auth.actions";
 import { authSelector } from "./store/auth.selectors";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const { resetToken } = useSelector(authSelector);
   const dispatch = useDispatch();
   const {
@@ -42,13 +41,13 @@ const ResetPassword = () => {
         <Box component={"img"} src={img} />
         <Box padding={3} alignSelf={"center"}>
           <Typography component="h1" variant="h4">
-            {l("resetPassword.title")}
+            {t("resetPassword.title")}
           </Typography>
           <Typography align="left">
-            {l("resetPassword.descriptionOne")}
+            {t("resetPassword.descriptionOne")}
           </Typography>
           <Typography align="left">
-            {l("resetPassword.descriptionTwo")}
+            {t("resetPassword.descriptionTwo")}
           </Typography>
           <Box
             component="form"
@@ -62,7 +61,7 @@ const ResetPassword = () => {
               required
               fullWidth
               id="email"
-              label={l("signin.email")}
+              label={t("signin.email")}
               autoFocus
               {...register("email")}
             />
@@ -73,11 +72,11 @@ const ResetPassword = () => {
             )}
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
-                {l("signin.signin")}
+                {t("signin.signin")}
               </Button>
             </Box>
             <Link href={RoutesEnum.SIGNIN} variant="body2">
-              <Typography>{l("resetPassword.login")}</Typography>
+              <Typography>{t("resetPassword.login")}</Typography>
             </Link>
           </Box>
         </Box>

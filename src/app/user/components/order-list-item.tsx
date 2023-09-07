@@ -1,25 +1,27 @@
 import { Paper, Box, Typography, Stack } from "@mui/material";
-import l from "../../../lang/l";
 import OrderItem from "./order-item";
+import { useTranslation } from "react-i18next";
 
 const OrderListItem = () => {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <Box component={Paper} bgcolor={"#F6F6F6"}>
         <Typography variant="h5" gutterBottom>
-          {l("orderItem.orderTitle")}
+          {t("orderItem.orderTitle")}
         </Typography>
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Box>
-            <Typography gutterBottom>{l("orderItem.orderDate")}</Typography>
+            <Typography gutterBottom>{t("orderItem.orderDate")}</Typography>
             <Typography gutterBottom>
-              {l("orderItem.orderEstimation")}
+              {t("orderItem.orderEstimation")}
             </Typography>
           </Box>
           <Box>
-            <Typography gutterBottom>{l("orderItem.orderStatus")}</Typography>
+            <Typography gutterBottom>{t("orderItem.orderStatus")}</Typography>
             <Typography gutterBottom>
-              {l("orderItem.orderPaymentMethod")}
+              {t("orderItem.orderPaymentMethod")}
             </Typography>
           </Box>
         </Stack>
@@ -36,7 +38,7 @@ const OrderListItem = () => {
         <OrderItem />
       </Stack>
       <Typography variant="h6" marginTop={2}>
-        {l("orderItem.total")}
+        {t("orderItem.total")}
       </Typography>
     </Box>
   );
