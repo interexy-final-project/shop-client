@@ -1,7 +1,7 @@
 import { Stack, Box, Typography, styled } from "@mui/material";
 import React from "react";
-import l from "../../../lang/l";
 import { ProductDto } from "../../category/types/product-dto.type";
+import { useTranslation } from "react-i18next";
 
 const TextBox = styled("p")(() => ({
   width: "50%",
@@ -21,10 +21,12 @@ interface ProductDescriptionProps {
 const ProductDescription: React.FC<ProductDescriptionProps> = ({
   product,
 }): JSX.Element => {
+  const { t } = useTranslation();
+
   return (
     <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>
       <Box>
-        <Typography variant="t1">{l("productDescription.title")}</Typography>
+        <Typography variant="t1">{t("productDescription.title")}</Typography>
       </Box>
       <TextBox>
         <Typography variant="t7">{product.description}</Typography>

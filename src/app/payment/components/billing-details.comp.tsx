@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 
 import { ShippingAddressDto } from "../types/address-dto.type";
+import { useTranslation } from "react-i18next";
 
 interface BillingDetailsProps {
   isUseExisting: boolean;
@@ -72,6 +73,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
   postalCode,
   setPostalCode,
 }: BillingDetailsProps) => {
+  const { t } = useTranslation();
   const dispatch: AppDispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(false);
   const user = {
@@ -106,10 +108,10 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h4" p="0.25rem 0" sx={verticalLineStyle}>
-          Check Out
+          {t("navigation.checkOut")}
         </Typography>
         <Typography variant="h6" p="1.25rem 0">
-          Billing Details
+          {t("payment.billingDetails")}
         </Typography>
       </Stack>
       <Grid container spacing={3} justifyContent="center">
@@ -208,9 +210,6 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
           />
         </Grid>
       </Grid>
-      <Button variant="shop-purple-filled" type="submit">
-        Continue to delivery
-      </Button>
     </Box>
   );
 };

@@ -1,11 +1,12 @@
 import React from "react";
 import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
 
 interface SizeSelectorProps {
-  availableSizes: string[];
-  selectedSize: string;
-  onSelectSize: (size: string) => void;
+  availableSizes: ProductSizes[];
+  selectedSize: ProductSizes | null;
+  onSelectSize: (size: ProductSizes) => void;
 }
 
 const SizeSelector: React.FC<SizeSelectorProps> = ({
@@ -13,9 +14,11 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
   selectedSize,
   onSelectSize,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Stack direction={"column"} spacing={3}>
-      <Typography variant="t2">{l("sizeSelector.title")}</Typography>
+      <Typography variant="t2">{t("sizeSelector.title")}</Typography>
       <ButtonGroup>
         <Stack direction="row" spacing={4}>
           {availableSizes.map((size) => (

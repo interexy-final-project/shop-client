@@ -16,7 +16,6 @@ import { AppDispatch, RootState } from "../../store";
 import { getCartItems, getProducts } from "./store/cart.actions";
 import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
-// import { selectCart } from "./store/cart.selectors";
 
 const SubtotalBox = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
@@ -27,9 +26,10 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 }));
 
 export const CartPage: React.FC = () => {
-  const userId = "7a530b8e-2968-41ec-8b0f-8e83b6e453c8";
+  const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
   const dispatch: AppDispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+
   useEffect(() => {
     const loadCartItems = async () => {
       try {
@@ -47,6 +47,8 @@ export const CartPage: React.FC = () => {
       return accumulator + cartItem.product.price * cartItem.quantity;
     }, 0);
   }
+
+  console.log("cart", cartItems);
 
   return (
     <Box>
@@ -110,7 +112,7 @@ export const CartPage: React.FC = () => {
           </Stack>
 
           <Box>
-            {cartItems.map((cart) => (
+            {cartItems.map((cart: any) => (
               <CartItemBlock
                 key={cart.product.id + cart.color + cart.size}
                 id={cart.product.id}
@@ -131,6 +133,7 @@ export const CartPage: React.FC = () => {
               <Stack>
                 <Stack sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography> Total price:</Typography>
+                  <Typography> {calculateTotalPrice(cartItems)}</Typography>
                   <Typography> {calculateTotalPrice(cartItems)}</Typography>
                 </Stack>
               </Stack>

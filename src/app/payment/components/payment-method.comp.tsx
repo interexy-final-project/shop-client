@@ -74,6 +74,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
     backgroundColor: theme.palette.grayMain?.main,
     borderRadius: "0,75rem",
     padding: "2.8rem 1.75rem",
+    marginBottom: "1.5rem",
   }));
 
   return (
@@ -105,21 +106,21 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
                 <Typography>We accept all major credit cards.</Typography>
 
                 <ImageList cols={4} sx={{ width: 500 }}>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={GooglePay} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={Visa} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={PayPal} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={PayPass} loading="lazy" />
                   </ImageListItem>
                 </ImageList>
 
-                <Grid container spacing={3}>
+                {/* <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <BillingTextField
                       required
@@ -158,7 +159,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
                       type="password"
                     />
                   </Grid>
-                </Grid>
+                </Grid> */}
               </Stack>
 
               <Stack>

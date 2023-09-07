@@ -12,7 +12,6 @@ import { ProductCategories } from "../../enums/product-categories.enum";
 import { UUIDDto } from "../../types/uuid-dto.type";
 import { CartItem } from "../cart/types/cart.types";
 import { useDispatch } from "react-redux";
-// import { addItem } from "../cart/store/cart.slice";
 
 const products = [
   {

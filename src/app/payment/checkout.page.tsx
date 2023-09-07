@@ -3,7 +3,7 @@ import { CheckoutNavigation } from "./components/checkout-navigation.comp";
 import { BillingDetails } from "./components/billing-details.comp";
 import { PaymentMethod } from "./components/payment-method.comp";
 import { ShippingAddress } from "./components/shipping-address.comp";
-import { Alert, FormControl, Stack } from "@mui/material";
+import { Alert, FormControl, Box, Stack } from "@mui/material";
 import { AppDispatch } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, getAddress } from "./store/checkout.actions";
@@ -18,6 +18,9 @@ import { cartItemsSelector } from "../cart/store/cart.selectors";
 import { resetCartItems } from "../cart/store/cart.slice";
 import { CartItemDto } from "../cart/types/cart-item-dto.type";
 import ActionAlert from "./components/ActionAlert.comp";
+import { OrderSummary } from "./components/order-summary.comp";
+import Footer from "../components/footer";
+import CommonHeader from "../components/common-header";
 
 export const CheckoutPage: React.FC = () => {
   // const [street, setStreet] = useState("");
@@ -112,38 +115,52 @@ export const CheckoutPage: React.FC = () => {
   }, [shippingAddress]);
 
   return (
-    <FormControl component="form" onSubmit={handleSubmit}>
-      <CheckoutNavigation />
-      <BillingDetails
-        isUseExisting={isUseExisting}
-        shippingAddress={shippingAddress}
-        street={street}
-        setStreet={setStreet}
-        city={city}
-        setCity={setCity}
-        postalCode={postalCode}
-        setPostalCode={setPostalCode}
-      />
-      <ShippingAddress
-        isUseExisting={isUseExisting}
-        setIsUseExisting={setIsUseExisting}
-        shippingAddress={shippingAddress}
-      />
-      {isAlertInvoked && (
-        <ActionAlert
-          isAlertInvoked={isAlertInvoked}
-          setIsAlertInvoked={setIsAlertInvoked}
-          orderErrors={orderErrors}
-          alertMessage={alertMesssage}
-          setAlertMessage={setAlertMessage}
-          isWarning={isWarning}
-          setIsWarning={setIsWarning}
-        />
-      )}
-      <PaymentMethod
-        paymentMethod={paymentMethod}
-        setPaymentMethod={setPaymentMethod}
-      />
-    </FormControl>
+    <>
+      <CommonHeader />
+      <Stack direction="column" m="3rem 5rem">
+        <CheckoutNavigation />
+        <Stack direction="row" spacing={6}>
+          <Box display="flex" flexDirection="column">
+            <FormControl component="form" onSubmit={handleSubmit}>
+              <BillingDetails
+                isUseExisting={isUseExisting}
+                shippingAddress={shippingAddress}
+                street={street}
+                setStreet={setStreet}
+                city={city}
+                setCity={setCity}
+                postalCode={postalCode}
+                setPostalCode={setPostalCode}
+              />
+              <ShippingAddress
+                isUseExisting={isUseExisting}
+                setIsUseExisting={setIsUseExisting}
+                shippingAddress={shippingAddress}
+              />
+              {isAlertInvoked && (
+                <ActionAlert
+                  isAlertInvoked={isAlertInvoked}
+                  setIsAlertInvoked={setIsAlertInvoked}
+                  orderErrors={orderErrors}
+                  alertMessage={alertMesssage}
+                  setAlertMessage={setAlertMessage}
+                  isWarning={isWarning}
+                  setIsWarning={setIsWarning}
+                />
+              )}
+              <PaymentMethod
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
+              />
+            </FormControl>
+          </Box>
+
+          <Box>
+            <OrderSummary />
+          </Box>
+        </Stack>
+      </Stack>
+      <Footer />
+    </>
   );
 };
