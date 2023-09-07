@@ -39,7 +39,6 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
   const [itemQuantity, setItemQuantity] = useState(count);
-  console.log(itemQuantity);
 
   const handleAddItem = () => {
     setItemQuantity((prevState: number) => prevState + 1);

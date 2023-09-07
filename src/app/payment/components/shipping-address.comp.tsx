@@ -9,14 +9,39 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store";
+import { ShippingAddressDto } from "../types/address-dto.type";
+const ShippingBox = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.grayMain?.main,
+  borderRadius: "0,75rem",
+  padding: "2.8rem 1.75rem",
+}));
 
-export const ShippingAddress: React.FC = () => {
-  const ShippingBox = styled(Box)(({ theme }) => ({
-    backgroundColor: theme.palette.grayMain?.main,
-    borderRadius: "0,75rem",
-    padding: "2.8rem 1.75rem",
-  }));
+interface ShippingAddressProps {
+  isUseExisting: boolean;
+  setIsUseExisting: (arg: boolean) => void;
+  shippingAddress: ShippingAddressDto | null;
+}
+
+export const ShippingAddress: React.FC<ShippingAddressProps> = ({
+  isUseExisting,
+  setIsUseExisting,
+  shippingAddress,
+}: ShippingAddressProps) => {
+  const [isDisabled, setIsDisabled] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleRadioChange = (event: any) => {
+    setIsUseExisting(event.target.value);
+  };
+
+  useEffect(() => {
+    if (shippingAddress?.id !== null) {
+      setIsDisabled(!isDisabled);
+    }
+  }, [shippingAddress, isUseExisting]);
   return (
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
@@ -30,11 +55,16 @@ export const ShippingAddress: React.FC = () => {
 
       <ShippingBox>
         <FormControl>
-          <RadioGroup>
+          <RadioGroup
+            onChange={handleRadioChange}
+            value={isUseExisting}
+            defaultValue={true}
+          >
             <Stack spacing={4} divider={<Divider />}>
               <Stack>
                 <FormControlLabel
-                  value="Same as Billing address"
+                  disabled={isDisabled && shippingAddress == null}
+                  value={true}
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
@@ -45,7 +75,7 @@ export const ShippingAddress: React.FC = () => {
               </Stack>
               <Stack>
                 <FormControlLabel
-                  value="Use a different shipping address"
+                  value={false}
                   control={<Radio />}
                   label={
                     <Typography variant="h6">

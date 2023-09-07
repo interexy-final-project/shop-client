@@ -19,7 +19,6 @@ export const getProducts = createAsyncThunk<ProductDto[], string[]>(
   "GET/products",
   async (productIds, { rejectWithValue }) => {
     try {
-      console.log(productIds);
       const response = await repository.get(`/products/byIds`, {
         params: productIds,
       });
@@ -35,7 +34,6 @@ export const updateCartItem = createAsyncThunk<
   Partial<CartItemDto>
 >("PUT/cartitem", async (updatedCartItem, { rejectWithValue }) => {
   try {
-    console.log(updatedCartItem);
     const response = await repository.put(
       `/cart/${updatedCartItem.id}`,
       updatedCartItem,

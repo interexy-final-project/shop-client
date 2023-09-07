@@ -14,7 +14,6 @@ import { CartItemBlock } from "./components/cart-item.comp";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { getCartItems, getProducts } from "./store/cart.actions";
-import { setProducts } from "./store/cart.slice";
 import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
 // import { selectCart } from "./store/cart.selectors";
@@ -31,7 +30,6 @@ export const CartPage: React.FC = () => {
   const userId = "7a530b8e-2968-41ec-8b0f-8e83b6e453c8";
   const dispatch: AppDispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  console.log(cartItems);
   useEffect(() => {
     const loadCartItems = async () => {
       try {
