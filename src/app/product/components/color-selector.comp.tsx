@@ -3,6 +3,7 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useTranslation } from "react-i18next";
+import { ProductColors } from "../../../enums/product-colors.enum";
 
 interface ColorSelectorProps {
   availableColors: ProductColors[];

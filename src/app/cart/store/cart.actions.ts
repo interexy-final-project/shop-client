@@ -11,7 +11,7 @@ export const getCartItems = createAsyncThunk<CartItemDto[], string>(
       const response = await repository.get(`/cart/user/${userId}`);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -26,7 +26,7 @@ export const getProducts = createAsyncThunk<ProductDto[], string[]>(
       });
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -43,7 +43,7 @@ export const updateCartItem = createAsyncThunk<
     );
     return response.data;
   } catch (error: any) {
-    return rejectWithValue(error);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -54,7 +54,7 @@ export const deleteCartItem = createAsyncThunk<CartItemDto, string>(
       const response = await repository.delete(`/cart/${id}`);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -67,7 +67,7 @@ export const addToCart = createAsyncThunk<CartItemDto[], Partial<CartItemDto>>(
       const response = await repository.post(`/cart/add`, cartItem);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

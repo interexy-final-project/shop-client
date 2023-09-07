@@ -12,6 +12,7 @@ import { ProductSizes } from "../../../enums/product-sizes.enum";
 import { ProductColors } from "../../../enums/product-colors.enum";
 import { useDispatch } from "react-redux";
 import { deleteCartItem, updateCartItem } from "../store/cart.actions";
+import { debounce } from "lodash";
 
 type TCartItemProps = {
   id: string;

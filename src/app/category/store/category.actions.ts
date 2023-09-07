@@ -18,7 +18,7 @@ export const getProducts = createAsyncThunk<ProductDto[], Filter>(
       });
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -32,7 +32,7 @@ export const getProductTypes = createAsyncThunk<ProductDto[]>(
       });
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -44,7 +44,7 @@ export const getColors = createAsyncThunk<ColorDto[]>(
       const response = await repository.get("/fetch-properties/getColors");
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -56,7 +56,7 @@ export const getSizes = createAsyncThunk<SizeDto[]>(
       const response = await repository.get("/fetch-properties/getSizes");
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

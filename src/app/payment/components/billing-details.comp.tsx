@@ -10,9 +10,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import { theme } from "../../../assets/themes";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
 
 export const BillingDetails: React.FC = () => {
+  const { t } = useTranslation();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -58,10 +60,10 @@ export const BillingDetails: React.FC = () => {
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h4" p="0.25rem 0" sx={verticalLineStyle}>
-          {l("navigation.checkOut")}
+          {t("navigation.checkOut")}
         </Typography>
         <Typography variant="h6" p="1.25rem 0">
-          {l("payment.billingDetails")}
+          {t("payment.billingDetails")}
         </Typography>
       </Stack>
       <FormControl component="form" onSubmit={handleSubmit}>

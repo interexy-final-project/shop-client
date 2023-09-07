@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { ProductSizes } from "../../../enums/product-sizes.enum";
 
 interface SizeSelectorProps {
   availableSizes: ProductSizes[];
