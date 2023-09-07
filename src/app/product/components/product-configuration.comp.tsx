@@ -7,13 +7,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
-import l from "../../../lang/l";
 import { ProductDto } from "../../category/types/product-dto.type";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../cart/store/cart.actions";
-import { AppDispatch, RootState } from "../../../store";
-import { ProductSizes } from "../../../enums/product-sizes.enum";
-import { ProductColors } from "../../../enums/product-colors.enum";
+import { useTranslation } from "react-i18next";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -27,21 +22,11 @@ interface ProductConfigurationProps {
 const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
-  const availableSizes = [ProductSizes.XS, ProductSizes.S, ProductSizes.M];
-  const availableColors = [
-    ProductColors.BLACK,
-    ProductColors.BLUE,
-    ProductColors.RED,
-    ProductColors.WHITE,
-  ];
-  const [selectedSize, setSelectedSize] = useState<ProductSizes | null>(null);
-  const [selectedColor, setSelectedColor] = useState<ProductColors | null>(
-    null,
-  );
-
-  // const [selectedProduct, setSelectedProduct] = useState<ProductDto | null>(
-  //   null,
-  // );
+  const { t } = useTranslation();
+  const availableSizes = ["XS", "S", "M", "L", "XL"];
+  const availableColors = ["red", "green", "black", "orange"];
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
 
   const handleSizeSelection = (size: ProductSizes): void => {
     setSelectedSize(size);
@@ -123,11 +108,11 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
             variant="shop-add-to-card"
             startIcon={<AddShoppingCartIcon />}
           >
-            {l("productConfiguration.add")}
+            {t("productConfiguration.add")}
           </Button>
           <Button variant="shop-price-button">
             {" "}
-            {l("productConfiguration.price")}
+            {t("productConfiguration.price")}
           </Button>
         </Stack>
       </Item>

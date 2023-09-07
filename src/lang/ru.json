@@ -17,6 +17,10 @@
     "signup": "Регистрация",
     "email": "Почта",
     "password": "Пароль",
+    "passwordConfirmation": "Подтверждение Пароля",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "phone":"Телефон",
     "gotaccount": "Уже есть аккаунт? Войти"
   },
   "resetPassword": {

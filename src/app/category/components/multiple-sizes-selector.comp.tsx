@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Button, Grid } from "@mui/material";
-import l from "../../../lang/l";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
 import { ProductSizes } from "../../../enums/product-sizes.enum";
 import { setSizes } from "../store/category.slice";
+import { useTranslation } from "react-i18next";
 
 interface SizeSelectorProps {
   availableSizes: ProductSizes[];
@@ -17,6 +17,7 @@ const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
   selectedSizes,
   onSelectSize,
 }) => {
+  const { t } = useTranslation();
   const isSizeSelected = (size: ProductSizes) => selectedSizes.includes(size);
   const dispatch: AppDispatch = useDispatch();
 
@@ -35,7 +36,7 @@ const MultipleSizesSelector: React.FC<SizeSelectorProps> = ({
 
   return (
     <div>
-      <h3>{l("sizeSelector.title")}</h3>
+      <h3>{t("sizeSelector.title")}</h3>
       <Grid container direction="row" gap={2}>
         {availableSizes.map((size) => (
           <Box key={size}>

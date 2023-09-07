@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Avatar,
@@ -9,17 +8,40 @@ import {
   Stack,
 } from "@mui/material";
 import LoginHeader from "../components/login-header";
-import l from "../../lang/l";
 import img from "../../assets/signupimg.jpg";
+import { useDispatch } from "react-redux";
+import { signUp } from "./store/auth.actions";
+import { useForm } from "react-hook-form";
+import { RoutesEnum } from "../../routes.enum";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const body = {
+    email: watch("email"),
+    password: watch("password"),
+    confirmPassword: watch("confirmPassword"),
+    firstName: watch("firstName"),
+    lastName: watch("lastName"),
+    phone: watch("phone"),
+  };
+  const onSubmit = () => {
+    try {
+      dispatch<any>(signUp(body));
+
+      navigate(RoutesEnum.MAIN);
+    } catch {
+      throw new Error();
+    }
   };
 
   return (
@@ -31,7 +53,6 @@ const SignUp = () => {
         overflow={"hidden"}
         justifyContent={"center"}
       >
-        {/* TODO Change img for responsive */}
         <Box component={"img"} src={img} />
         <Box
           display={"flex"}
@@ -39,44 +60,85 @@ const SignUp = () => {
           alignItems={"center"}
           alignSelf={"center"}
         >
-          {/* TODO Avatar styling */}
           <Avatar />
           <Typography component="h1" variant="h5">
-            {l("signup.signup")}
+            {t("signup.signup")}
           </Typography>
           <Box
+            padding={3}
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             marginTop={1}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={l("signup.email")}
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label={l("signup.password")}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            <Stack flexDirection={"row"} gap={3}>
+              <Box>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label={t("signup.email")}
+                  autoComplete="email"
+                  autoFocus
+                  {...register("email")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={t("signup.password")}
+                  type="password"
+                  id="password"
+                  {...register("password")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={t("signup.passwordConfirmation")}
+                  type="password"
+                  id="confirmPassword"
+                  {...register("confirmPassword")}
+                />
+              </Box>
+              <Box>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={t("signup.firstName")}
+                  type="password"
+                  id="firstName"
+                  {...register("firstName")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={t("signup.lastName")}
+                  type="password"
+                  id="lastName"
+                  {...register("lastName")}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  label={t("signup.phone")}
+                  type="tel"
+                  id="phone"
+                  {...register("phone")}
+                />
+              </Box>
+            </Stack>
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
-                {l("signup.signup")}
+                {t("signup.signup")}
               </Button>
             </Box>
-            <Link href="#" variant="body2">
-              <Typography>{l("signup.gotaccount")}</Typography>
+            <Link href={RoutesEnum.SIGNIN} variant="body2">
+              <Typography>{t("signup.gotaccount")}</Typography>
             </Link>
           </Box>
         </Box>

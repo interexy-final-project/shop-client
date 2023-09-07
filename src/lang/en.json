@@ -1,8 +1,11 @@
 {
-  "test": "text",
   "language": {
     "russian": "Russian",
     "english": "English"
+  },
+  "errors": {
+    "email": "Value should be email",
+    "required": "Field shoudn't be empty"
   },
   "signin": {
     "login": "Login",
@@ -17,6 +20,10 @@
     "signup": "Sign up",
     "email": "E-mail",
     "password": "Password",
+    "passwordConfirmation": "Password confirmation",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone":"Phone",
     "gotaccount": "Already have an  account? Log in"
   },
   "resetPassword": {

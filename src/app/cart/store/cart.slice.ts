@@ -1,14 +1,9 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { type CartItem, type ICartSliceState } from "../types/cart.types";
-import {
-  deleteCartItem,
-  getCartItems,
-  getProducts,
-  updateCartItem,
-} from "./cart.actions";
+import { createSlice } from "@reduxjs/toolkit";
+
+import { addToCart } from "./cart.actions";
+import { deleteCartItem, getCartItems, updateCartItem } from "./cart.actions";
 import { CartState } from "../types/cart-state.type";
 import { CartItemDto } from "../types/cart-item-dto.type";
-import { addToCart } from "./cart.actions";
 
 const initialState: CartState = {
   cartItems: [],
@@ -85,9 +80,18 @@ export const cartSlice = createSlice({
           (c) => c.id != deletedCartItem.id,
         );
         state.cartItems = newCartItems;
-      });
-
+        state.cartItems = newCartItems;
+      })
+      .addCase(
+        deleteCartItem.rejected,
+        (state, action: any & { payload: any }) => {
+          state.pending.cartItems = false;
+          state.errors.cartItems = action.payload.message;
+        },
+      );
     builder
+      // ============ ADD ITEM TO CART ============ //
+
       .addCase(addToCart.pending, (state) => {
         state.pending.cartItems = true;
         state.errors.cartItems = null;
@@ -99,19 +103,7 @@ export const cartSlice = createSlice({
       .addCase(addToCart.rejected, (state, action: any & { payload: any }) => {
         state.pending.cartItems = false;
         state.errors.cartItems = action.payload.message;
-        // console.error(
-        //   "Произошла ошибка при добавлении товара:",
-        //   action.payload,
-        // );
-      })
-      .addCase(
-        deleteCartItem.rejected,
-        (state, action: any & { payload: any }) => {
-          state.pending.cartItems = false;
-          state.errors.cartItems = action.payload.message;
-        },
-      );
+      });
   },
 });
-
 export const { setProducts } = cartSlice.actions;

@@ -11,13 +11,15 @@ import LoginHeader from "../components/login-header";
 import img from "../../assets/signinimg.jpg";
 import { RoutesEnum } from "../../routes.enum";
 import { useForm } from "react-hook-form";
-import { signIn } from "./store/auth.actions";
+import { changePassword } from "./store/auth.actions";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector } from "./store/auth.selectors";
 import { useTranslation } from "react-i18next";
 
-const SignIn = () => {
+const ChangePassword = () => {
   const { t } = useTranslation();
+  const { resetToken } = useSelector(authSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -27,12 +29,12 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
   const body = {
-    email: watch("email"),
     password: watch("password"),
+    confirmPassword: watch("confirmPassword"),
   };
   const onSubmit = () => {
     try {
-      dispatch<any>(signIn(body));
+      dispatch<any>(changePassword({ body, resetToken }));
       navigate(RoutesEnum.MAIN);
     } catch {
       throw new Error();
@@ -69,19 +71,19 @@ const SignIn = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label={t("signin.email")}
-              autoFocus
-              {...register("email")}
+              label={t("signin.password")}
+              type="password"
+              id="password"
+              {...register("password")}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              label={t("signin.password")}
+              label={t("signup.passwordConfirmation")}
               type="password"
-              id="password"
-              {...register("password")}
+              id="confirmPassword"
+              {...register("confirmPassword")}
             />
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
@@ -103,4 +105,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ChangePassword;

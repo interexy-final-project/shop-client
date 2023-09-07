@@ -13,14 +13,13 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MultipleSizesSelector from "./components/multiple-sizes-selector.comp";
 import MultipleColorsSelector from "./components/multiple-colors-selector.comp";
-import l from "../../lang/l";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { getColors, getProducts, getSizes } from "./store/category.actions";
 import { ProductSizes } from "../../enums/product-sizes.enum";
 import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
-import { Root } from "react-dom/client";
+import { useTranslation } from "react-i18next";
 import { PriceFilter } from "./components/price-filter";
 
 const NameBox = styled(Box)(({ theme }) => ({
@@ -34,6 +33,7 @@ const NameBox = styled(Box)(({ theme }) => ({
 }));
 
 const Category: React.FC = () => {
+  const { t } = useTranslation();
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
@@ -83,7 +83,7 @@ const Category: React.FC = () => {
           <Box>
             <Stack>
               <NameBox justifyContent={"space-between"}>
-                <Typography variant="t4">{l("filter.title")}</Typography>
+                <Typography variant="t4">{t("filter.title")}</Typography>
 
                 <Typography variant="t4">
                   <FilterListIcon fontSize="large" />
@@ -102,7 +102,7 @@ const Category: React.FC = () => {
             <Stack>
               <NameBox>
                 {" "}
-                <Typography variant="t4">{l("filter.color")}</Typography>
+                <Typography variant="t4">{t("filter.color")}</Typography>
                 <Typography variant="t4">
                   <KeyboardArrowUpIcon fontSize="large" />
                 </Typography>
@@ -120,7 +120,7 @@ const Category: React.FC = () => {
           <Box>
             <Stack>
               <NameBox>
-                <Typography variant="t4">{l("filter.size")}</Typography>
+                <Typography variant="t4">{t("filter.size")}</Typography>
                 <Typography variant="t4">
                   <KeyboardArrowUpIcon fontSize="large" />
                 </Typography>
@@ -146,7 +146,7 @@ const Category: React.FC = () => {
       >
         <Grid item>
           <Typography variant={"t3"}>
-            {l("filter.category")}{" "}
+            {t("filter.category")}{" "}
             {loadingProducts && <CircularProgress size={20} />}{" "}
           </Typography>
         </Grid>
