@@ -6,7 +6,7 @@ import Footer from "../app/components/footer";
 import { colors, theme } from "../assets/themes";
 import HeroLeaves from "../assets/imgs/hero-leaves.png";
 import HeroShopnow from "../assets/imgs/hero-shopnow.png";
-import { ITypeCardProps, TypeCard } from "../main/type-card";
+import { ITypeCardProps, TypeCard } from "./components/type-card";
 import { ProductTypes } from "../enums/product-types.enum";
 import JeansMen from "../assets/imgs/jeans-men.png";
 import ShirtMen from "../assets/imgs/shirt-men.png";
@@ -14,8 +14,16 @@ import TShirtMen from "../assets/imgs/tshirt-men.png";
 import JeansWomen from "../assets/imgs/jeans-women.jpg";
 import ShirtWomen from "../assets/imgs/shirt-women.png";
 import TShirtWomen from "../assets/imgs/tshirt-women.png";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
+import { getProducts } from "../app/category/store/category.actions";
+import { useNavigate } from "react-router";
+import { ProductCategories } from "../enums/product-categories.enum";
+import { useTranslation } from "react-i18next";
 
 export const MainPage: React.FC = () => {
+  const { t } = useTranslation();
+
   const typesMen = [
     { typeName: ProductTypes.JEANS, image: JeansMen },
     { typeName: ProductTypes.SHIRT, image: ShirtMen },
@@ -27,6 +35,8 @@ export const MainPage: React.FC = () => {
     { typeName: ProductTypes.SHIRT, image: ShirtWomen },
     { typeName: ProductTypes.TSHIRT, image: TShirtWomen },
   ];
+
+  const [category, setCategory] = useState<ProductCategories | null>(null);
 
   const targetRef = useRef(null);
 
@@ -52,6 +62,15 @@ export const MainPage: React.FC = () => {
       backgroundColor: theme.palette.primary.main,
       borderRadius: 10,
     },
+  };
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const filter = useSelector((state: RootState) => state.products.filter);
+
+  const handleCategory = () => {
+    dispatch(getProducts(filter));
   };
 
   return (
@@ -85,17 +104,17 @@ export const MainPage: React.FC = () => {
             }}
           >
             <Typography variant="h5" color={colors.white}>
-              T-shirt / Tops
+              {t("main.clothes")}
             </Typography>
             <Typography variant="h1" color={colors.white}>
-              Summer Value Pack
+              {t("main.summerSale")}
             </Typography>
             <Typography variant="h4" color={colors.white}>
-              cool / colorful / comfy
+              {t("main.clothDesc")}
             </Typography>
 
             <Button variant="shop-white-button" onClick={scrollToTarget}>
-              Shop now
+              {t("main.shopNow")}
             </Button>
           </Stack>
         </Box>
@@ -120,13 +139,12 @@ export const MainPage: React.FC = () => {
             }}
           >
             <Typography variant="h2" color={colors.white}>
-              WE MADE YOUR EVERYDAY FASHION BETTER!
+              {t("main.slogan1")}
             </Typography>
             <Typography variant="h6" color={colors.white}>
-              In our journey to improve everyday fashion, euphoria presents
-              EVERYDAY wear range - Comfortable & Affordable fashion 24/7
+              {t("main.slogan2")}
             </Typography>
-            <Button variant="shop-white-button">Shop now</Button>
+            <Button variant="shop-white-button">{t("main.shopNow")}</Button>
           </Stack>
         </Box>
 
@@ -137,12 +155,16 @@ export const MainPage: React.FC = () => {
               color={colors.secondary}
               sx={verticalLineStyle}
             >
-              Categories For Men
+              {t("main.menCategory")}
             </Typography>
             <Grid container spacing={5} justifyContent="center" p="2rem 0">
               {typesMen.map((type) => (
                 <Grid item key={type.typeName + Math.random()}>
-                  <TypeCard image={type.image} typeName={type.typeName} />
+                  <TypeCard
+                    image={type.image}
+                    typeName={type.typeName}
+                    handleCategory={handleCategory}
+                  />
                 </Grid>
               ))}
             </Grid>
@@ -154,12 +176,16 @@ export const MainPage: React.FC = () => {
               color={colors.secondary}
               sx={verticalLineStyle}
             >
-              Categories For Women
+              {t("main.womenCategory")}
             </Typography>
             <Grid container spacing={5} justifyContent="center" p="2rem 0">
               {typesWomen.map((type) => (
                 <Grid item key={type.typeName + Math.random()}>
-                  <TypeCard image={type.image} typeName={type.typeName} />
+                  <TypeCard
+                    image={type.image}
+                    typeName={type.typeName}
+                    handleCategory={handleCategory}
+                  />
                 </Grid>
               ))}
             </Grid>

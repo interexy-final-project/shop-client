@@ -7,17 +7,21 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface ITypeCardProps {
   image: string;
   typeName: string;
+  handleCategory: () => void;
 }
 
-export const TypeCard: React.FC<ITypeCardProps> = ({ image, typeName }) => {
-  const navigate = useNavigate();
+export const TypeCard: React.FC<ITypeCardProps> = ({
+  image,
+  typeName,
+  handleCategory,
+}) => {
+  const { t } = useTranslation();
 
-  console.log(image);
   return (
     <Card>
       <CardMedia src={image} component="img" height="400" />
@@ -25,7 +29,7 @@ export const TypeCard: React.FC<ITypeCardProps> = ({ image, typeName }) => {
         <Typography variant="h5">{typeName}</Typography>
       </CardContent>
       <CardActions>
-        <Button>Explore now!</Button>
+        <Button onClick={handleCategory}>{t("main.exploreNow")}</Button>
       </CardActions>
     </Card>
   );

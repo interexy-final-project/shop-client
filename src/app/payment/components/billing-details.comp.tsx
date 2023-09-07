@@ -74,7 +74,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="first-name"
-              label="First Name"
+              label={t("payment.firstName")}
               name="first-name"
               autoComplete="name"
             />
@@ -86,7 +86,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="last-name"
-              label="Last Name"
+              label={t("payment.lastName")}
               name="last-name"
               autoComplete="name"
             />
@@ -98,7 +98,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="country"
-              label="Country / Region"
+              label={t("payment.country")}
               name="country"
               autoComplete="country-name"
             />
@@ -110,7 +110,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="street"
-              label="Street Address"
+              label={t("payment.street")}
               name="street"
             />
           </Grid>
@@ -121,7 +121,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="city"
-              label="City"
+              label={t("payment.city")}
               name="city"
             />
           </Grid>
@@ -132,7 +132,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="postal-code"
-              label="Postal Code"
+              label={t("payment.postalCode")}
               name="postal-code"
               autoComplete="country"
             />
@@ -144,7 +144,7 @@ export const BillingDetails: React.FC = () => {
               required
               fullWidth
               id="phone"
-              label="Phone"
+              label={t("payment.phone")}
               name="phone"
             />
           </Grid>
