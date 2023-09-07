@@ -1,4 +1,4 @@
-import { UUIDDto } from "../../../types/uuid-dto.type";
+import { UUIDDto } from "./uuid-dto.type";
 
 export interface ShippingAddressDto extends UUIDDto {
   address: string | null;

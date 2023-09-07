@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
-import { ShippingAddressDto } from "../types/address-dto.type";
+import { ShippingAddressDto } from "../../../types/address-dto.type";
 const ShippingBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
   borderRadius: "0,75rem",

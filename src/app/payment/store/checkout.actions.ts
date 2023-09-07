@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ShippingAddressDto } from "../types/address-dto.type";
+import { ShippingAddressDto } from "../../../types/address-dto.type";
 import repository from "../../../repository";
 import { CartItemDto } from "../../cart/types/cart-item-dto.type";
 import { OrderDto } from "../types/order-dto.type";

@@ -13,7 +13,7 @@ import { theme } from "../../../assets/themes";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 
-import { ShippingAddressDto } from "../types/address-dto.type";
+import { ShippingAddressDto } from "../../../types/address-dto.type";
 import { useTranslation } from "react-i18next";
 
 interface BillingDetailsProps {

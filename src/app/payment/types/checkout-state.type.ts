@@ -1,6 +1,6 @@
 import { BaseState } from "../../../types/base-state.type";
 import { CartItemDto } from "../../cart/types/cart-item-dto.type";
-import { ShippingAddressDto } from "./address-dto.type";
+import { ShippingAddressDto } from "../../../types/address-dto.type";
 
 export interface CheckoutState {
   address: ShippingAddressDto | null;
