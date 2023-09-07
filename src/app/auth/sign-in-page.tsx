@@ -8,15 +8,16 @@ import {
   Stack,
 } from "@mui/material";
 import LoginHeader from "../components/login-header";
-import l from "../../lang/l";
 import img from "../../assets/signinimg.jpg";
 import { RoutesEnum } from "../../routes.enum";
 import { useForm } from "react-hook-form";
 import { signIn } from "./store/auth.actions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -56,7 +57,7 @@ const SignIn = () => {
         >
           <Avatar />
           <Typography component="h1" variant="h5">
-            {l("signin.signin")}
+            {t("signin.signin")}
           </Typography>
           <Box
             component="form"
@@ -69,7 +70,7 @@ const SignIn = () => {
               required
               fullWidth
               id="email"
-              label={l("signin.email")}
+              label={t("signin.email")}
               autoFocus
               {...register("email")}
             />
@@ -77,22 +78,22 @@ const SignIn = () => {
               margin="normal"
               required
               fullWidth
-              label={l("signin.password")}
+              label={t("signin.password")}
               type="password"
               id="password"
               {...register("password")}
             />
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
-                {l("signin.signin")}
+                {t("signin.signin")}
               </Button>
             </Box>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Link href={RoutesEnum.RESET} variant="body2">
-                <Typography>{l("signin.forgot")}</Typography>
+                <Typography>{t("signin.forgot")}</Typography>
               </Link>
               <Link href={RoutesEnum.SIGNUP} variant="body2">
-                <Typography>{l("signin.noaccount")}</Typography>
+                <Typography>{t("signin.noaccount")}</Typography>
               </Link>
             </Stack>
           </Box>

@@ -1,8 +1,9 @@
 import { Paper, Stack, Box, Typography } from "@mui/material";
 import img from "../../../assets/images/product-img.jpg";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
 
 const OrderItem = () => {
+  const { t } = useTranslation();
   return (
     <Box component={Paper} marginTop={5} padding={1}>
       <Stack
@@ -14,9 +15,9 @@ const OrderItem = () => {
           <Box component={"img"} src={img} />
           <Box>
             <Typography>Black Printed T-shirt</Typography>
-            <Typography>{l("orderItem.color")}</Typography>
-            <Typography>{l("orderItem.quantity")}</Typography>
-            <Typography>{l("orderItem.total")}</Typography>
+            <Typography>{t("orderItem.color")}</Typography>
+            <Typography>{t("orderItem.quantity")}</Typography>
+            <Typography>{t("orderItem.total")}</Typography>
           </Box>
         </Stack>
       </Stack>

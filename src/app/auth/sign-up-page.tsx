@@ -8,15 +8,16 @@ import {
   Stack,
 } from "@mui/material";
 import LoginHeader from "../components/login-header";
-import l from "../../lang/l";
 import img from "../../assets/signupimg.jpg";
 import { useDispatch } from "react-redux";
 import { signUp } from "./store/auth.actions";
 import { useForm } from "react-hook-form";
 import { RoutesEnum } from "../../routes.enum";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -61,7 +62,7 @@ const SignUp = () => {
         >
           <Avatar />
           <Typography component="h1" variant="h5">
-            {l("signup.signup")}
+            {t("signup.signup")}
           </Typography>
           <Box
             padding={3}
@@ -77,7 +78,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="email"
-                  label={l("signup.email")}
+                  label={t("signup.email")}
                   autoComplete="email"
                   autoFocus
                   {...register("email")}
@@ -86,7 +87,7 @@ const SignUp = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label={l("signup.password")}
+                  label={t("signup.password")}
                   type="password"
                   id="password"
                   {...register("password")}
@@ -95,7 +96,7 @@ const SignUp = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label={l("signup.passwordConfirmation")}
+                  label={t("signup.passwordConfirmation")}
                   type="password"
                   id="confirmPassword"
                   {...register("confirmPassword")}
@@ -106,7 +107,7 @@ const SignUp = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label={l("signup.firstName")}
+                  label={t("signup.firstName")}
                   type="password"
                   id="firstName"
                   {...register("firstName")}
@@ -115,7 +116,7 @@ const SignUp = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label={l("signup.lastName")}
+                  label={t("signup.lastName")}
                   type="password"
                   id="lastName"
                   {...register("lastName")}
@@ -124,7 +125,7 @@ const SignUp = () => {
                   margin="normal"
                   required
                   fullWidth
-                  label={l("signup.phone")}
+                  label={t("signup.phone")}
                   type="tel"
                   id="phone"
                   {...register("phone")}
@@ -133,11 +134,11 @@ const SignUp = () => {
             </Stack>
             <Box marginBottom={3} marginTop={3}>
               <Button type="submit" fullWidth variant="contained">
-                {l("signup.signup")}
+                {t("signup.signup")}
               </Button>
             </Box>
             <Link href={RoutesEnum.SIGNIN} variant="body2">
-              <Typography>{l("signup.gotaccount")}</Typography>
+              <Typography>{t("signup.gotaccount")}</Typography>
             </Link>
           </Box>
         </Box>

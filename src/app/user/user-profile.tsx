@@ -5,8 +5,8 @@ import { Box, Stack, Tabs, Tab, Typography } from "@mui/material";
 import UserOrderList from "./components/user-orders-list";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import l from "../../lang/l";
 import UserContacts from "./components/user-contacts";
+import { useTranslation } from "react-i18next";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -32,6 +32,7 @@ const TabPanel = (props: TabPanelProps) => {
 };
 
 const UserProfile = () => {
+  const { t } = useTranslation();
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
   const handleTabChange = (e: React.SyntheticEvent, tabIndex: number) => {
@@ -48,8 +49,8 @@ const UserProfile = () => {
         justifyContent={"space-between"}
       >
         <Stack>
-          <Typography variant="h4">{l("userProfile.hello")}</Typography>
-          <Typography>{l("userProfile.welcome")}</Typography>
+          <Typography variant="h4">{t("userProfile.hello")}</Typography>
+          <Typography>{t("userProfile.welcome")}</Typography>
           <Box
             component={Tabs}
             variant="fullWidth"
@@ -61,12 +62,12 @@ const UserProfile = () => {
           >
             <Tab
               icon={<PersonIcon />}
-              label={l("userProfile.myInfo")}
+              label={t("userProfile.myInfo")}
               iconPosition="start"
             />
             <Tab
               icon={<ShoppingBagIcon />}
-              label={l("userProfile.myOrders")}
+              label={t("userProfile.myOrders")}
               iconPosition="start"
             />
           </Box>

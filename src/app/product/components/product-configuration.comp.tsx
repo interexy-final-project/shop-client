@@ -7,8 +7,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
 import ColorSelector from "./color-selector.comp";
-import l from "../../../lang/l";
 import { ProductDto } from "../../category/types/product-dto.type";
+import { useTranslation } from "react-i18next";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -22,6 +22,7 @@ interface ProductConfigurationProps {
 const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
+  const { t } = useTranslation();
   const availableSizes = ["XS", "S", "M", "L", "XL"];
   const availableColors = ["red", "green", "black", "orange"];
   const [selectedSize, setSelectedSize] = useState("");
@@ -71,11 +72,11 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
             variant="shop-add-to-card"
             startIcon={<AddShoppingCartIcon />}
           >
-            {l("productConfiguration.add")}
+            {t("productConfiguration.add")}
           </Button>
           <Button variant="shop-price-button">
             {" "}
-            {l("productConfiguration.price")}
+            {t("productConfiguration.price")}
           </Button>
         </Stack>
       </Item>

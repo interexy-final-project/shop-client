@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import * as yup from "yup";
-import l from "../../../lang/l";
+
+const { t } = useTranslation();
 
 export const schema = yup.object().shape({
-  email: yup.string().email(l("errors.email")).required(l("errors.required")),
-  password: yup.string().required(l("errors.required")),
+  email: yup.string().email("errors.email").required(t("errors.required")),
+  password: yup.string().required(t("errors.required")),
 });

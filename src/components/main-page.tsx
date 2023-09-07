@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CommonHeader from "../app/components/common-header";
 import HeroImage from "../assets/imgs/shop-hero.png";

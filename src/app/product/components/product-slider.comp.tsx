@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import productImg from "../../../assets/images/product-details-mock.png";
 import { styled } from "@mui/system";
 import { Stack } from "@mui/material";
-import l from "../../../lang/l";
+import { useTranslation } from "react-i18next";
 
 const StyledImage = styled("img")({
   flexShrink: 1,
@@ -18,9 +18,11 @@ const SliderBox = styled(Box)(({ theme }) => ({
 }));
 
 const ProductSlider: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack direction="row" justifyContent={"flex-end"}>
-      <SliderBox>{l("slider.title")}</SliderBox>
+      <SliderBox>{t("slider.title")}</SliderBox>
       <Box>
         <StyledImage src={productImg} alt="Product img" />
       </Box>

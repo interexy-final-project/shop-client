@@ -1,38 +1,38 @@
 import { Box, Divider, Typography, Stack } from "@mui/material";
-import l from "../../../lang/l";
 import ContactItem from "./contacts-item";
 import AddressItem from "./address-item";
+import { useTranslation } from "react-i18next";
 
 const UserContacts = () => {
-  //GET UserInfo
+  const { t } = useTranslation();
 
   return (
     <Box>
       <Typography variant="h5" gutterBottom>
-        {l("userContacts.contactsTitle")}
+        {t("userContacts.contactsTitle")}
       </Typography>
       <Typography variant="h6" gutterBottom>
-        {l("userContacts.contactsDetails")}
+        {t("userContacts.contactsDetails")}
       </Typography>
       <Stack spacing={0.5} divider={<Divider />}>
         <ContactItem
           variant="common"
-          data={{ name: l("userContacts.name"), value: "Name" }}
+          data={{ name: t("userContacts.name"), value: "Name" }}
         />
         <ContactItem
           variant="common"
-          data={{ name: l("userContacts.email"), value: "Name" }}
+          data={{ name: t("userContacts.email"), value: "Name" }}
         />
         <ContactItem
           variant="common"
-          data={{ name: l("userContacts.phone"), value: "Name" }}
+          data={{ name: t("userContacts.phone"), value: "Name" }}
         />
         <ContactItem
           variant="secured"
-          data={{ name: l("userContacts.password"), value: "Name" }}
+          data={{ name: t("userContacts.password"), value: "Name" }}
         />
       </Stack>
-      <Typography variant="h5">{l("userContacts.address")}</Typography>
+      <Typography variant="h5">{t("userContacts.address")}</Typography>
       <Stack
         marginTop={2}
         direction={"row"}
