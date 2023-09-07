@@ -45,7 +45,10 @@ const AppRoutes = () => {
       <Route path={RoutesEnum.CATEGORY} element={<Category />} />
       <Route path={RoutesEnum.PRODUCT} element={<ProductDetails />} />
       <Route path={RoutesEnum.CART} element={PrivateRoute(<CartPage />)} />
-      <Route path={RoutesEnum.CHECKOUT} element={<CheckoutPage />} />
+      <Route
+        path={RoutesEnum.CHECKOUT}
+        element={PrivateRoute(<CheckoutPage />)}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
