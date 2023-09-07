@@ -79,7 +79,9 @@
     "color": "Color",
     "size": "Size",
     "category": "Category",
-    "price": "Price"
+    "price": "Price",
+    "desc": "descending",
+    "asc": "ascending"
   },
   "sizeSelector": {
     "title": "Select Size:"
@@ -100,5 +102,13 @@
   "addressItem": {
     "buttonChange": "Change",
     "buttonConfirm": "Confirm"
+  },
+  "navigation": {
+    "home": "Home",
+    "myAccount": "My Account",
+    "checkOut": "Check Out"
+  },
+  "payment": {
+    "billingDetails": "Billing Details"
   }
 }

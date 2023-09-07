@@ -79,6 +79,15 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
     dispatch(deleteCartItem(cartItemId));
   };
 
+  const debouncedAddItemHandler = useMemo(
+    () => debounce(handleAddItem, 300),
+    [handleAddItem],
+  );
+
+  const debouncedMinusItemHandler = useMemo(
+    () => debounce(handleMinusItem, 300),
+    [handleMinusItem],
+  );
   return (
     <Stack
       component="div"

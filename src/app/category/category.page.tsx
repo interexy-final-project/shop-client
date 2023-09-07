@@ -20,6 +20,7 @@ import { ProductSizes } from "../../enums/product-sizes.enum";
 import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
 import { useTranslation } from "react-i18next";
+import { PriceFilter } from "./components/price-filter";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -93,16 +94,8 @@ const Category: React.FC = () => {
               </NameBox>
             </Stack>
           </Box>
-
           <Box>
-            <Stack>
-              <NameBox>
-                <Typography variant="t4">{t("filter.price")}</Typography>
-                <Typography variant="t4">
-                  <KeyboardArrowUpIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-            </Stack>
+            <PriceFilter />
           </Box>
 
           <Box>

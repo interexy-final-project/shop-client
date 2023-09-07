@@ -3,9 +3,9 @@ import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 interface SizeSelectorProps {
-  availableSizes: string[];
-  selectedSize: string;
-  onSelectSize: (size: string) => void;
+  availableSizes: ProductSizes[];
+  selectedSize: ProductSizes | null;
+  onSelectSize: (size: ProductSizes) => void;
 }
 
 const SizeSelector: React.FC<SizeSelectorProps> = ({

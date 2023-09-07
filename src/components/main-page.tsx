@@ -1,22 +1,65 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CommonHeader from "../app/components/common-header";
 import HeroImage from "../assets/imgs/shop-hero.png";
 import Footer from "../app/components/footer";
-import { colors } from "../assets/themes";
+import { colors, theme } from "../assets/themes";
 import HeroLeaves from "../assets/imgs/hero-leaves.png";
 import HeroShopnow from "../assets/imgs/hero-shopnow.png";
-import { ITypeCardProps, TypeCard } from "../app/components/type-card";
+import { ITypeCardProps, TypeCard } from "../main/type-card";
+import { ProductTypes } from "../enums/product-types.enum";
+import JeansMen from "../assets/imgs/jeans-men.png";
+import ShirtMen from "../assets/imgs/shirt-men.png";
+import TShirtMen from "../assets/imgs/tshirt-men.png";
+import JeansWomen from "../assets/imgs/jeans-women.jpg";
+import ShirtWomen from "../assets/imgs/shirt-women.png";
+import TShirtWomen from "../assets/imgs/tshirt-women.png";
 
 export const MainPage: React.FC = () => {
-  const [types, setTypes] = useState<ITypeCardProps[]>([]);
+  const typesMen = [
+    { typeName: ProductTypes.JEANS, image: JeansMen },
+    { typeName: ProductTypes.SHIRT, image: ShirtMen },
+    { typeName: ProductTypes.TSHIRT, image: TShirtMen },
+  ];
+
+  const typesWomen = [
+    { typeName: ProductTypes.JEANS, image: JeansWomen },
+    { typeName: ProductTypes.SHIRT, image: ShirtWomen },
+    { typeName: ProductTypes.TSHIRT, image: TShirtWomen },
+  ];
+
+  const targetRef = useRef(null);
+
+  function scrollToTarget() {
+    if (targetRef.current) {
+      (targetRef.current as HTMLElement).scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+
+  const verticalLineStyle = {
+    position: "relative",
+    paddingLeft: 3,
+    "&::before": {
+      content: "''",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: 6,
+      height: "100%",
+      backgroundColor: theme.palette.primary.main,
+      borderRadius: 10,
+    },
+  };
 
   return (
     <>
       <CommonHeader />
 
       <Box
-        sx={{ height: "100vh" }}
+        height="100vh"
         justifyContent="center"
         flexDirection="column"
         alignItems="center"
@@ -51,12 +94,14 @@ export const MainPage: React.FC = () => {
               cool / colorful / comfy
             </Typography>
 
-            <Button variant="shop-white-button">Shop now</Button>
+            <Button variant="shop-white-button" onClick={scrollToTarget}>
+              Shop now
+            </Button>
           </Stack>
         </Box>
 
         <Box margin="0 6.25rem" position="relative">
-          <Stack direction="row" justifyContent="center" position="relative">
+          <Stack direction="row" justifyContent="center">
             <img src={HeroLeaves} />
             <img src={HeroShopnow} />
           </Stack>
@@ -85,35 +130,39 @@ export const MainPage: React.FC = () => {
           </Stack>
         </Box>
 
-        <Box>
-          <Stack>
-            <Typography variant="h3" color={colors.secondary} sx={{}}>
+        <Box ref={targetRef}>
+          <Stack m="2rem">
+            <Typography
+              variant="h3"
+              color={colors.secondary}
+              sx={verticalLineStyle}
+            >
               Categories For Men
             </Typography>
-            {types.map((type) => (
-              <Grid item key={type.id}>
-                <TypeCard
-                  id={type.id}
-                  image={type.image}
-                  typeName={type.typeName}
-                />
-              </Grid>
-            ))}
+            <Grid container spacing={5} justifyContent="center" p="2rem 0">
+              {typesMen.map((type) => (
+                <Grid item key={type.typeName + Math.random()}>
+                  <TypeCard image={type.image} typeName={type.typeName} />
+                </Grid>
+              ))}
+            </Grid>
           </Stack>
 
-          <Stack>
-            <Typography variant="h3" color={colors.secondary}>
+          <Stack m="2rem">
+            <Typography
+              variant="h3"
+              color={colors.secondary}
+              sx={verticalLineStyle}
+            >
               Categories For Women
             </Typography>
-            {types.map((type) => (
-              <Grid item key={type.id}>
-                <TypeCard
-                  id={type.id}
-                  image={type.image}
-                  typeName={type.typeName}
-                />
-              </Grid>
-            ))}
+            <Grid container spacing={5} justifyContent="center" p="2rem 0">
+              {typesWomen.map((type) => (
+                <Grid item key={type.typeName + Math.random()}>
+                  <TypeCard image={type.image} typeName={type.typeName} />
+                </Grid>
+              ))}
+            </Grid>
           </Stack>
         </Box>
       </Box>

@@ -5,9 +5,9 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useTranslation } from "react-i18next";
 
 interface ColorSelectorProps {
-  availableColors: string[];
-  selectedColor: string;
-  onSelectColor: (size: string) => void;
+  availableColors: ProductColors[];
+  selectedColor: ProductColors | null;
+  onSelectColor: (size: ProductColors) => void;
 }
 
 const ColorSelector: React.FC<ColorSelectorProps> = ({
