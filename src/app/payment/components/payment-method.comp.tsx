@@ -22,9 +22,34 @@ import Visa from "../../../assets/imgs/visa.svg";
 import PayPass from "../../../assets/imgs/paypass.svg";
 import PayPal from "../../../assets/imgs/paypal.svg";
 import { theme } from "../../../assets/themes";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsSelector } from "../../cart/store/cart.selectors";
+import { AppDispatch } from "../../../store";
+import { createOrder } from "../store/checkout.actions";
+import { PaymentMethods } from "../../../enums/payment-methods.enum";
+import { resetCartItems } from "../../cart/store/cart.slice";
 import { useTranslation } from "react-i18next";
 
-export const PaymentMethod: React.FC = () => {
+interface PaymentMethodProps {
+  paymentMethod: PaymentMethods;
+  setPaymentMethod: (arg: PaymentMethods) => void;
+}
+
+export const PaymentMethod: React.FC<PaymentMethodProps> = ({
+  paymentMethod,
+  setPaymentMethod,
+}: PaymentMethodProps) => {
+  const user = {
+    id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
+    firstName: "name",
+    lastName: "family",
+    phone: "212394852972",
+  };
+
+  const handleRadioChange = (event: any) => {
+    setPaymentMethod(event.target.value);
+  };
+
   const BillingTextField = styled(TextField)(({ theme }) => ({
     "& .MuiInputBase-root": {
       backgroundColor: theme.palette.grayMain?.main,
@@ -72,11 +97,13 @@ export const PaymentMethod: React.FC = () => {
           <RadioGroup
             defaultValue="Credit Card"
             name="controlled-radio-buttons-group"
+            onChange={handleRadioChange}
+            value={paymentMethod}
           >
             <Stack spacing={4} divider={<Divider />}>
               <Stack>
                 <FormControlLabel
-                  value="Credit Card"
+                  value="Card"
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
@@ -145,7 +172,7 @@ export const PaymentMethod: React.FC = () => {
 
               <Stack>
                 <FormControlLabel
-                  value="Cash on delivery"
+                  value="Cash"
                   control={<Radio />}
                   label={
                     <Typography variant="h6">

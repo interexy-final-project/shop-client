@@ -19,11 +19,8 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setProducts(state, action) {
-      return {
-        ...state,
-        products: action.payload,
-      };
+    resetCartItems(state) {
+      state.cartItems = [];
     },
   },
   extraReducers: (builder) => {
@@ -35,7 +32,6 @@ export const cartSlice = createSlice({
       })
       .addCase(getCartItems.fulfilled, (state, { payload }) => {
         state.pending.cartItems = false;
-        console.log(payload, "payload");
         state.cartItems = payload;
       })
       .addCase(
@@ -106,4 +102,5 @@ export const cartSlice = createSlice({
       });
   },
 });
-export const { setProducts } = cartSlice.actions;
+
+export const { resetCartItems } = cartSlice.actions;
