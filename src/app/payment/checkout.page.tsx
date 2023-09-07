@@ -23,10 +23,6 @@ import Footer from "../components/footer";
 import CommonHeader from "../components/common-header";
 
 export const CheckoutPage: React.FC = () => {
-  // const [street, setStreet] = useState("");
-  // const [city, setCity] = useState("");
-  // const [postalCode, setPostalCode] = useState("");
-  // const [phone, setPhone] = useState("");
   const [isUseExisting, setIsUseExisting] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>(
     PaymentMethods.CARD,
