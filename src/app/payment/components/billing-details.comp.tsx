@@ -122,7 +122,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             disabled={true}
             id="first-name"
-            label="First Name"
+            label={t("payment.firstName")}
             name="first-name"
             value={user ? user.firstName : ""}
             // onChange={handleTextFieldChange}
@@ -136,7 +136,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             disabled={true}
             id="last-name"
-            label="Last Name"
+            label={t("payment.lastName")}
             name="last-name"
             value={user ? user.lastName : ""}
           />
@@ -149,7 +149,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             disabled={true}
             fullWidth
             id="country"
-            label="Country / Region"
+            label={t("payment.country")}
             name="country"
             value="USA"
           />
@@ -162,7 +162,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             id="street"
             disabled={isDisabled}
-            label="Street Address"
+            label={t("payment.street")}
             name="street"
             onChange={handleStreetInput}
             value={street}
@@ -176,7 +176,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             disabled={isDisabled}
             id="city"
-            label="City"
+            label={t("payment.city")}
             name="city"
             onChange={handleCityInput}
             value={city}
@@ -190,7 +190,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             disabled={isDisabled}
             id="postal-code"
-            label="Postal Code"
+            label={t("payment.postalCode")}
             name="postal-code"
             onChange={handlePostalInput}
             value={postalCode}
@@ -204,7 +204,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             fullWidth
             disabled={true}
             id="phone"
-            label="Phone"
+            label={t("payment.phone")}
             name="phone"
             value={user.phone}
           />

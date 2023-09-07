@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { getCartItems } from "../../cart/store/cart.actions";
 import { CartItemDto } from "../../cart/types/cart-item-dto.type";
+import { useTranslation } from "react-i18next";
 
 export const OrderSummary = () => {
   const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
@@ -32,11 +33,13 @@ export const OrderSummary = () => {
     }, 0);
   }
 
+  const { t } = useTranslation();
+
   return (
     <Stack minWidth="21.5rem">
       <Paper>
         <Typography variant="h5" p="1rem">
-          Order Summary
+          {t("payment.orderSUmmary")}
         </Typography>
         <Box>
           {orderItems.map((orderItem: any) => (
@@ -63,7 +66,7 @@ export const OrderSummary = () => {
                       {orderItem.product.name} x {orderItem.quantity}
                     </Typography>
                     <Typography variant="label">
-                      Color: {orderItem.color}
+                      {t("filter.color")}:{orderItem.color}
                     </Typography>
                   </Stack>
 
@@ -78,7 +81,8 @@ export const OrderSummary = () => {
           ))}
         </Box>
         <Typography variant="h6" p="1rem">
-          Total price: $ {calculateTotalPrice(orderItems)}
+          {t("payment.totalPrice")}
+          {calculateTotalPrice(orderItems)}
         </Typography>
       </Paper>
     </Stack>

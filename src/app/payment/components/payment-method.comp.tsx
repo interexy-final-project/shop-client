@@ -28,6 +28,7 @@ import { AppDispatch } from "../../../store";
 import { createOrder } from "../store/checkout.actions";
 import { PaymentMethods } from "../../../enums/payment-methods.enum";
 import { resetCartItems } from "../../cart/store/cart.slice";
+import { useTranslation } from "react-i18next";
 
 interface PaymentMethodProps {
   paymentMethod: PaymentMethods;
@@ -70,6 +71,8 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
     },
   }));
 
+  const { t } = useTranslation();
+
   const PaymentBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.grayMain?.main,
     borderRadius: "0,75rem",
@@ -81,10 +84,11 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h5" sx={{ padding: "0.125rem 0" }}>
-          Payment Method
+          {" "}
+          {t("payment.paymentMethod")}
         </Typography>
         <Typography variant="p" sx={{ padding: "0.125rem 0" }}>
-          All transactions are secure and encrypted.
+          {t("payment.secureTransactions")}
         </Typography>
       </Stack>
 
@@ -101,9 +105,13 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
                 <FormControlLabel
                   value="Card"
                   control={<Radio />}
-                  label={<Typography variant="h6">Credit Card</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.creditCard")}
+                    </Typography>
+                  }
                 />
-                <Typography>We accept all major credit cards.</Typography>
+                <Typography>{t("payment.acceptedCards")}</Typography>
 
                 <ImageList cols={4} sx={{ width: 500 }}>
                   <ImageListItem>
@@ -166,10 +174,14 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
                 <FormControlLabel
                   value="Cash"
                   control={<Radio />}
-                  label={<Typography variant="h6">Cash on delivery</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.cashOnDelivery")}
+                    </Typography>
+                  }
                 />
                 <Typography variant="p">
-                  Pay with cash upon delivery.
+                  {t("payment.cashUponDelivery")}
                 </Typography>
               </Stack>
             </Stack>
@@ -177,7 +189,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
         </FormControl>
       </PaymentBox>
       <Button variant="shop-purple-filled" type="submit">
-        Pay now
+        {t("payment.payNow")}
       </Button>
     </Box>
   );
