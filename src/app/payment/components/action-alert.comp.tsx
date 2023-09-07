@@ -1,6 +1,6 @@
 import { Stack, Alert } from "@mui/material";
 
-interface ActionAlertsProps {
+interface ActionAlertProps {
   isAlertInvoked: boolean;
   setIsAlertInvoked: (arg: boolean) => void;
   orderErrors: string | null;
@@ -10,7 +10,7 @@ interface ActionAlertsProps {
   setIsWarning: (arg: boolean) => void;
 }
 
-const ActionAlert: React.FC<ActionAlertsProps> = ({
+const ActionAlert: React.FC<ActionAlertProps> = ({
   isAlertInvoked,
   setIsAlertInvoked,
   orderErrors,
@@ -18,7 +18,7 @@ const ActionAlert: React.FC<ActionAlertsProps> = ({
   setAlertMessage,
   isWarning,
   setIsWarning,
-}: ActionAlertsProps) => {
+}: ActionAlertProps) => {
   const handleAlertClosed = () => {
     setIsAlertInvoked(false);
     setAlertMessage("");

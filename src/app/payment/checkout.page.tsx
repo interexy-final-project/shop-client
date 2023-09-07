@@ -17,16 +17,12 @@ import { PaymentMethods } from "../../enums/payment-methods.enum";
 import { cartItemsSelector } from "../cart/store/cart.selectors";
 import { resetCartItems } from "../cart/store/cart.slice";
 import { CartItemDto } from "../cart/types/cart-item-dto.type";
-import ActionAlert from "./components/ActionAlert.comp";
+import ActionAlert from "./components/action-alert.comp";
 import { OrderSummary } from "./components/order-summary.comp";
 import Footer from "../components/footer";
 import CommonHeader from "../components/common-header";
 
 export const CheckoutPage: React.FC = () => {
-  // const [street, setStreet] = useState("");
-  // const [city, setCity] = useState("");
-  // const [postalCode, setPostalCode] = useState("");
-  // const [phone, setPhone] = useState("");
   const [isUseExisting, setIsUseExisting] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>(
     PaymentMethods.CARD,
