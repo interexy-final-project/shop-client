@@ -41,21 +41,28 @@
     "orderDate": "Дата Заказа:",
     "orderEstimation": "Дата доставки:",
     "orderStatus": "Статус Заказа:",
+    "orderPaymentMethod": "Метод Оплаты:"
+  },
+  "addressForm": {
+    "city": "Город",
+    "street": "Улица",
+    "postalCode": "Индекс"
+  },
+  "userContacts": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "address": "Адрес",
     "orderPaymentMethod": "Метод Оплаты:",
     "detailButton": "Посмотреть детали",
     "color": "Цвет:",
     "quantity": "Количество:",
-    "total": "Итого:"
-  },
-  "userContacts": {
+    "total": "Итого:",
     "contactsTitle": "Обо мне",
     "contactsDetails": "Контактные данные",
     "changeInfo": "Редактировать",
-    "name": "Ваше Имя",
     "email": "Адрес электронной почты",
     "phone": "Номер телефона",
-    "password": "Пароль",
-    "address": "Адрес"
+    "password": "Пароль"
   },
   "userProfile": {
     "myInfo": "Обо мне",
