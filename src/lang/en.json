@@ -23,7 +23,7 @@
     "passwordConfirmation": "Password confirmation",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "phone":"Phone",
+    "phone": "Phone",
     "gotaccount": "Already have an  account? Log in"
   },
   "resetPassword": {
@@ -51,11 +51,17 @@
     "contactsTitle": "My Info",
     "contactsDetails": "Contact Details",
     "changeInfo": "Change",
-    "name": "Your Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "email": "Email Address",
     "phone": "Phone number",
     "password": "Password",
     "address": "Address"
+  },
+  "addressForm": {
+    "city": "City",
+    "street": "Street",
+    "postalCode": "Postal Code"
   },
   "userProfile": {
     "myInfo": "My Info",

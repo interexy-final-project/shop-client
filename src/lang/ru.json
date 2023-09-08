@@ -39,5 +39,21 @@
     "orderEstimation": "Дата доставки:",
     "orderStatus": "Статус Заказа:",
     "orderPaymentMethod": "Метод Оплаты:"
+  },
+  "addressForm": {
+    "city": "Город",
+    "street": "Улица",
+    "postalCode": "Индекс"
+  },
+  "userContacts": {
+    "contactsTitle": "Мой профиль",
+    "contactsDetails": "Контактная информация",
+    "changeInfo": "Изменить",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Е-мейл",
+    "phone": "Телефон",
+    "password": "Пароль",
+    "address": "Адрес"
   }
 }
