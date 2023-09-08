@@ -18,7 +18,37 @@ export const getProducts = createAsyncThunk<ProductDto[], Filter>(
       });
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
+    }
+  },
+);
+// получаем типы для каждой категории
+export const getProductTypes = createAsyncThunk<ProductDto[]>(
+  "GET/products/types",
+  async (types, { rejectWithValue }) => {
+    try {
+      const response = await repository.get("/products/types", {
+        params: types,
+      });
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+// получаем продукты по категории
+
+export const getProductsByCategory = createAsyncThunk<ProductDto[], Filter>(
+  "GET/products/category",
+  async (filter, { rejectWithValue }) => {
+    try {
+      const response = await repository.get("/products/:category", {
+        params: filter,
+      });
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -30,7 +60,7 @@ export const getColors = createAsyncThunk<ColorDto[]>(
       const response = await repository.get("/fetch-properties/getColors");
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -42,7 +72,7 @@ export const getSizes = createAsyncThunk<SizeDto[]>(
       const response = await repository.get("/fetch-properties/getSizes");
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

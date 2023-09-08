@@ -14,10 +14,9 @@ import { CartItemBlock } from "./components/cart-item.comp";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { getCartItems, getProducts } from "./store/cart.actions";
-import { setProducts } from "./store/cart.slice";
 import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
-// import { selectCart } from "./store/cart.selectors";
+import { useTranslation } from "react-i18next";
 
 const SubtotalBox = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
@@ -28,10 +27,12 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 }));
 
 export const CartPage: React.FC = () => {
-  const userId = "7a530b8e-2968-41ec-8b0f-8e83b6e453c8";
+  const { t } = useTranslation();
+
+  const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
   const dispatch: AppDispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  console.log(cartItems);
+
   useEffect(() => {
     const loadCartItems = async () => {
       try {
@@ -63,22 +64,19 @@ export const CartPage: React.FC = () => {
                 aria-label="breadcrumb"
               >
                 <Link underline="hover" variant="h6" color={"mainText.main"}>
-                  Home
+                  {t("navigation.home")}
                 </Link>
                 <Typography variant="h6" color={"secondary.main"}>
-                  Add To Cart
+                  {t("navigation.cart")}
                 </Typography>
               </Breadcrumbs>
             </Box>
 
             <Stack>
+              <Typography variant="label">{t("cart.fillTheFields")}</Typography>
               <Typography variant="label">
-                Please fill in the fields below and click place order to
-                complete your purchase!
-              </Typography>
-              <Typography variant="label">
-                Already registered?
-                <Link underline="hover">Please login here</Link>
+                {t("cart.alreadyRegistered")}
+                <Link underline="hover">{t("cart.loginHere")}</Link>
               </Typography>
             </Stack>
           </Stack>
@@ -98,21 +96,29 @@ export const CartPage: React.FC = () => {
             >
               <Stack>
                 <Typography sx={{ color: "white.main" }}>
-                  PRODUCT DETAILS
+                  {t("cart.productDetails")}
                 </Typography>
               </Stack>
 
               <Stack direction="row" spacing={16}>
-                <Typography sx={{ color: "white.main" }}>PRICE</Typography>
-                <Typography sx={{ color: "white.main" }}>QUANTITY</Typography>
-                <Typography sx={{ color: "white.main" }}>SUBTOTAL</Typography>
-                <Typography sx={{ color: "white.main" }}>DELETE</Typography>
+                <Typography sx={{ color: "white.main" }}>
+                  {t("cart.price")}
+                </Typography>
+                <Typography sx={{ color: "white.main" }}>
+                  {t("cart.quantity")}
+                </Typography>
+                <Typography sx={{ color: "white.main" }}>
+                  {t("cart.subtotal")}
+                </Typography>
+                <Typography sx={{ color: "white.main" }}>
+                  {t("cart.delete")}
+                </Typography>
               </Stack>
             </Stack>
           </Stack>
 
           <Box>
-            {cartItems.map((cart) => (
+            {cartItems.map((cart: any) => (
               <CartItemBlock
                 key={cart.product.id + cart.color + cart.size}
                 id={cart.product.id}
@@ -132,13 +138,14 @@ export const CartPage: React.FC = () => {
             <SubtotalBox spacing={4} divider={<Divider />}>
               <Stack>
                 <Stack sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography> Total price:</Typography>
+                  <Typography> {t("payment.totalPrice")}</Typography>
+                  <Typography> {calculateTotalPrice(cartItems)}</Typography>
                   <Typography> {calculateTotalPrice(cartItems)}</Typography>
                 </Stack>
               </Stack>
               <Stack>
                 <Button variant="shop-purple-filled" type="submit">
-                  Proceed To Checkout
+                  {t("cart.toCheckout")}
                 </Button>
               </Stack>
             </SubtotalBox>

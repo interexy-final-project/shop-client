@@ -85,7 +85,9 @@
     "color": "Color",
     "size": "Size",
     "category": "Category",
-    "price": "Price"
+    "price": "Price",
+    "desc": "descending",
+    "asc": "ascending"
   },
   "sizeSelector": {
     "title": "Select Size:"
@@ -106,5 +108,56 @@
   "addressItem": {
     "buttonChange": "Change",
     "buttonConfirm": "Confirm"
+  },
+  "navigation": {
+    "home": "Home",
+    "myAccount": "My Account",
+    "checkOut": "Check Out",
+    "cart": "Cart"
+  },
+  "payment": {
+    "billingDetails": "Billing Details",
+    "sameAddress": "Same as existing address",
+    "shippingAddress": "Shipping Address",
+    "selectAddress": "Select the address that matches your card or payment method",
+    "selectOtherAddress": " Use a different shipping address",
+    "paymentMethod": "Payment Method",
+    "secureTransactions": "All transactions are secure and encrypted",
+    "creditCard": "Credit Card",
+    "acceptedCards": "We accept all major credit cards",
+    "cashOnDelivery": "Cash on delivery",
+    "cashUponDelivery": "Pay with cash upon delivery",
+    "payNow": "Pay now",
+    "orderSUmmary": "Order Summary",
+    "totalPrice": "Total price: $",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "country": "Country / Region",
+    "street": "Street Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "phone": "Phone"
+  },
+  "cart": {
+    "fillTheFields": "Please fill in the fields below and click place order to complete your purchase!",
+    "alreadyRegistered": "Already registered?",
+    "loginHere": "Please login here",
+    "productDetails": "PRODUCT DETAILS",
+    "price": "PRICE",
+    "quantity": "QUANTITY",
+    "subtotal": "SUBTOTAL",
+    "delete": "DELETE",
+    "toCheckout": "Proceed To Checkout"
+  },
+  "main": {
+    "clothes": " T-shirts / Shirts",
+    "summerSale": "Summer Value Pack",
+    "clothDesc": "cool / colorful / comfy",
+    "shopNow": "Shop now",
+    "slogan1": "WE MADE YOUR EVERYDAY FASHION BETTER!",
+    "slogan2": "In our journey to improve everyday fashion, EUPHORIA presents EVERYDAY wear range - Comfortable & Affordable fashion 24/7",
+    "menCategory": "For Men",
+    "womenCategory": "For Women",
+    "exploreNow": "Explore now!"
   }
 }

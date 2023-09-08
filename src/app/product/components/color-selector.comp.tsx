@@ -3,11 +3,12 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { useTranslation } from "react-i18next";
+import { ProductColors } from "../../../enums/product-colors.enum";
 
 interface ColorSelectorProps {
-  availableColors: string[];
-  selectedColor: string;
-  onSelectColor: (size: string) => void;
+  availableColors: ProductColors[];
+  selectedColor: ProductColors | null;
+  onSelectColor: (size: ProductColors) => void;
 }
 
 const ColorSelector: React.FC<ColorSelectorProps> = ({

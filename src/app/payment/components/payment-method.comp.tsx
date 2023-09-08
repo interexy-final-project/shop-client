@@ -22,8 +22,34 @@ import Visa from "../../../assets/imgs/visa.svg";
 import PayPass from "../../../assets/imgs/paypass.svg";
 import PayPal from "../../../assets/imgs/paypal.svg";
 import { theme } from "../../../assets/themes";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsSelector } from "../../cart/store/cart.selectors";
+import { AppDispatch } from "../../../store";
+import { createOrder } from "../store/checkout.actions";
+import { PaymentMethods } from "../../../enums/payment-methods.enum";
+import { resetCartItems } from "../../cart/store/cart.slice";
+import { useTranslation } from "react-i18next";
 
-export const PaymentMethod: React.FC = () => {
+interface PaymentMethodProps {
+  paymentMethod: PaymentMethods;
+  setPaymentMethod: (arg: PaymentMethods) => void;
+}
+
+export const PaymentMethod: React.FC<PaymentMethodProps> = ({
+  paymentMethod,
+  setPaymentMethod,
+}: PaymentMethodProps) => {
+  const user = {
+    id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
+    firstName: "name",
+    lastName: "family",
+    phone: "212394852972",
+  };
+
+  const handleRadioChange = (event: any) => {
+    setPaymentMethod(event.target.value);
+  };
+
   const BillingTextField = styled(TextField)(({ theme }) => ({
     "& .MuiInputBase-root": {
       backgroundColor: theme.palette.grayMain?.main,
@@ -45,20 +71,24 @@ export const PaymentMethod: React.FC = () => {
     },
   }));
 
+  const { t } = useTranslation();
+
   const PaymentBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.grayMain?.main,
     borderRadius: "0,75rem",
     padding: "2.8rem 1.75rem",
+    marginBottom: "1.5rem",
   }));
 
   return (
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
         <Typography variant="h5" sx={{ padding: "0.125rem 0" }}>
-          Payment Method
+          {" "}
+          {t("payment.paymentMethod")}
         </Typography>
         <Typography variant="p" sx={{ padding: "0.125rem 0" }}>
-          All transactions are secure and encrypted.
+          {t("payment.secureTransactions")}
         </Typography>
       </Stack>
 
@@ -67,32 +97,38 @@ export const PaymentMethod: React.FC = () => {
           <RadioGroup
             defaultValue="Credit Card"
             name="controlled-radio-buttons-group"
+            onChange={handleRadioChange}
+            value={paymentMethod}
           >
             <Stack spacing={4} divider={<Divider />}>
               <Stack>
                 <FormControlLabel
-                  value="Credit Card"
+                  value="Card"
                   control={<Radio />}
-                  label={<Typography variant="h6">Credit Card</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.creditCard")}
+                    </Typography>
+                  }
                 />
-                <Typography>We accept all major credit cards.</Typography>
+                <Typography>{t("payment.acceptedCards")}</Typography>
 
                 <ImageList cols={4} sx={{ width: 500 }}>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={GooglePay} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={Visa} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={PayPal} loading="lazy" />
                   </ImageListItem>
-                  <ImageListItem component="image">
+                  <ImageListItem>
                     <img src={PayPass} loading="lazy" />
                   </ImageListItem>
                 </ImageList>
 
-                <Grid container spacing={3}>
+                {/* <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <BillingTextField
                       required
@@ -131,17 +167,21 @@ export const PaymentMethod: React.FC = () => {
                       type="password"
                     />
                   </Grid>
-                </Grid>
+                </Grid> */}
               </Stack>
 
               <Stack>
                 <FormControlLabel
-                  value="Cash on delivery"
+                  value="Cash"
                   control={<Radio />}
-                  label={<Typography variant="h6">Cash on delivery</Typography>}
+                  label={
+                    <Typography variant="h6">
+                      {t("payment.cashOnDelivery")}
+                    </Typography>
+                  }
                 />
                 <Typography variant="p">
-                  Pay with cash upon delivery.
+                  {t("payment.cashUponDelivery")}
                 </Typography>
               </Stack>
             </Stack>
@@ -149,7 +189,7 @@ export const PaymentMethod: React.FC = () => {
         </FormControl>
       </PaymentBox>
       <Button variant="shop-purple-filled" type="submit">
-        Pay now
+        {t("payment.payNow")}
       </Button>
     </Box>
   );

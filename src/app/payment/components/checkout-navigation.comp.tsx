@@ -1,22 +1,38 @@
 import React from "react";
 import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const CheckoutNavigation: React.FC = () => {
+  const { t } = useTranslation();
+
+  const navigate = useNavigate();
+
   return (
     <Box padding={1}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <Link underline="hover" variant="h6" color={"mainText.main"}>
-          Home
+        <Link
+          color={"mainText.main"}
+          variant="h6"
+          onClick={() => navigate("/")}
+          underline="hover"
+        >
+          {t("navigation.home")}
         </Link>
-        <Link underline="hover" variant="h6" color={"mainText.main"}>
-          My Account
+        <Link
+          underline="hover"
+          variant="h6"
+          color={"mainText.main"}
+          onClick={() => navigate("/user/profile")}
+        >
+          {t("navigation.myAccount")}
         </Link>
         <Typography variant="h6" color={"secondary.main"}>
-          Check Out
+          {t("navigation.checkOut")}
         </Typography>
       </Breadcrumbs>
     </Box>

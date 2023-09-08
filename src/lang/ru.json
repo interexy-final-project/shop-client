@@ -1,8 +1,11 @@
 {
-  "test": "Тесто",
   "language": {
     "russian": "Русский",
     "english": "Английский"
+  },
+  "errors": {
+    "email": "Значение должно быть адресом электронной почты.",
+    "required": "Поле не должно быть пустым"
   },
   "signin": {
     "login": "Логин",
@@ -20,7 +23,7 @@
     "passwordConfirmation": "Подтверждение Пароля",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "phone":"Телефон",
+    "phone": "Телефон",
     "gotaccount": "Уже есть аккаунт? Войти"
   },
   "resetPassword": {
@@ -46,14 +49,116 @@
     "postalCode": "Индекс"
   },
   "userContacts": {
-    "contactsTitle": "Мой профиль",
-    "contactsDetails": "Контактная информация",
-    "changeInfo": "Изменить",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "email": "Е-мейл",
-    "phone": "Телефон",
-    "password": "Пароль",
-    "address": "Адрес"
+    "address": "Адрес",
+    "orderPaymentMethod": "Метод Оплаты:",
+    "detailButton": "Посмотреть детали",
+    "color": "Цвет:",
+    "quantity": "Количество:",
+    "total": "Итого:",
+    "contactsTitle": "Обо мне",
+    "contactsDetails": "Контактные данные",
+    "changeInfo": "Редактировать",
+    "email": "Адрес электронной почты",
+    "phone": "Номер телефона",
+    "password": "Пароль"
+  },
+  "userProfile": {
+    "myInfo": "Обо мне",
+    "myOrders": "Мои заказы",
+    "signOut": "Выход",
+    "hello": "Привет,",
+    "welcome": "Добро пожаловать в ваш аккаунт"
+  },
+  "emptyCart": {
+    "sadCart": "Ваша корзина пуста и она грустит :(",
+    "makeHappy": "Добавьте что-нибудь, чтобы сделать её счастливой!",
+    "continue": "Продолжить покупки"
+  },
+  "notFoundPage": {
+    "oops": "Упс! Страница не найдена",
+    "unavalible": "Возможно, страница, которую вы ищете, была удалена или временно недоступна.",
+    "back": "Вернуться на Главную"
+  },
+  "filter": {
+    "title": "Фильтрация",
+    "color": "Цвет",
+    "size": "Размер",
+    "category": "Категория",
+    "price": "Цена",
+    "desc": "по убыванию",
+    "asc": "по возрастанию"
+  },
+  "sizeSelector": {
+    "title": "Выберите размер:"
+  },
+  "colorSelector": {
+    "available": "Доступные цвета"
+  },
+  "productConfiguration": {
+    "add": "Добавить в корзину",
+    "price": "Цена"
+  },
+  "productDescription": {
+    "title": "Описание товара"
+  },
+  "slider": {
+    "title": "Слайдер"
+  },
+  "addressItem": {
+    "buttonChange": "Редактировать",
+    "buttonConfirm": "Подтвердить"
+  },
+  "navigation": {
+    "home": "Главная",
+    "myAccount": "Мой Профиль",
+    "checkOut": "Оформление заказа",
+    "cart": "Корзина"
+  },
+  "payment": {
+    "billingDetails": "Детали Платежа",
+    "sameAddress": "Использовать существующий адрес",
+    "shippingAddress": "Адрес доставки",
+    "selectAddress": "Выберите адрес, соответствующий вашей карте или способу оплаты",
+    "selectOtherAddress": "Выберите другой адрес доставки",
+    "paymentMethod": "Способ оплаты",
+    "secureTransactions": "Все транзакции безопасны и зашифрованы",
+    "creditCard": "Кредитная карта",
+    "acceptedCards": "Мы принимаем все основные кредитные карты",
+    "cashOnDelivery": "Оплата при доставке",
+    "cashUponDelivery": "Оплата наличными при получении",
+    "payNow": "Оплатить сейчас",
+    "orderSUmmary": "Итого по заказу",
+    "totalPrice": "Итоговая стоимость: $",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "country": "Страна / Регион",
+    "street": "Улица",
+    "city": "Город",
+    "postalCode": "Почтовый индекс",
+    "phone": "Телефон"
+  },
+  "cart": {
+    "fillTheFields": "Пожалуйста, заполните поля ниже и нажмите «Оформить заказ», чтобы завершить покупку!",
+    "alreadyRegistered": "Уже зарегистрированы?",
+    "loginHere": "Пожалуйста, войдите",
+    "productDetails": "ДЕТАЛИ ПРОДУКТА",
+    "price": "ЦЕНА",
+    "quantity": "КОЛИЧЕСТВО",
+    "subtotal": "ПРОМЕЖУТОЧНЫЙ ИТОГ",
+    "delete": "УДАЛИТЬ",
+    "toCheckout": "Перейти к оформлению заказа"
+  },
+  "main": {
+    "clothes": "Футболки / Рубашки",
+    "summerSale": "Выгодное летнее предложение",
+    "clothDesc": "круто / красочно / удобно",
+    "shopNow": "К покупкам",
+    "slogan1": "МЫ ДЕЛАЕМ ВАШУ ПОВСЕДНЕВНУЮ МОДУ ЛУЧШЕ!",
+    "slogan2": "На пути к улучшению повседневной моды компания EUPHORIA представляет линейку одежды EVERYDAY – Удобная и доступная мода 24/7.",
+    "menCategory": "Для мужчин",
+    "womenCategory": "Для женщин",
+    "exploreNow": "Узнать больше!"
   }
 }
