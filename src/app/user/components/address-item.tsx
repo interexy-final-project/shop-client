@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Paper,
-  TextField,
-  Stack,
-  Box,
-  IconButton,
-} from "@mui/material";
+import { Paper, TextField, Stack, Box, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
@@ -31,8 +25,8 @@ const AddressItem = () => {
   };
 
   const onSubmit = () => {
-    setDisable(true)
-  }
+    setDisable(true);
+  };
 
   return (
     <Box component={Paper} bgcolor="#F6F6F6" padding={2}>
