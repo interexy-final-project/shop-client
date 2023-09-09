@@ -21,11 +21,11 @@ import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
 import { useTranslation } from "react-i18next";
 import { PriceFilter } from "./components/price-filter";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import queryString from "query-string";
 import { CategoryState } from "./types/products-state.type";
 import { ProductCategories } from "../../enums/product-categories.enum";
-import { setCategory } from "./store/category.slice";
+import { setCategory, setType } from "./store/category.slice";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -43,9 +43,10 @@ interface CategoryFilter {
 }
 
 const Category: React.FC = () => {
-  const { categoryId } = useParams();
-  console.log(categoryId);
-  const productFilter = queryString.parse(categoryId ?? "lol");
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category");
+  const type = searchParams.get("type");
 
   const { t } = useTranslation();
   const [loadingProducts, setLoadingProducts] = useState(false);
@@ -88,27 +89,19 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProducts(filter));
-  }, [filter, categoryId]);
+  }, [filter]);
 
   useEffect(() => {
     console.log(products, "ggg");
 
-    // if (
-    //   categoryId &&
-    //   typeof categoryId === "object" &&
-    //   "category" in categoryId &&
-    //   "type" in categoryId
-    // ) {
-    //   const filter: CategoryFilter = categoryId as CategoryFilter;in
-    //   console.log("Valid filter:", filter);
-    // }
-
-    if ("category" in productFilter) {
-      dispatch(setCategory(productFilter.category));
-      setCategory(productFilter.category);
+    if (category) {
+      dispatch(setCategory(category));
     }
-  }, [categoryId]);
 
+    if (type) {
+      dispatch(setType(type));
+    }
+  }, [category, type]);
   return (
     <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
       <Grid item xs={3}>
