@@ -1,6 +1,6 @@
 export enum ProductColors {
-  BLACK = "BLACK",
-  WHITE = "WHITE",
-  RED = "RED",
-  BLUE = "BLUE",
+  BLACK = "black",
+  WHITE = "white",
+  RED = "red",
+  BLUE = "blue",
 }
