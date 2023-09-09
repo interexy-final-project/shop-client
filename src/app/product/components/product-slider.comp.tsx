@@ -4,6 +4,7 @@ import productImg from "../../../assets/images/product-details-mock.png";
 import { styled } from "@mui/system";
 import { Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { ProductDto } from "../../../types/product-dto.type";
 
 const StyledImage = styled("img")({
   flexShrink: 1,
@@ -17,14 +18,19 @@ const SliderBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.lightGray.main,
 }));
 
-const ProductSlider: React.FC = () => {
+interface ProductSliderProps {
+  product: ProductDto | null;
+}
+
+const ProductSlider: React.FC<ProductSliderProps> = ({
+  product,
+}: ProductSliderProps) => {
   const { t } = useTranslation();
 
   return (
     <Stack direction="row" justifyContent={"flex-end"}>
-      <SliderBox>{t("slider.title")}</SliderBox>
       <Box>
-        <StyledImage src={productImg} alt="Product img" />
+        <StyledImage src={product?.images[0]} alt="Product img" />
       </Box>
     </Stack>
   );

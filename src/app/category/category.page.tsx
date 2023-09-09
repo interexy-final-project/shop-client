@@ -74,6 +74,7 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProducts(filter));
+    console.log(filter, " filter cat");
   }, [filter]);
 
   return (

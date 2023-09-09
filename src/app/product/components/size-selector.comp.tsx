@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ProductSizes } from "../../../enums/product-sizes.enum";
 
 interface SizeSelectorProps {
-  availableSizes: ProductSizes[];
+  availableSizes: ProductSizes[] | null;
   selectedSize: ProductSizes | null;
   onSelectSize: (size: ProductSizes) => void;
 }
@@ -21,7 +21,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
       <Typography variant="t2">{t("sizeSelector.title")}</Typography>
       <ButtonGroup>
         <Stack direction="row" spacing={4}>
-          {availableSizes.map((size) => (
+          {availableSizes?.map((size) => (
             <Box key={size}>
               <Button
                 variant={

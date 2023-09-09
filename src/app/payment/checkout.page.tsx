@@ -21,6 +21,11 @@ import ActionAlert from "./components/action-alert.comp";
 import { OrderSummary } from "./components/order-summary.comp";
 import Footer from "../components/footer";
 import CommonHeader from "../components/common-header";
+import useDecodeToken from "../../utils/decode-token";
+import { Token } from "../../types/token.type";
+import { UserDto } from "../user/types/user-dto.type";
+import { getUser } from "../user/store/user.actions";
+import { userSelector } from "../user/store/user.selectors";
 
 export const CheckoutPage: React.FC = () => {
   const [isUseExisting, setIsUseExisting] = useState(false);
@@ -30,11 +35,12 @@ export const CheckoutPage: React.FC = () => {
   const [isAlertInvoked, setIsAlertInvoked] = useState<boolean>(false);
   const [alertMesssage, setAlertMessage] = useState<string>("");
   const [isWarning, setIsWarning] = useState<boolean>(false);
-  const user = {
-    id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
-    firstName: "name",
-    lastName: "family",
-  };
+  // const user = {
+  //   id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
+  //   firstName: "name",
+  //   lastName: "family",
+  // };
+  const decodedToken = useDecodeToken();
   const dispatch: AppDispatch = useDispatch();
   const shippingAddress = useSelector(addressSelector);
   const checkoutPending = useSelector(pendingSelector);
@@ -43,7 +49,6 @@ export const CheckoutPage: React.FC = () => {
   const [postalCode, setPostalCode] = useState<string>("");
   const cartItems = useSelector(cartItemsSelector);
   const orderErrors = useSelector(orderErrorsSelector);
-  // const isOrderFailed = useSelector(orderFailed);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -70,14 +75,16 @@ export const CheckoutPage: React.FC = () => {
       return;
     }
 
-    await dispatch(
-      createOrder({
-        userId: user.id,
-        total: cartItems.length,
-        paymentMethod,
-        address,
-      }),
-    );
+    if (decodedToken) {
+      await dispatch(
+        createOrder({
+          userId: decodedToken.id,
+          total: cartItems.length,
+          paymentMethod,
+          address,
+        }),
+      );
+    }
     setIsAlertInvoked(true);
 
     dispatch(resetCartItems());
@@ -94,21 +101,30 @@ export const CheckoutPage: React.FC = () => {
 
   useEffect(() => {
     const loadShippingAddressAndCartItems = async () => {
-      try {
-        await dispatch(getAddress(user.id));
-        await dispatch(getCartItems(user.id));
-      } catch (error) {
-        console.error("An error occurred:", error);
+      if (decodedToken?.id) {
+        try {
+          await dispatch(getAddress(decodedToken.id));
+          await dispatch(getCartItems(decodedToken.id));
+          console.log(cartItems, "token check");
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
       }
     };
     loadShippingAddressAndCartItems();
-  }, []);
+  }, [decodedToken?.id]);
 
   useEffect(() => {
     checkoutPending.address === false && shippingAddress
       ? setIsUseExisting(true)
       : setIsUseExisting(false);
   }, [shippingAddress]);
+
+  useEffect(() => {
+    if (decodedToken?.id) {
+      dispatch(getUser(decodedToken?.id));
+    }
+  }, [decodedToken?.id]);
 
   return (
     <>

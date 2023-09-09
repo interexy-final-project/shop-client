@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import repository from "../../../repository";
 import { CartItemDto } from "../types/cart-item-dto.type";
-import { ProductDto } from "../../category/types/product-dto.type";
+import { ProductDto } from "../../../types/product-dto.type";
 import { CartItem } from "../types/cart.types";
 
 export const getCartItems = createAsyncThunk<CartItemDto[], string>(
@@ -62,7 +62,7 @@ export const addToCart = createAsyncThunk<CartItemDto[], Partial<CartItemDto>>(
   async (cartItem, { rejectWithValue }) => {
     try {
       console.log(cartItem);
-      const response = await repository.post(`/cart/add`, cartItem);
+      const response = await repository.post(`/cart`, cartItem);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.message);

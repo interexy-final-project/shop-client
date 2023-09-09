@@ -1,5 +1,5 @@
 import { BaseState } from "../../../types/base-state.type";
-import { ProductDto } from "../../category/types/product-dto.type";
+import { ProductDto } from "../../../types/product-dto.type";
 import { CartItemDto } from "./cart-item-dto.type";
 
 export interface CartState extends BaseState {

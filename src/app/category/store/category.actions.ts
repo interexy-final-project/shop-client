@@ -1,6 +1,6 @@
 import { Action, AsyncThunkAction, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { ProductDto } from "../types/product-dto.type";
+import { ProductDto } from "../../../types/product-dto.type";
 import repository from "../../../repository";
 import { productsSlice } from "./category.slice";
 import { ColorDto } from "../types/color-dto.type";
