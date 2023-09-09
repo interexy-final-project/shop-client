@@ -8,8 +8,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { TreeNode } from "../types/tree-node.type";
-import { TreeItem } from "@mui/lab";
 import { ProductTypes } from "../../../enums/product-types.enum";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
