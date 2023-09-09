@@ -1,5 +1,5 @@
 export enum ProductTypes {
-  JEANS = "Jeans-type",
-  SHIRT = "Shirts",
-  TSHIRT = "T-shirts",
+  JEANS = "jeans",
+  SHIRT = "shirt",
+  TSHIRT = "t-shirt",
 }

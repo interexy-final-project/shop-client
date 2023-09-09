@@ -24,29 +24,6 @@ import { getJeansProduct, getProduct } from "./store/product.actions";
 import { ProductDto } from "../../types/product-dto.type";
 import { productsSelector } from "./store/product.selectors";
 
-const products = [
-  {
-    id: "wefewfa",
-    name: "product1",
-    images: [
-      "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
-    ],
-    price: 22,
-    description: `100% Bio-washed Cotton - makes the fabric extra soft & silky. Flexible
-    ribbed crew neck. Precisely stitched with no pilling & no fading.
-    Provide all-time comfort. Anytime, anywhere. Infinite range of
-    matte-finish HD prints.`,
-    colors: [ProductColors.BLACK, ProductColors.BLUE],
-    sizes: [ProductSizes.M],
-    status: ProductStatuses.ACTIVE,
-    type: ProductTypes.JEANS,
-    amount: 5,
-    category: ProductCategories.Woman,
-    created: 5,
-    updated: 5,
-  },
-];
-
 type ProductDetailType = {
   id: string;
   imageUrl: string;
