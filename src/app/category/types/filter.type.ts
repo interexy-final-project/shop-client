@@ -10,4 +10,5 @@ export interface Filter {
   sizes?: ProductSizes[];
   count?: number;
   page?: number;
+  isPriceAsc?: boolean;
 }

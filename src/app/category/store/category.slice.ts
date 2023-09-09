@@ -19,6 +19,7 @@ const initialState: CategoryState = {
     type: null,
     colors: [],
     sizes: [],
+    isPriceAsc: false,
   },
   pending: {
     products: false,
@@ -36,6 +37,10 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setPrice(state, action) {
+      state.filter.isPriceAsc = action.payload;
+      console.log(action.payload);
+    },
     setCategory(state, action) {
       return {
         ...state,
@@ -142,5 +147,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setCategory, setColors, setSizes, setType } =
+export const { setCategory, setColors, setSizes, setType, setPrice } =
   productsSlice.actions;

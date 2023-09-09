@@ -7,8 +7,11 @@ import {
   Box,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { setPrice } from "../store/category.slice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -22,6 +25,13 @@ const NameBox = styled(Box)(({ theme }) => ({
 
 export const PriceFilter: React.FC = () => {
   const { t } = useTranslation();
+  const [isAscending, setIsAscending] = useState(false);
+
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleRadioChange = (event: any) => {
+    dispatch(setPrice(event.target.value));
+  };
 
   return (
     <Box>
@@ -30,11 +40,11 @@ export const PriceFilter: React.FC = () => {
         <Typography variant="t4"></Typography>
       </NameBox>
       <NameBox>
-        <RadioGroup>
+        <RadioGroup onChange={handleRadioChange}>
           <Stack spacing={2}>
             <Stack>
               <FormControlLabel
-                value="descending"
+                value={false}
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>
@@ -45,7 +55,7 @@ export const PriceFilter: React.FC = () => {
             </Stack>
             <Stack>
               <FormControlLabel
-                value="ascending"
+                value={true}
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>

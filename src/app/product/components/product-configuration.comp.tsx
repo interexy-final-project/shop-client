@@ -16,6 +16,8 @@ import { AppDispatch, RootState } from "../../../store";
 import { addToCart } from "../../cart/store/cart.actions";
 import { userDetailsSelector } from "../../user/store/user.selectors";
 import useDecodeToken from "../../../utils/decode-token";
+import { RoutesEnum } from "../../../routes.enum";
+import { Link, Route } from "react-router-dom";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -54,7 +56,6 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const decodedToken = useDecodeToken();
   const userId = decodedToken?.id;
-  const productId = "f2ed637b-b0b6-43a0-8367-d913918ff080";
   const products = useSelector((state: RootState) => state.cart.cartItems);
   const user = useSelector(userDetailsSelector);
 
@@ -62,9 +63,13 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
   const handleAddToCart = async () => {
     try {
+      if (!userId) {
+        window.alert("please, sign in/sign up first");
+        return;
+      }
       if (selectedSize && selectedColor) {
         const cartItem = {
-          productId,
+          productId: product?.id,
           size: selectedSize,
           color: selectedColor,
           userId,
@@ -73,7 +78,7 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
         dispatch(addToCart(cartItem));
       } else {
-        console.log("Please select a product, size, and color.");
+        window.alert("Please select a product, size, and color.");
       }
     } catch (error) {
       console.log("Something went wrong", error);
@@ -84,9 +89,21 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
     <Stack spacing={2}>
       <Item>
         <Breadcrumbs aria-label="breadCrumbs" separator={<ChevronRightIcon />}>
-          <Typography variant="t9">Shop</Typography>
-          <Typography variant="t9">{product?.category}</Typography>
-          <Typography variant="t9">{product?.type}</Typography>
+          <Link to={RoutesEnum.MAIN} color="inherit">
+            <Typography variant="t9">Shop</Typography>
+          </Link>
+          <Link
+            to={`${RoutesEnum.CATEGORY}?category=${product?.category}`}
+            color="inherit"
+          >
+            <Typography variant="t9">{product?.category}</Typography>
+          </Link>
+          <Link
+            to={`${RoutesEnum.CATEGORY}?type=${product?.type}`}
+            color="inherit"
+          >
+            <Typography variant="t9">{product?.type}</Typography>
+          </Link>
         </Breadcrumbs>
         <Grid></Grid>
       </Item>
