@@ -5,3 +5,6 @@ export const colorsSelector = (state: RootState) =>
   state.products.filter.colors;
 export const sizesSelector = (state: RootState) => state.products.filter.sizes;
 export const filterSelector = (state: RootState) => state.products.filter;
+
+export const productsByCategorySelector = (state: RootState) =>
+  state.products.category;
