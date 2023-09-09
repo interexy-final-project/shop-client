@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import CommonHeader from "../app/components/common-header";
 import HeroImage from "../assets/imgs/shop-hero.png";
@@ -16,7 +16,10 @@ import ShirtWomen from "../assets/imgs/shirt-women.png";
 import TShirtWomen from "../assets/imgs/tshirt-women.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
-import { getProducts } from "../app/category/store/category.actions";
+import {
+  getProducts,
+  getProductsByCategory,
+} from "../app/category/store/category.actions";
 import { useNavigate } from "react-router";
 import { ProductCategories } from "../enums/product-categories.enum";
 import { useTranslation } from "react-i18next";
@@ -35,8 +38,6 @@ export const MainPage: React.FC = () => {
     { typeName: ProductTypes.SHIRT, image: ShirtWomen },
     { typeName: ProductTypes.TSHIRT, image: TShirtWomen },
   ];
-
-  const [category, setCategory] = useState<ProductCategories | null>(null);
 
   const targetRef = useRef(null);
 
@@ -69,8 +70,22 @@ export const MainPage: React.FC = () => {
 
   const filter = useSelector((state: RootState) => state.products.filter);
 
+  // const category = useSelector((state: RootState) => state.products.category);
+
   const handleCategory = () => {
     dispatch(getProducts(filter));
+  };
+
+  const handleCategoryWomen = () => {
+    navigate("/category/?=women");
+  };
+
+  const handleCategoryMen = () => {
+    navigate("/category/?=men");
+  };
+
+  const handleCategoryChildren = () => {
+    navigate("/category/?=children");
   };
 
   return (
@@ -150,13 +165,16 @@ export const MainPage: React.FC = () => {
 
         <Box ref={targetRef}>
           <Stack m="2rem">
-            <Typography
+            <Link
+              underline="hover"
               variant="h3"
               color={colors.secondary}
               sx={verticalLineStyle}
+              onClick={handleCategoryMen}
             >
               {t("main.menCategory")}
-            </Typography>
+            </Link>
+
             <Grid container spacing={5} justifyContent="center" p="2rem 0">
               {typesMen.map((type) => (
                 <Grid item key={type.typeName + Math.random()}>
@@ -171,13 +189,16 @@ export const MainPage: React.FC = () => {
           </Stack>
 
           <Stack m="2rem">
-            <Typography
+            <Link
+              underline="hover"
               variant="h3"
               color={colors.secondary}
               sx={verticalLineStyle}
+              onClick={handleCategoryWomen}
             >
               {t("main.womenCategory")}
-            </Typography>
+            </Link>
+
             <Grid container spacing={5} justifyContent="center" p="2rem 0">
               {typesWomen.map((type) => (
                 <Grid item key={type.typeName + Math.random()}>

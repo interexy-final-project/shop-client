@@ -21,6 +21,11 @@ import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
 import { useTranslation } from "react-i18next";
 import { PriceFilter } from "./components/price-filter";
+import { useParams } from "react-router-dom";
+import queryString from "query-string";
+import { CategoryState } from "./types/products-state.type";
+import { ProductCategories } from "../../enums/product-categories.enum";
+import { setCategory } from "./store/category.slice";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -32,7 +37,16 @@ const NameBox = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
 
+interface CategoryFilter {
+  category: ProductCategories | "";
+  type: ProductTypes | "";
+}
+
 const Category: React.FC = () => {
+  const { categoryId } = useParams();
+  console.log(categoryId);
+  const productFilter = queryString.parse(categoryId ?? "lol");
+
   const { t } = useTranslation();
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
@@ -74,8 +88,26 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProducts(filter));
-    console.log(filter, " filter cat");
-  }, [filter]);
+  }, [filter, categoryId]);
+
+  useEffect(() => {
+    console.log(products, "ggg");
+
+    // if (
+    //   categoryId &&
+    //   typeof categoryId === "object" &&
+    //   "category" in categoryId &&
+    //   "type" in categoryId
+    // ) {
+    //   const filter: CategoryFilter = categoryId as CategoryFilter;in
+    //   console.log("Valid filter:", filter);
+    // }
+
+    if ("category" in productFilter) {
+      dispatch(setCategory(productFilter.category));
+      setCategory(productFilter.category);
+    }
+  }, [categoryId]);
 
   return (
     <Grid container justifyContent={"center"} direction={"row"} spacing={2}>

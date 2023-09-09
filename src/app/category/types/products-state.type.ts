@@ -9,6 +9,7 @@ import { ProductDto } from "../../../types/product-dto.type";
 import { SizeDto } from "./size-dto.type";
 
 export interface CategoryState extends BaseState {
+  category: string;
   products: ProductDto[];
   colors: ProductColors[];
   sizes: ProductSizes[];

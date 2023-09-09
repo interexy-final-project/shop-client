@@ -12,6 +12,10 @@ const CommonHeader = () => {
   const handleProfileIconClick = () => {
     navigate(RoutesEnum.SIGNIN);
   };
+
+  const handleCart = () => {
+    navigate(RoutesEnum.CART);
+  };
   return (
     <Box padding={1} component={Paper}>
       <Stack
@@ -25,7 +29,7 @@ const CommonHeader = () => {
           <Button variant="outlined" onClick={handleProfileIconClick}>
             <PersonIcon />
           </Button>
-          <Button variant="outlined">
+          <Button variant="outlined" onClick={handleCart}>
             <ShoppingCartIcon />
           </Button>
         </Stack>
