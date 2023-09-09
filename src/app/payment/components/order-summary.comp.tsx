@@ -68,6 +68,9 @@ export const OrderSummary = () => {
                     <Typography variant="label">
                       {t("filter.color")}:{orderItem.color}
                     </Typography>
+                    <Typography variant="label">
+                      {t("filter.size")}:{orderItem.size}
+                    </Typography>
                   </Stack>
 
                   <Stack>

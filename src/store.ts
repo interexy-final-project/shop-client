@@ -5,6 +5,7 @@ import { cartSlice } from "./app/cart/store/cart.slice";
 import { checkoutSlice } from "./app/payment/store/checkout.slice";
 import { authSlice } from "./app/auth/store/auth.slice";
 import { userSlice } from "./app/user/store/user.slice";
+import { productSlice } from "./app/product/store/product.slice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     cart: cartSlice.reducer,
     user: userSlice.reducer,
     checkout: checkoutSlice.reducer,
+    product: productSlice.reducer,
   },
 });
 

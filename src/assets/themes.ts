@@ -331,7 +331,7 @@ export const theme = createTheme({
             lineHeight: "normal",
 
             "&:hover": {
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.primaryButtonHoverAndFocused,
             },
 
             "&:active": {
@@ -376,7 +376,7 @@ export const theme = createTheme({
             background: "#8A33FD",
             textTransform: "none",
             "&:hover": {
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.primaryButtonHoverAndFocused,
             },
 
             "&:active": {
@@ -397,7 +397,7 @@ export const theme = createTheme({
             borderRadius: "0.5rem",
             border: "1px solid #3C4242",
             "&:hover": {
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.primaryButtonHoverAndFocused,
             },
 
             "&:active": {

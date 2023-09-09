@@ -17,6 +17,7 @@ import { getCartItems, getProducts } from "./store/cart.actions";
 import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
 import { useTranslation } from "react-i18next";
+import useDecodeToken from "../../utils/decode-token";
 
 const SubtotalBox = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
@@ -29,21 +30,22 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 export const CartPage: React.FC = () => {
   const { t } = useTranslation();
 
-  const userId = "7706ed94-76f4-40ee-90de-751b6bcc2741";
+  const decodedToken = useDecodeToken();
   const dispatch: AppDispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   useEffect(() => {
     const loadCartItems = async () => {
-      try {
-        dispatch(getCartItems(userId));
-      } catch (error) {
-        console.error("An error occurred:", error);
-      }
+      if (decodedToken)
+        try {
+          dispatch(getCartItems(decodedToken?.id));
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
     };
 
     loadCartItems();
-  }, []);
+  }, [decodedToken?.id]);
 
   function calculateTotalPrice(cartItems: CartItemDto[]) {
     return cartItems.reduce((accumulator: number, cartItem) => {
@@ -139,7 +141,6 @@ export const CartPage: React.FC = () => {
               <Stack>
                 <Stack sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography> {t("payment.totalPrice")}</Typography>
-                  <Typography> {calculateTotalPrice(cartItems)}</Typography>
                   <Typography> {calculateTotalPrice(cartItems)}</Typography>
                 </Stack>
               </Stack>

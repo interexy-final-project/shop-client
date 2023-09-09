@@ -1,6 +1,6 @@
 import { Stack, Box, Typography, styled } from "@mui/material";
 import React from "react";
-import { ProductDto } from "../../category/types/product-dto.type";
+import { ProductDto } from "../../../types/product-dto.type";
 import { useTranslation } from "react-i18next";
 
 const TextBox = styled("p")(() => ({
@@ -15,7 +15,7 @@ interface Product {
 }
 
 interface ProductDescriptionProps {
-  product: ProductDto;
+  product: ProductDto | null;
 }
 
 const ProductDescription: React.FC<ProductDescriptionProps> = ({
@@ -29,7 +29,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
         <Typography variant="t1">{t("productDescription.title")}</Typography>
       </Box>
       <TextBox>
-        <Typography variant="t7">{product.description}</Typography>
+        <Typography variant="t7">{product?.description}</Typography>
       </TextBox>
     </Stack>
   );
