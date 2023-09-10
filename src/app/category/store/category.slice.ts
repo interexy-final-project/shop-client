@@ -1,18 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { CategoryState } from "../types/products-state.type";
-import { getColors, getProducts, getSizes } from "./category.actions";
+import {
+  getColors,
+  getProducts,
+  getProductsByCategory,
+  getSizes,
+} from "./category.actions";
 import { ProductCategories } from "../../../enums/product-categories.enum";
 
 const initialState: CategoryState = {
+  category: "",
   products: [],
   colors: [],
   sizes: [],
+  numberOfProducts: 0,
   filter: {
     category: null,
     type: null,
     colors: [],
     sizes: [],
+    price: null,
+    count: 10,
+    page: 1,
   },
   pending: {
     products: false,
@@ -30,6 +40,20 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setPrice(state, action) {
+      if (action.payload === "asc") {
+        state.filter.price = "asc";
+      }
+      if (action.payload === "desc") {
+        state.filter.price = "desc";
+      }
+    },
+    setPage(state, action) {
+      state.filter.page = action.payload;
+    },
+    setCount(state, action) {
+      state.filter.count = action.payload;
+    },
     setCategory(state, action) {
       return {
         ...state,
@@ -76,7 +100,8 @@ export const productsSlice = createSlice({
       })
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.pending.products = false;
-        state.products = payload;
+        state.products = payload.products;
+        state.numberOfProducts = payload.count;
       })
       .addCase(
         getProducts.rejected,
@@ -115,8 +140,33 @@ export const productsSlice = createSlice({
         state.pending.sizes = false;
         state.errors.sizes = action.payload.message;
       });
+
+    // ============ GET PRODUCTS BY CATEGORY ============ //
+    builder
+      .addCase(getProductsByCategory.pending, (state) => {
+        state.pending.products = true;
+        state.errors.products = null;
+      })
+      .addCase(getProductsByCategory.fulfilled, (state, { payload }) => {
+        state.pending.products = false;
+        state.products = payload;
+      })
+      .addCase(
+        getProductsByCategory.rejected,
+        (state, action: any & { payload: any }) => {
+          state.pending.products = false;
+          state.errors.products = action.payload.message;
+        },
+      );
   },
 });
 
-export const { setCategory, setColors, setSizes, setType } =
-  productsSlice.actions;
+export const {
+  setCategory,
+  setColors,
+  setSizes,
+  setType,
+  setPrice,
+  setPage,
+  setCount,
+} = productsSlice.actions;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductSlider from "./components/product-slider.comp";
 import ProductConfiguration from "./components/product-configuration.comp";
 import Grid from "@mui/material/Grid";
@@ -11,30 +11,18 @@ import { ProductTypes } from "../../enums/product-types.enum";
 import { ProductCategories } from "../../enums/product-categories.enum";
 import { UUIDDto } from "../../types/uuid-dto.type";
 import { CartItem } from "../cart/types/cart.types";
-import { useDispatch } from "react-redux";
-
-const products = [
-  {
-    id: "wefewfa",
-    name: "product1",
-    images: [
-      "https://ml.thcdn.com/productimg/401/456/14563946-1965063311723545.jpg",
-    ],
-    price: 22,
-    description: `100% Bio-washed Cotton - makes the fabric extra soft & silky. Flexible
-    ribbed crew neck. Precisely stitched with no pilling & no fading.
-    Provide all-time comfort. Anytime, anywhere. Infinite range of
-    matte-finish HD prints.`,
-    colors: [ProductColors.BLACK, ProductColors.BLUE],
-    sizes: [ProductSizes.M],
-    status: ProductStatuses.ACTIVE,
-    type: ProductTypes.JEANS,
-    amount: 5,
-    category: ProductCategories.Woman,
-    created: 5,
-    updated: 5,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import {
+  userDetailsSelector,
+  userSelector,
+} from "../user/store/user.selectors";
+import useDecodeToken from "../../utils/decode-token";
+import { getUser } from "../user/store/user.actions";
+import { AppDispatch } from "../../store";
+import { useParams } from "react-router-dom";
+import { getJeansProduct, getProduct } from "./store/product.actions";
+import { ProductDto } from "../../types/product-dto.type";
+import { productsSelector } from "./store/product.selectors";
 
 type ProductDetailType = {
   id: string;
@@ -45,61 +33,58 @@ type ProductDetailType = {
   price: number;
 };
 
-const ProductDetails: React.FC = () =>
-  // {
-  // id,
-  // imageUrl,
-  // title,
-  // sizes,
-  // colors,
-  // price,
-  // },
-  {
-    const dispatch = useDispatch();
+const ProductDetails: React.FC = () => {
+  const product = useSelector(productsSelector);
+  const dispatch: AppDispatch = useDispatch();
+  const decodedToken = useDecodeToken();
 
-    const product = products[0];
+  const [activeSize, setActiveSIze] = useState(0);
+  const [activeColor, setActiveColor] = useState(0);
+  const user = useSelector(userDetailsSelector);
+  const { productId } = useParams();
+  console.log(product, "prodct id");
+  useEffect(() => {
+    if (decodedToken?.id) {
+      dispatch(getUser(decodedToken.id));
+    }
+  }, [decodedToken?.id]);
 
-    const [activeSize, setActiveSIze] = useState(0);
-    const [activeColor, setActiveColor] = useState(0);
+  useEffect(() => {
+    if (productId) {
+      dispatch(getProduct(productId));
+    }
+  }, [productId]);
 
-    // const onClickAdd = () => {
-    //   const item: CartItem = {
-    //     id,
-    //     imageUrl,
-    //     title,
-    //     size: sizes[activeSize],
-    //     color: colors[activeColor],
-    //     price,
-    //     count: 0,
-    //     subtotal: 0,
-    //   };
-    //   dispatch(addItem(item));
-    // };
+  useEffect(() => {
+    if (product?.type === ProductTypes.JEANS) {
+      dispatch(getJeansProduct(product.id));
+    }
+  }, [product]);
 
-    return (
-      <Grid container direction={"column"} spacing={8}>
-        <Grid
-          container
-          item
-          direction={"row"}
-          spacing={4}
-          justifyContent="center"
-        >
-          <Grid item sm={4}>
-            <ProductSlider />
-          </Grid>
-          <Grid item sm={4}>
-            <ProductConfiguration product={product} />
-          </Grid>
+  return (
+    <Grid container direction={"column"} spacing={8}>
+      <Grid
+        container
+        item
+        direction={"row"}
+        spacing={4}
+        justifyContent="center"
+      >
+        <Grid item sm={4}>
+          <ProductSlider product={product} />
         </Grid>
-        <Grid item>
-          <ProductDescription product={product}></ProductDescription>
-        </Grid>
-        <Grid item>
-          <SimilarProducts products={products}></SimilarProducts>
+        <Grid item sm={4}>
+          <ProductConfiguration product={product} />
         </Grid>
       </Grid>
-    );
-  };
+      <Grid item>
+        <ProductDescription product={product}></ProductDescription>
+      </Grid>
+      <Grid item>
+        <SimilarProducts product={product ?? null}></SimilarProducts>
+      </Grid>
+    </Grid>
+  );
+};
 
 export default ProductDetails;

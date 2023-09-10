@@ -39,6 +39,10 @@ const CommonHeader = () => {
       navigate(RoutesEnum.SIGNIN);
     }
   };
+
+  const handleCart = () => {
+    navigate(RoutesEnum.CART);
+  };
   return (
     <Box padding={1} component={Paper}>
       <Stack

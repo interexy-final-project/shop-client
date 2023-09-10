@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ProductColors } from "../../../enums/product-colors.enum";
 
 interface ColorSelectorProps {
-  availableColors: ProductColors[];
+  availableColors: ProductColors[] | null;
   selectedColor: ProductColors | null;
   onSelectColor: (size: ProductColors) => void;
 }
@@ -21,7 +21,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
   return (
     <Stack spacing={3} direction={"row"}>
       <Typography variant="t2">{t("colorSelector.available")}</Typography>
-      {availableColors.map((color) => (
+      {availableColors?.map((color) => (
         <IconButton
           key={color}
           onClick={() => {

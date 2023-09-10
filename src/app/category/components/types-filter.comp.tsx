@@ -8,21 +8,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { TreeNode } from "../types/tree-node.type";
-import { TreeItem } from "@mui/lab";
 import { ProductTypes } from "../../../enums/product-types.enum";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
 import { setType } from "../store/category.slice";
-
-const MenuNode = ({ node }: { node: TreeNode }) => (
-  <TreeItem
-    nodeId={node.id}
-    label={<Typography variant={"t10"}>{node.name} </Typography>}
-  >
-    {node.kinds?.map((child) => <MenuNode key={child.id} node={child} />)}
-  </TreeItem>
-);
 
 interface TypesFilterProps {
   types: ProductTypes[];

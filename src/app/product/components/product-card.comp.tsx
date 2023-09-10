@@ -1,15 +1,9 @@
 import { Stack, Box, Typography, styled, Button } from "@mui/material";
 import React from "react";
-
-interface Product {
-  name: string;
-  img: string;
-  price: string;
-  description: string;
-}
+import { ProductDto } from "../../../types/product-dto.type";
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductDto | null;
 }
 
 const ProductImage = styled("img")(() => ({
@@ -22,18 +16,18 @@ const ProductImage = styled("img")(() => ({
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }): JSX.Element => {
   return (
-    <Stack key={product.name}>
+    <Stack key={product?.name}>
       <Box>
-        <ProductImage src={product.img} alt={product.name} />
+        <ProductImage src={product?.images[0]} alt={product?.name} />
       </Box>
       <Box>
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Box>
-            <Typography variant="t8">{product.name}</Typography>
+            <Typography variant="t8">{product?.name}</Typography>
           </Box>
           <Box>
             <Button variant="shop-price-button-similar-bar">
-              {product.price}
+              {product?.price}
             </Button>
           </Box>
         </Stack>

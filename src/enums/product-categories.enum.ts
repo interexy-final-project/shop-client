@@ -1,5 +1,5 @@
 export enum ProductCategories {
-  Woman = "Women",
-  Man = "Men",
-  Children = "Children",
+  WOMEN = "women",
+  MEN = "men",
+  CHILDREN = "children",
 }

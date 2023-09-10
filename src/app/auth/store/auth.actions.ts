@@ -10,6 +10,7 @@ export const signUp = createAsyncThunk<SignUpDto, SignUpForm>(
   "POST/sign-up",
   async (SingUpForm, { rejectWithValue }) => {
     try {
+      console.log(SingUpForm, "form");
       const response = await repository.post("auth/sign-up", SingUpForm);
       localStorage.setItem("accessToken", response.data.access_token);
       localStorage.setItem("refreshToken", response.data.refresh_token);

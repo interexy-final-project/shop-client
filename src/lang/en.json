@@ -106,6 +106,9 @@
   "productDescription": {
     "title": "Product description"
   },
+  "similarProducts": {
+    "title": "Similar products"
+  },
   "slider": {
     "title": "Slider"
   },

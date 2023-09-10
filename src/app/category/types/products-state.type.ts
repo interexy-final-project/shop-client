@@ -5,13 +5,15 @@ import { ProductTypes } from "../../../enums/product-types.enum";
 import { BaseState } from "../../../types/base-state.type";
 import { ColorDto } from "./color-dto.type";
 import { Filter } from "./filter.type";
-import { ProductDto } from "./product-dto.type";
+import { ProductDto } from "../../../types/product-dto.type";
 import { SizeDto } from "./size-dto.type";
 
 export interface CategoryState extends BaseState {
+  category: string;
   products: ProductDto[];
   colors: ProductColors[];
   sizes: ProductSizes[];
+  numberOfProducts: number;
   filter: Filter;
   pending: {
     products: boolean;

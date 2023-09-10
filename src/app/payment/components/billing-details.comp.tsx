@@ -15,17 +15,7 @@ import { AppDispatch, RootState } from "../../../store";
 
 import { ShippingAddressDto } from "../../../types/address-dto.type";
 import { useTranslation } from "react-i18next";
-
-interface BillingDetailsProps {
-  isUseExisting: boolean;
-  shippingAddress: ShippingAddressDto | null;
-  street: string;
-  setStreet: (arg: string) => void;
-  city: string;
-  setCity: (arg: string) => void;
-  postalCode: string;
-  setPostalCode: (arg: string) => void;
-}
+import { userSelector } from "../../user/store/user.selectors";
 
 const BillingTextField = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-root": {
@@ -63,6 +53,17 @@ const verticalLineStyle = {
   },
 };
 
+interface BillingDetailsProps {
+  isUseExisting: boolean;
+  shippingAddress: ShippingAddressDto | null;
+  street: string;
+  setStreet: (arg: string) => void;
+  city: string;
+  setCity: (arg: string) => void;
+  postalCode: string;
+  setPostalCode: (arg: string) => void;
+}
+
 export const BillingDetails: React.FC<BillingDetailsProps> = ({
   isUseExisting,
   shippingAddress,
@@ -76,13 +77,11 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
   const { t } = useTranslation();
   const dispatch: AppDispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(false);
-  const user = {
-    id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
-    firstName: "name",
-    lastName: "family",
-    phone: "128491274",
-  };
-
+  const user = useSelector(userSelector);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  console.log(user, "ser");
   const handleStreetInput = (event: any) => {
     setStreet(event.target.value);
   };
@@ -104,6 +103,14 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
     }
   }, [shippingAddress, isUseExisting]);
 
+  useEffect(() => {
+    if (user.user) {
+      setFirstName(user?.user?.firstName);
+      setLastName(user?.user?.lastName);
+      setPhone(user?.user?.phone);
+    }
+  }, [user.user]);
+
   return (
     <Box>
       <Stack sx={{ padding: "2rem 0" }}>
@@ -124,7 +131,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             id="first-name"
             label={t("payment.firstName")}
             name="first-name"
-            value={user ? user.firstName : ""}
+            value={firstName}
             // onChange={handleTextFieldChange}
           />
         </Grid>
@@ -138,7 +145,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             id="last-name"
             label={t("payment.lastName")}
             name="last-name"
-            value={user ? user.lastName : ""}
+            value={lastName}
           />
         </Grid>
 
@@ -206,7 +213,7 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
             id="phone"
             label={t("payment.phone")}
             name="phone"
-            value={user.phone}
+            value={phone}
           />
         </Grid>
       </Grid>

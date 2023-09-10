@@ -21,6 +21,22 @@ import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
 import { useTranslation } from "react-i18next";
 import { PriceFilter } from "./components/price-filter";
+import { useLocation, useParams } from "react-router-dom";
+import queryString from "query-string";
+import { CategoryState } from "./types/products-state.type";
+import { ProductCategories } from "../../enums/product-categories.enum";
+import {
+  setCategory,
+  setCount,
+  setPage,
+  setType,
+} from "./store/category.slice";
+import Pagination from "@mui/material/Pagination";
+import {
+  countSelector,
+  pageSelector,
+  numberOfProductsSelector,
+} from "./store/category.selectors";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -32,13 +48,26 @@ const NameBox = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
 
+interface CategoryFilter {
+  category: ProductCategories | "";
+  type: ProductTypes | "";
+}
+
 const Category: React.FC = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category");
+  const type = searchParams.get("type");
+
   const { t } = useTranslation();
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const products = useSelector((state: RootState) => state.products.products);
   const filter = useSelector((state: RootState) => state.products.filter);
+  const numberOfProducts = useSelector(numberOfProductsSelector);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
   const availableColors = useSelector(
     (state: RootState) => state.products.colors,
   );
@@ -56,6 +85,24 @@ const Category: React.FC = () => {
   const handleColorSelection = (colors: ProductColors[]) => {
     setSelectedColors(colors);
   };
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    console.log(value);
+    setCurrentPage(value);
+  };
+
+  useEffect(() => {
+    dispatch(setPage(currentPage));
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (products && numberOfProducts) {
+      setTotalPages(Math.ceil(numberOfProducts / 10));
+    }
+  }, [products]);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -76,6 +123,17 @@ const Category: React.FC = () => {
     dispatch(getProducts(filter));
   }, [filter]);
 
+  useEffect(() => {
+    console.log(products, "ggg");
+
+    if (category) {
+      dispatch(setCategory(category));
+    }
+
+    if (type) {
+      dispatch(setType(type));
+    }
+  }, [category, type]);
   return (
     <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
       <Grid item xs={3}>
@@ -165,6 +223,12 @@ const Category: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+        <Pagination
+          count={totalPages ?? 0}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+        />
       </Grid>
     </Grid>
   );

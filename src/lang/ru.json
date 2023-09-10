@@ -103,6 +103,9 @@
   "productDescription": {
     "title": "Описание товара"
   },
+  "similarProducts": {
+    "title": "Похожие товары"
+  },
   "slider": {
     "title": "Слайдер"
   },

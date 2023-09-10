@@ -1,17 +1,11 @@
 import { Stack, Box, Typography, styled, Button } from "@mui/material";
 import React from "react";
-import { ProductDto } from "../category/types/product-dto.type";
-
-interface Product {
-  id: string;
-  name: string;
-  img?: string;
-  price?: string;
-  description?: string;
-}
+import { ProductDto } from "../../types/product-dto.type";
+import { RoutesEnum } from "../../routes.enum";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
-  product: ProductDto;
+  product: ProductDto | null;
 }
 
 const ProductImage = styled("img")(() => ({
@@ -23,19 +17,32 @@ const ProductImage = styled("img")(() => ({
 }));
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }): JSX.Element => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`${RoutesEnum.PRODUCT.replace("/:productId", "")}/${product?.id}`);
+    console.log(`${RoutesEnum.PRODUCT}/${product?.id}`);
+  };
+
   return (
-    <Stack key={product.name}>
+    <Stack key={product?.name}>
       <Box>
-        <ProductImage src={product.images[0]} alt={product.name} />
+        <ProductImage
+          src={product?.images[0]}
+          alt={product?.name}
+          onClick={handleClick}
+        />
       </Box>
       <Box>
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Box>
-            <Typography variant="t8">{product.name}</Typography>
+            <Typography variant="t8">{product?.name}</Typography>
           </Box>
           <Box>
-            <Button variant="shop-price-button-similar-bar">
-              {product.price}
+            <Button
+              onClick={handleClick}
+              variant="shop-price-button-similar-bar"
+            >
+              {`${product?.price}$`}
             </Button>
           </Box>
         </Stack>

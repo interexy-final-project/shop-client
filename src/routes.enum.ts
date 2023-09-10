@@ -5,8 +5,8 @@ export enum RoutesEnum {
   RESET = "/auth/reset-password",
   CHANGEPASS = "/auth/change-password/*",
   USERPROFILE = "/user-profile",
-  CATEGORY = "/category/*",
-  PRODUCT = "/product-details",
+  CATEGORY = "/category/",
+  PRODUCT = "/product-details/:productId",
   CART = "/cart-page",
   CHECKOUT = "/checkout",
 }
