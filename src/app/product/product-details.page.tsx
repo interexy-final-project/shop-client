@@ -4,13 +4,7 @@ import ProductConfiguration from "./components/product-configuration.comp";
 import Grid from "@mui/material/Grid";
 import ProductDescription from "./components/product-description.comp";
 import SimilarProducts from "./components/similar-products.comp";
-import { ProductColors } from "../../enums/product-colors.enum";
-import { ProductSizes } from "../../enums/product-sizes.enum";
-import { ProductStatuses } from "../../enums/product-statuses.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
-import { ProductCategories } from "../../enums/product-categories.enum";
-import { UUIDDto } from "../../types/uuid-dto.type";
-import { CartItem } from "../cart/types/cart.types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   userDetailsSelector,
@@ -21,8 +15,9 @@ import { getUser } from "../user/store/user.actions";
 import { AppDispatch } from "../../store";
 import { useParams } from "react-router-dom";
 import { getJeansProduct, getProduct } from "./store/product.actions";
-import { ProductDto } from "../../types/product-dto.type";
 import { productsSelector } from "./store/product.selectors";
+import CommonHeader from "../components/common-header";
+import Footer from "../components/footer";
 
 type ProductDetailType = {
   id: string;
@@ -61,28 +56,32 @@ const ProductDetails: React.FC = () => {
   }, [product]);
 
   return (
-    <Grid container direction={"column"} spacing={8}>
-      <Grid
-        container
-        item
-        direction={"row"}
-        spacing={4}
-        justifyContent="center"
-      >
-        <Grid item sm={4}>
-          <ProductSlider product={product} />
+    <>
+      <CommonHeader />
+      <Grid container direction={"column"} spacing={15}>
+        <Grid
+          container
+          item
+          direction={"row"}
+          spacing={4}
+          justifyContent="center"
+        >
+          <Grid item sm={4}>
+            <ProductSlider product={product} />
+          </Grid>
+          <Grid item sm={4}>
+            <ProductConfiguration product={product} />
+          </Grid>
         </Grid>
-        <Grid item sm={4}>
-          <ProductConfiguration product={product} />
+        <Grid item>
+          <ProductDescription product={product}></ProductDescription>
+        </Grid>
+        <Grid item>
+          <SimilarProducts product={product ?? null}></SimilarProducts>
         </Grid>
       </Grid>
-      <Grid item>
-        <ProductDescription product={product}></ProductDescription>
-      </Grid>
-      <Grid item>
-        <SimilarProducts product={product ?? null}></SimilarProducts>
-      </Grid>
-    </Grid>
+      <Footer />
+    </>
   );
 };
 

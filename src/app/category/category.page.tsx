@@ -39,6 +39,8 @@ import {
   productsSelector,
   filterSelector,
 } from "./store/category.selectors";
+import CommonHeader from "../components/common-header";
+import Footer from "../components/footer";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -56,6 +58,10 @@ interface CategoryFilter {
 }
 
 const Category: React.FC = () => {
+  const { categoryId } = useParams();
+  console.log(categoryId, "categoryId");
+  const productFilter = queryString.parse(categoryId ?? "lol");
+
   const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -123,6 +129,7 @@ const Category: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log("click filter");
     dispatch(getProducts(filter));
   }, [filter]);
 
@@ -138,102 +145,106 @@ const Category: React.FC = () => {
     }
   }, [category, type]);
   return (
-    <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
-      <Grid item xs={3}>
-        <Stack direction={"column"} spacing={4} justifyContent={"flex-start"}>
-          <Box>
-            <Stack>
-              <NameBox justifyContent={"space-between"}>
-                <Typography variant="t4">{t("filter.title")}</Typography>
+    <>
+      <CommonHeader />
+      <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
+        <Grid item xs={3}>
+          <Stack direction={"column"} spacing={4} justifyContent={"flex-start"}>
+            <Box>
+              <Stack>
+                <NameBox justifyContent={"space-between"}>
+                  <Typography variant="t4">{t("filter.title")}</Typography>
 
-                <Typography variant="t4">
-                  <FilterListIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                <TypesFilter types={menu}></TypesFilter>
-              </NameBox>
-            </Stack>
-          </Box>
-          <Box>
-            <PriceFilter />
-          </Box>
+                  <Typography variant="t4">
+                    <FilterListIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  <TypesFilter types={menu}></TypesFilter>
+                </NameBox>
+              </Stack>
+            </Box>
+            <Box>
+              <PriceFilter />
+            </Box>
 
-          <Box>
-            <Stack>
-              <NameBox>
-                {" "}
-                <Typography variant="t4">{t("filter.color")}</Typography>
-                <Typography variant="t4">
-                  <KeyboardArrowUpIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                {" "}
-                <MultipleColorsSelector
-                  availableColors={availableColors}
-                  selectedColors={selectedColors}
-                  onSelectColor={handleColorSelection}
-                />
-              </NameBox>
-            </Stack>
-          </Box>
-          <Box>
-            <Stack>
-              <NameBox>
-                <Typography variant="t4">{t("filter.size")}</Typography>
-                <Typography variant="t4">
-                  <KeyboardArrowUpIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                <MultipleSizesSelector
-                  availableSizes={availableSizes}
-                  selectedSizes={selectedSizes}
-                  onSelectSize={handleSizeSelection}
-                />
-              </NameBox>
-            </Stack>
-          </Box>
-        </Stack>
-      </Grid>
-      <Grid
-        container
-        item
-        xs={8}
-        justifyContent={"center"}
-        spacing={4}
-        direction={"row"}
-      >
-        <Grid item>
-          <Typography variant={"t3"}>
-            {t("filter.category")}{" "}
-            {loadingProducts && <CircularProgress size={20} />}{" "}
-          </Typography>
+            <Box>
+              <Stack>
+                <NameBox>
+                  {" "}
+                  <Typography variant="t4">{t("filter.color")}</Typography>
+                  <Typography variant="t4">
+                    <KeyboardArrowUpIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  {" "}
+                  <MultipleColorsSelector
+                    availableColors={availableColors}
+                    selectedColors={selectedColors}
+                    onSelectColor={handleColorSelection}
+                  />
+                </NameBox>
+              </Stack>
+            </Box>
+            <Box>
+              <Stack>
+                <NameBox>
+                  <Typography variant="t4">{t("filter.size")}</Typography>
+                  <Typography variant="t4">
+                    <KeyboardArrowUpIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  <MultipleSizesSelector
+                    availableSizes={availableSizes}
+                    selectedSizes={selectedSizes}
+                    onSelectSize={handleSizeSelection}
+                  />
+                </NameBox>
+              </Stack>
+            </Box>
+          </Stack>
         </Grid>
-
         <Grid
-          item
-          direction="row"
-          justifyContent="center"
-          spacing={2}
-          flexWrap={"wrap"}
           container
+          item
+          xs={8}
+          justifyContent={"center"}
+          spacing={4}
+          direction={"row"}
         >
-          {products.map((product) => (
-            <Grid item key={product.name}>
-              <ProductCard product={product} />
-            </Grid>
-          ))}
+          <Grid item>
+            <Typography variant={"t3"}>
+              {t("filter.category")}: {productFilter.category}
+              {loadingProducts && <CircularProgress size={20} />}{" "}
+            </Typography>
+          </Grid>
+
+          <Grid
+            item
+            direction="row"
+            justifyContent="center"
+            spacing={2}
+            flexWrap={"wrap"}
+            container
+          >
+            {products.map((product) => (
+              <Grid item key={product.name}>
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+          </Grid>
+          <Pagination
+            count={totalPages ?? 0}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+          />
         </Grid>
-        <Pagination
-          count={totalPages ?? 0}
-          page={currentPage}
-          onChange={handlePageChange}
-          color="primary"
-        />
       </Grid>
-    </Grid>
+      <Footer />
+    </>
   );
 };
 

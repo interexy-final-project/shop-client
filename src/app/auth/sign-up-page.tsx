@@ -108,6 +108,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   label={t("signup.firstName")}
+                  type="name"
                   id="firstName"
                   {...register("firstName")}
                 />
@@ -116,6 +117,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   label={t("signup.lastName")}
+                  type="name"
                   id="lastName"
                   {...register("lastName")}
                 />
@@ -124,7 +126,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   label={t("signup.phone")}
-                  type="tel"
+                  type="phone"
                   id="phone"
                   {...register("phone")}
                 />

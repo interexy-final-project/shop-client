@@ -1,42 +1,90 @@
 import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import CommonHeader from "../app/components/common-header";
-import HeroImage from "../assets/imgs/shop-hero.png";
-import Footer from "../app/components/footer";
+import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+
+import { ProductCategories } from "../enums/product-categories.enum";
+import { AppDispatch, RootState } from "../store";
 import { colors, theme } from "../assets/themes";
-import HeroLeaves from "../assets/imgs/hero-leaves.png";
-import HeroShopnow from "../assets/imgs/hero-shopnow.png";
-import { ITypeCardProps, TypeCard } from "./components/type-card";
 import { ProductTypes } from "../enums/product-types.enum";
+
+//======================  COMPONENTS  =========================//
+
+import CommonHeader from "../app/components/common-header";
+import Footer from "../app/components/footer";
+import { TypeCard } from "./components/type-card";
+
+//======================  IMAGES  =========================//
+
 import JeansMen from "../assets/imgs/jeans-men.png";
 import ShirtMen from "../assets/imgs/shirt-men.png";
 import TShirtMen from "../assets/imgs/tshirt-men.png";
 import JeansWomen from "../assets/imgs/jeans-women.jpg";
 import ShirtWomen from "../assets/imgs/shirt-women.png";
 import TShirtWomen from "../assets/imgs/tshirt-women.png";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store";
-import {
-  getProducts,
-  getProductsByCategory,
-} from "../app/category/store/category.actions";
-import { useNavigate } from "react-router";
-import { ProductCategories } from "../enums/product-categories.enum";
-import { useTranslation } from "react-i18next";
+import JeansChildren from "../assets/imgs/kid-jeans.jpg";
+import ShirtChildren from "../assets/imgs/kid-shirt.jpg";
+import TShirtChildren from "../assets/imgs/kid-tshirt.jpg";
+import HeroLeaves from "../assets/imgs/hero-leaves.png";
+import HeroShopnow from "../assets/imgs/hero-shopnow.png";
+import HeroImage from "../assets/imgs/shop-hero.png";
 
 const MainPage: React.FC = () => {
   const { t } = useTranslation();
 
   const typesMen = [
-    { typeName: ProductTypes.JEANS, image: JeansMen },
-    { typeName: ProductTypes.SHIRT, image: ShirtMen },
-    { typeName: ProductTypes.TSHIRT, image: TShirtMen },
+    {
+      typeName: ProductTypes.JEANS,
+      image: JeansMen,
+      category: ProductCategories.MEN,
+    },
+    {
+      typeName: ProductTypes.SHIRT,
+      image: ShirtMen,
+      category: ProductCategories.MEN,
+    },
+    {
+      typeName: ProductTypes.TSHIRT,
+      image: TShirtMen,
+      category: ProductCategories.MEN,
+    },
   ];
 
   const typesWomen = [
-    { typeName: ProductTypes.JEANS, image: JeansWomen },
-    { typeName: ProductTypes.SHIRT, image: ShirtWomen },
-    { typeName: ProductTypes.TSHIRT, image: TShirtWomen },
+    {
+      typeName: ProductTypes.JEANS,
+      image: JeansWomen,
+      category: ProductCategories.WOMEN,
+    },
+    {
+      typeName: ProductTypes.SHIRT,
+      image: ShirtWomen,
+      category: ProductCategories.WOMEN,
+    },
+    {
+      typeName: ProductTypes.TSHIRT,
+      image: TShirtWomen,
+      category: ProductCategories.WOMEN,
+    },
+  ];
+
+  const typesChildren = [
+    {
+      typeName: ProductTypes.JEANS,
+      image: JeansChildren,
+      category: ProductCategories.CHILDREN,
+    },
+    {
+      typeName: ProductTypes.SHIRT,
+      image: ShirtChildren,
+      category: ProductCategories.CHILDREN,
+    },
+    {
+      typeName: ProductTypes.TSHIRT,
+      image: TShirtChildren,
+      category: ProductCategories.CHILDREN,
+    },
   ];
 
   const targetRef = useRef(null);
@@ -72,20 +120,24 @@ const MainPage: React.FC = () => {
 
   // const category = useSelector((state: RootState) => state.products.category);
 
-  const handleCategory = () => {
-    dispatch(getProducts(filter));
-  };
+  // const [selectedType, setSelectedType] = useState<ProductTypes | null>(null);
+
+  // const handleCategory = (type: ProductTypes): void => {
+  //   setSelectedType(type);
+  //   dispatch(setType(type));
+  //   console.log("click");
+  // };
 
   const handleCategoryWomen = () => {
-    navigate("/category/?=women");
+    navigate("/category/category=women");
   };
 
   const handleCategoryMen = () => {
-    navigate("/category/?=men");
+    navigate("/category/category=men");
   };
 
   const handleCategoryChildren = () => {
-    navigate("/category/?=children");
+    navigate("/category/category=children");
   };
 
   return (
@@ -136,30 +188,44 @@ const MainPage: React.FC = () => {
 
         <Box margin="0 6.25rem" position="relative">
           <Stack direction="row" justifyContent="center">
-            <img src={HeroLeaves} />
-            <img src={HeroShopnow} />
-          </Stack>
-
-          <Stack
-            spacing={5}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              p: "4rem 12rem ",
-              position: "absolute",
-              top: "0%",
-              left: "5%",
-              maxWidth: "50rem",
-            }}
-          >
-            <Typography variant="h2" color={colors.white}>
-              {t("main.slogan1")}
-            </Typography>
-            <Typography variant="h6" color={colors.white}>
-              {t("main.slogan2")}
-            </Typography>
-            <Button variant="shop-white-button">{t("main.shopNow")}</Button>
+            <Box style={{ position: "relative" }}>
+              <img
+                src={HeroLeaves}
+                alt="hero-leaves"
+                style={{ width: "100%" }}
+              />
+              <Stack
+                spacing={5}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  p: "4rem 12rem",
+                  position: "absolute",
+                  top: "0%",
+                  right: "-10%",
+                  maxWidth: "50rem",
+                }}
+              >
+                <Typography variant="h2" color={colors.white}>
+                  {t("main.slogan1")}
+                </Typography>
+                <Typography variant="h6" color={colors.white}>
+                  {t("main.slogan2")}
+                </Typography>
+                <Button variant="shop-white-button" onClick={scrollToTarget}>
+                  {t("main.shopNow")}
+                </Button>
+              </Stack>
+            </Box>
+            <Box style={{ position: "relative" }}>
+              <img
+                src={HeroShopnow}
+                alt="hero-shop-now"
+                style={{ width: "100%" }}
+              />
+            </Box>
           </Stack>
         </Box>
 
@@ -181,7 +247,8 @@ const MainPage: React.FC = () => {
                   <TypeCard
                     image={type.image}
                     typeName={type.typeName}
-                    handleCategory={handleCategory}
+                    category={type.category}
+                    // handleCategory={() => handleCategory(type.typeName)}
                   />
                 </Grid>
               ))}
@@ -205,15 +272,41 @@ const MainPage: React.FC = () => {
                   <TypeCard
                     image={type.image}
                     typeName={type.typeName}
-                    handleCategory={handleCategory}
+                    category={type.category}
+
+                    // handleCategory={() => handleCategory(type.typeName)}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Stack>
+
+          <Stack m="2rem">
+            <Link
+              underline="hover"
+              variant="h3"
+              color={colors.secondary}
+              sx={verticalLineStyle}
+              onClick={handleCategoryChildren}
+            >
+              {t("main.childrenCategory")}
+            </Link>
+
+            <Grid container spacing={5} justifyContent="center" p="2rem 0">
+              {typesChildren.map((type) => (
+                <Grid item key={type.typeName + Math.random()}>
+                  <TypeCard
+                    image={type.image}
+                    typeName={type.typeName}
+                    category={type.category}
                   />
                 </Grid>
               ))}
             </Grid>
           </Stack>
         </Box>
+        <Footer />
       </Box>
-      {/* <Footer /> */}
     </>
   );
 };

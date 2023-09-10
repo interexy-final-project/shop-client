@@ -18,6 +18,9 @@ import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
 import { useTranslation } from "react-i18next";
 import useDecodeToken from "../../utils/decode-token";
+import CommonHeader from "../components/common-header";
+import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
 
 const SubtotalBox = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
@@ -30,6 +33,8 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 const CartPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const decodedToken = useDecodeToken();
 
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -55,6 +60,7 @@ const CartPage: React.FC = () => {
 
   return (
     <Box>
+      <CommonHeader />
       {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (
@@ -65,7 +71,12 @@ const CartPage: React.FC = () => {
                 separator={<NavigateNextIcon fontSize="small" />}
                 aria-label="breadcrumb"
               >
-                <Link underline="hover" variant="h6" color={"mainText.main"}>
+                <Link
+                  underline="hover"
+                  variant="h6"
+                  color={"mainText.main"}
+                  onClick={() => navigate("/")}
+                >
                   {t("navigation.home")}
                 </Link>
                 <Typography variant="h6" color={"secondary.main"}>
@@ -78,7 +89,12 @@ const CartPage: React.FC = () => {
               <Typography variant="label">{t("cart.fillTheFields")}</Typography>
               <Typography variant="label">
                 {t("cart.alreadyRegistered")}
-                <Link underline="hover">{t("cart.loginHere")}</Link>
+                <Link
+                  underline="hover"
+                  onClick={() => navigate("/auth/sign-in")}
+                >
+                  {t("cart.loginHere")}
+                </Link>
               </Typography>
             </Stack>
           </Stack>
@@ -153,6 +169,7 @@ const CartPage: React.FC = () => {
           </Box>
         </>
       )}
+      <Footer />
     </Box>
   );
 };

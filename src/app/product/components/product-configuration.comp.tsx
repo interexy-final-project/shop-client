@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
-import { Breadcrumbs, Button, Grid, Typography } from "@mui/material";
+import { Breadcrumbs, Button, Grid, Link, Typography } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
@@ -17,7 +17,9 @@ import { addToCart } from "../../cart/store/cart.actions";
 import { userDetailsSelector } from "../../user/store/user.selectors";
 import useDecodeToken from "../../../utils/decode-token";
 import { RoutesEnum } from "../../../routes.enum";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -32,6 +34,8 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const availableSizes = product?.sizes ?? null;
   const availableColors = product?.colors ?? null;
   const [selectedSize, setSelectedSize] = useState<ProductSizes | null>(null);
@@ -41,12 +45,10 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
   const handleSizeSelection = (size: ProductSizes): void => {
     setSelectedSize(size);
-    console.log("size", size);
   };
 
   const handleColorSelection = (color: ProductColors): void => {
     setSelectedColor(color);
-    console.log("color", color);
   };
 
   // const handleProductSelection = (product: ProductDto): void => {
@@ -88,19 +90,35 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   return (
     <Stack spacing={2}>
       <Item>
-        <Breadcrumbs aria-label="breadCrumbs" separator={<ChevronRightIcon />}>
-          <Link to={RoutesEnum.MAIN} color="inherit">
-            <Typography variant="t9">Shop</Typography>
-          </Link>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
           <Link
-            to={`${RoutesEnum.CATEGORY}?category=${product?.category}`}
-            color="inherit"
+            variant="h6"
+            color={"mainText.main"}
+            underline="hover"
+            onClick={() => navigate("/")}
           >
-            <Typography variant="t9">{product?.category}</Typography>
+            Shop
           </Link>
           <Link
-            to={`${RoutesEnum.CATEGORY}?type=${product?.type}`}
-            color="inherit"
+            underline="hover"
+            variant="h6"
+            color={"mainText.main"}
+            onClick={() =>
+              navigate(`${RoutesEnum.CATEGORY}?category=${product?.category}`)
+            }
+          >
+            {product?.category}
+          </Link>
+          <Link
+            onClick={() =>
+              navigate(`${RoutesEnum.CATEGORY}?type=${product?.type}`)
+            }
+            underline="hover"
+            variant="h6"
+            color={"mainText.main"}
           >
             <Typography variant="t9">{product?.type}</Typography>
           </Link>
