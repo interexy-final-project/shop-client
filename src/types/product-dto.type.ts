@@ -9,7 +9,7 @@ import { ColorDto } from "../app/category/types/color-dto.type";
 export interface ProductDto extends UUIDDto {
   name: string;
   price: number;
-  images: string[];
+  image: string;
 
   colors: ProductColors[];
 

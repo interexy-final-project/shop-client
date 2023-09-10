@@ -30,7 +30,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
   return (
     <Stack direction="row" justifyContent={"flex-end"}>
       <Box>
-        <StyledImage src={product?.images[0]} alt="Product img" />
+        <StyledImage src={product?.image} alt="Product img" />
       </Box>
     </Stack>
   );
