@@ -28,8 +28,8 @@ const SignUp = () => {
   } = useForm();
   const body = {
     email: watch("email"),
-    password: watch("password"),
-    confirmPassword: watch("confirmPassword"),
+    password: String(watch("password")),
+    passwordConfirm: String(watch("confirmPassword")),
     firstName: watch("firstName"),
     lastName: watch("lastName"),
     phone: watch("phone"),

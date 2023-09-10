@@ -62,7 +62,7 @@ export const addToCart = createAsyncThunk<CartItemDto[], Partial<CartItemDto>>(
   async (cartItem, { rejectWithValue }) => {
     try {
       console.log(cartItem);
-      const response = await repository.post(`/cart`, cartItem);
+      const response = await repository.post(`/cart/add`, cartItem);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.message);

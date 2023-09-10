@@ -31,11 +31,12 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 }));
 
 export const CartPage: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const decodedToken = useDecodeToken();
-  const dispatch: AppDispatch = useDispatch();
+
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   useEffect(() => {
@@ -140,7 +141,7 @@ export const CartPage: React.FC = () => {
                 key={cart.product.id + cart.color + cart.size}
                 id={cart.product.id}
                 title={cart.product.name}
-                imageUrl={cart.product.images[0]}
+                imageUrl={cart.product.image}
                 size={cart.size}
                 color={cart.color}
                 price={cart.product.price}

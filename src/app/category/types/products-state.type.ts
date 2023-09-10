@@ -13,6 +13,7 @@ export interface CategoryState extends BaseState {
   products: ProductDto[];
   colors: ProductColors[];
   sizes: ProductSizes[];
+  numberOfProducts: number;
   filter: Filter;
   pending: {
     products: boolean;

@@ -16,6 +16,8 @@ import { AppDispatch, RootState } from "../../../store";
 import { addToCart } from "../../cart/store/cart.actions";
 import { userDetailsSelector } from "../../user/store/user.selectors";
 import useDecodeToken from "../../../utils/decode-token";
+import { RoutesEnum } from "../../../routes.enum";
+import { Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
@@ -56,7 +58,6 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const decodedToken = useDecodeToken();
   const userId = decodedToken?.id;
-  const productId = "f2ed637b-b0b6-43a0-8367-d913918ff080";
   const products = useSelector((state: RootState) => state.cart.cartItems);
   const user = useSelector(userDetailsSelector);
 
@@ -64,9 +65,13 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
   const handleAddToCart = async () => {
     try {
+      if (!userId) {
+        window.alert("please, sign in/sign up first");
+        return;
+      }
       if (selectedSize && selectedColor) {
         const cartItem = {
-          productId,
+          productId: product?.id,
           size: selectedSize,
           color: selectedColor,
           userId,
@@ -75,7 +80,7 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
         dispatch(addToCart(cartItem));
       } else {
-        console.log("Please select a product, size, and color.");
+        window.alert("Please select a product, size, and color.");
       }
     } catch (error) {
       console.log("Something went wrong", error);
@@ -101,11 +106,22 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
             underline="hover"
             variant="h6"
             color={"mainText.main"}
-            onClick={() => navigate(`/category/category=${product?.category}`)}
+            onClick={() =>
+              navigate(`${RoutesEnum.CATEGORY}?category=${product?.category}`)
+            }
           >
             {product?.category}
           </Link>
-          <Typography variant="t9">{product?.type}</Typography>
+          <Link
+            onClick={() =>
+              navigate(`${RoutesEnum.CATEGORY}?type=${product?.type}`)
+            }
+            underline="hover"
+            variant="h6"
+            color={"mainText.main"}
+          >
+            <Typography variant="t9">{product?.type}</Typography>
+          </Link>
         </Breadcrumbs>
         <Grid></Grid>
       </Item>

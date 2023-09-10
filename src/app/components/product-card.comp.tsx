@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }): JSX.Element => {
     <Box p={"1rem"}>
       <Card key={product?.name}>
         <CardMedia
-          src={product?.images[0]}
+          src={product?.image}
           component="img"
           height="400"
           alt={product?.name}

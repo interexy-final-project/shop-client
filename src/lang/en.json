@@ -7,6 +7,10 @@
     "email": "Value should be email",
     "required": "Field shoudn't be empty"
   },
+  "header": {
+    "profile": "My Profile",
+    "logOut": "Log Out"
+  },
   "signin": {
     "login": "Login",
     "signin": " Sign in",

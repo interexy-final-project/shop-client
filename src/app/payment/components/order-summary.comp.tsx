@@ -55,7 +55,7 @@ export const OrderSummary = () => {
                 >
                   <Box
                     component="img"
-                    src={orderItem.product.images[0]}
+                    src={orderItem.product.image}
                     alt="product-image"
                     width="105px"
                     height="120px"

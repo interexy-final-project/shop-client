@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }): JSX.Element => {
   return (
     <Stack key={product?.name}>
       <Box>
-        <ProductImage src={product?.images[0]} alt={product?.name} />
+        <ProductImage src={product?.image} alt={product?.name} />
       </Box>
       <Box>
         <Stack direction={"row"} justifyContent={"space-between"}>

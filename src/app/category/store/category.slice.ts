@@ -14,11 +14,15 @@ const initialState: CategoryState = {
   products: [],
   colors: [],
   sizes: [],
+  numberOfProducts: 0,
   filter: {
     category: null,
     type: null,
     colors: [],
     sizes: [],
+    price: null,
+    count: 10,
+    page: 1,
   },
   pending: {
     products: false,
@@ -36,6 +40,20 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setPrice(state, action) {
+      if (action.payload === "asc") {
+        state.filter.price = "asc";
+      }
+      if (action.payload === "desc") {
+        state.filter.price = "desc";
+      }
+    },
+    setPage(state, action) {
+      state.filter.page = action.payload;
+    },
+    setCount(state, action) {
+      state.filter.count = action.payload;
+    },
     setCategory(state, action) {
       return {
         ...state,
@@ -82,7 +100,8 @@ export const productsSlice = createSlice({
       })
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.pending.products = false;
-        state.products = payload;
+        state.products = payload.products;
+        state.numberOfProducts = payload.count;
       })
       .addCase(
         getProducts.rejected,
@@ -142,5 +161,12 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setCategory, setColors, setSizes, setType } =
-  productsSlice.actions;
+export const {
+  setCategory,
+  setColors,
+  setSizes,
+  setType,
+  setPrice,
+  setPage,
+  setCount,
+} = productsSlice.actions;

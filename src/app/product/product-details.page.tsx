@@ -37,7 +37,6 @@ const ProductDetails: React.FC = () => {
   const [activeColor, setActiveColor] = useState(0);
   const user = useSelector(userDetailsSelector);
   const { productId } = useParams();
-  console.log(product, "prodct id");
   useEffect(() => {
     if (decodedToken?.id) {
       dispatch(getUser(decodedToken.id));

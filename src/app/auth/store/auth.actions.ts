@@ -10,6 +10,7 @@ export const signUp = createAsyncThunk<SignUpDto, SignUpForm>(
   "POST/sign-up",
   async (SingUpForm, { rejectWithValue }) => {
     try {
+      console.log(SingUpForm, "form");
       const response = await repository.post("auth/sign-up", SingUpForm);
       localStorage.setItem("accessToken", response.data.access_token);
       localStorage.setItem("refreshToken", response.data.refresh_token);
@@ -53,6 +54,21 @@ export const changePassword = createAsyncThunk<
     return rejectWithValue(error);
   }
 });
+
+export const logOut = createAsyncThunk<SignUpDto>(
+  "POST/log-out",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await repository.post("auth/log-out");
+
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 export const resetPassword = createAsyncThunk<string, ResetPasswordForm>(
   "POST/resetPassword",
