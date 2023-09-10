@@ -28,8 +28,8 @@ const SignUp = () => {
   } = useForm();
   const body = {
     email: watch("email"),
-    password: watch("password"),
-    confirmPassword: watch("confirmPassword"),
+    password: String(watch("password")),
+    passwordConfirm: String(watch("confirmPassword")),
     firstName: watch("firstName"),
     lastName: watch("lastName"),
     phone: watch("phone"),
@@ -108,7 +108,6 @@ const SignUp = () => {
                   required
                   fullWidth
                   label={t("signup.firstName")}
-                  type="password"
                   id="firstName"
                   {...register("firstName")}
                 />
@@ -117,7 +116,6 @@ const SignUp = () => {
                   required
                   fullWidth
                   label={t("signup.lastName")}
-                  type="password"
                   id="lastName"
                   {...register("lastName")}
                 />
