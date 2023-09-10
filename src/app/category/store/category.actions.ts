@@ -10,19 +10,19 @@ import { ProductSizes } from "../../../enums/product-sizes.enum";
 import { Filter } from "../types/filter.type";
 import { ProductCategories } from "../../../enums/product-categories.enum";
 
-export const getProducts = createAsyncThunk<ProductDto[], Filter>(
-  "GET/products",
-  async (filter, { rejectWithValue }) => {
-    try {
-      const response = await repository.get("/products/byFilters", {
-        params: filter,
-      });
-      return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
+export const getProducts = createAsyncThunk<
+  { products: ProductDto[]; count: number },
+  Filter
+>("GET/products", async (filter, { rejectWithValue }) => {
+  try {
+    const response = await repository.get("/products/byFilters", {
+      params: filter,
+    });
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(error.message);
+  }
+});
 // получаем типы для каждой категории
 // export const getProductTypes = createAsyncThunk<ProductDto[]>(
 //   "GET/products/types",
