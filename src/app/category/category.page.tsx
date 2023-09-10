@@ -25,7 +25,18 @@ import { useLocation, useParams } from "react-router-dom";
 import queryString from "query-string";
 import { CategoryState } from "./types/products-state.type";
 import { ProductCategories } from "../../enums/product-categories.enum";
-import { setCategory, setType } from "./store/category.slice";
+import {
+  setCategory,
+  setCount,
+  setPage,
+  setType,
+} from "./store/category.slice";
+import Pagination from "@mui/material/Pagination";
+import {
+  countSelector,
+  pageSelector,
+  numberOfProductsSelector,
+} from "./store/category.selectors";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -52,8 +63,11 @@ const Category: React.FC = () => {
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const products = useSelector((state: RootState) => state.products.products);
   const filter = useSelector((state: RootState) => state.products.filter);
+  const numberOfProducts = useSelector(numberOfProductsSelector);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
   const availableColors = useSelector(
     (state: RootState) => state.products.colors,
   );
@@ -71,6 +85,24 @@ const Category: React.FC = () => {
   const handleColorSelection = (colors: ProductColors[]) => {
     setSelectedColors(colors);
   };
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    console.log(value);
+    setCurrentPage(value);
+  };
+
+  useEffect(() => {
+    dispatch(setPage(currentPage));
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (products && numberOfProducts) {
+      setTotalPages(Math.ceil(numberOfProducts / 10));
+    }
+  }, [products]);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -191,6 +223,12 @@ const Category: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+        <Pagination
+          count={totalPages ?? 0}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+        />
       </Grid>
     </Grid>
   );

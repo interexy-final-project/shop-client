@@ -25,7 +25,7 @@ const NameBox = styled(Box)(({ theme }) => ({
 
 export const PriceFilter: React.FC = () => {
   const { t } = useTranslation();
-  const [isAscending, setIsAscending] = useState(false);
+  const [priceFilter, setPriceFilter] = useState<string | null>(null);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -44,7 +44,7 @@ export const PriceFilter: React.FC = () => {
           <Stack spacing={2}>
             <Stack>
               <FormControlLabel
-                value={false}
+                value="desc"
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>
@@ -55,7 +55,7 @@ export const PriceFilter: React.FC = () => {
             </Stack>
             <Stack>
               <FormControlLabel
-                value={true}
+                value="asc"
                 control={<Radio />}
                 label={
                   <Typography variant="h6" color={"mainText.main"}>

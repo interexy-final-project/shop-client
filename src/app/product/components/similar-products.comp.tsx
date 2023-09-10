@@ -19,8 +19,9 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
   useEffect(() => {
     if (product?.type) {
       dispatch(getProducts({ type: product?.type, count: 10 }));
+      console.log(similarProducts, "similarProducts11");
     }
-  }, [product?.type]);
+  }, [product]);
   return (
     <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>
       <Box>
