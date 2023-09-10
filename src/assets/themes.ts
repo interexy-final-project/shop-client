@@ -332,10 +332,12 @@ export const theme = createTheme({
 
             "&:hover": {
               backgroundColor: colors.primaryButtonHoverAndFocused,
+              color: colors.white,
             },
 
             "&:active": {
               backgroundColor: colors.primaryPressed,
+              color: colors.white,
             },
           },
         },
@@ -398,10 +400,12 @@ export const theme = createTheme({
             border: "1px solid #3C4242",
             "&:hover": {
               backgroundColor: colors.primaryButtonHoverAndFocused,
+              color: colors.white,
             },
 
             "&:active": {
               backgroundColor: colors.primaryPressed,
+              color: colors.white,
             },
           },
         },

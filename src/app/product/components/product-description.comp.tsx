@@ -3,10 +3,6 @@ import React from "react";
 import { ProductDto } from "../../../types/product-dto.type";
 import { useTranslation } from "react-i18next";
 
-const TextBox = styled("p")(() => ({
-  width: "50%",
-}));
-
 interface Product {
   name: string;
   img: string;
@@ -24,13 +20,18 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Stack spacing={4} justifyContent={"center"} alignItems={"center"}>
+    <Stack
+      spacing={4}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
       <Box>
         <Typography variant="t1">{t("productDescription.title")}</Typography>
       </Box>
-      <TextBox>
-        <Typography variant="t7">{product?.description}</Typography>
-      </TextBox>
+      <Typography variant="t7" alignContent={"center"}>
+        {product?.description}
+      </Typography>
     </Stack>
   );
 };

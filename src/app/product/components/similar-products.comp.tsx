@@ -27,21 +27,21 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({
       <Box>
         <Typography variant="t1">{t("similarProducts.title")}</Typography>
       </Box>
-      <Grid
+      <Stack
         direction="row"
+        display={"flex"}
         justifyContent="center"
         spacing={4}
         flexWrap={"wrap"}
-        container
       >
         {similarProducts
           .filter((p) => p.id !== product?.id)
           .map((p) => (
-            <Grid item key={p?.name}>
+            <Stack key={p?.name}>
               <ProductCard product={p ?? null} />
-            </Grid>
+            </Stack>
           ))}
-      </Grid>
+      </Stack>
     </Stack>
   );
 };
