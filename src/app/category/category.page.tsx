@@ -26,6 +26,8 @@ import queryString from "query-string";
 import { CategoryState } from "./types/products-state.type";
 import { ProductCategories } from "../../enums/product-categories.enum";
 import { setCategory } from "./store/category.slice";
+import CommonHeader from "../components/common-header";
+import Footer from "../components/footer";
 
 const NameBox = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(1.25),
@@ -44,7 +46,7 @@ interface CategoryFilter {
 
 const Category: React.FC = () => {
   const { categoryId } = useParams();
-  console.log(categoryId);
+  console.log(categoryId, "categoryId");
   const productFilter = queryString.parse(categoryId ?? "lol");
 
   const { t } = useTranslation();
@@ -87,21 +89,12 @@ const Category: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log("click filter");
     dispatch(getProducts(filter));
   }, [filter, categoryId]);
 
   useEffect(() => {
     console.log(products, "ggg");
-
-    // if (
-    //   categoryId &&
-    //   typeof categoryId === "object" &&
-    //   "category" in categoryId &&
-    //   "type" in categoryId
-    // ) {
-    //   const filter: CategoryFilter = categoryId as CategoryFilter;in
-    //   console.log("Valid filter:", filter);
-    // }
 
     if ("category" in productFilter) {
       dispatch(setCategory(productFilter.category));
@@ -110,96 +103,100 @@ const Category: React.FC = () => {
   }, [categoryId]);
 
   return (
-    <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
-      <Grid item xs={3}>
-        <Stack direction={"column"} spacing={4} justifyContent={"flex-start"}>
-          <Box>
-            <Stack>
-              <NameBox justifyContent={"space-between"}>
-                <Typography variant="t4">{t("filter.title")}</Typography>
+    <>
+      <CommonHeader />
+      <Grid container justifyContent={"center"} direction={"row"} spacing={2}>
+        <Grid item xs={3}>
+          <Stack direction={"column"} spacing={4} justifyContent={"flex-start"}>
+            <Box>
+              <Stack>
+                <NameBox justifyContent={"space-between"}>
+                  <Typography variant="t4">{t("filter.title")}</Typography>
 
-                <Typography variant="t4">
-                  <FilterListIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                <TypesFilter types={menu}></TypesFilter>
-              </NameBox>
-            </Stack>
-          </Box>
-          <Box>
-            <PriceFilter />
-          </Box>
+                  <Typography variant="t4">
+                    <FilterListIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  <TypesFilter types={menu}></TypesFilter>
+                </NameBox>
+              </Stack>
+            </Box>
+            <Box>
+              <PriceFilter />
+            </Box>
 
-          <Box>
-            <Stack>
-              <NameBox>
-                {" "}
-                <Typography variant="t4">{t("filter.color")}</Typography>
-                <Typography variant="t4">
-                  <KeyboardArrowUpIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                {" "}
-                <MultipleColorsSelector
-                  availableColors={availableColors}
-                  selectedColors={selectedColors}
-                  onSelectColor={handleColorSelection}
-                />
-              </NameBox>
-            </Stack>
-          </Box>
-          <Box>
-            <Stack>
-              <NameBox>
-                <Typography variant="t4">{t("filter.size")}</Typography>
-                <Typography variant="t4">
-                  <KeyboardArrowUpIcon fontSize="large" />
-                </Typography>
-              </NameBox>
-              <NameBox>
-                <MultipleSizesSelector
-                  availableSizes={availableSizes}
-                  selectedSizes={selectedSizes}
-                  onSelectSize={handleSizeSelection}
-                />
-              </NameBox>
-            </Stack>
-          </Box>
-        </Stack>
-      </Grid>
-      <Grid
-        container
-        item
-        xs={8}
-        justifyContent={"center"}
-        spacing={4}
-        direction={"row"}
-      >
-        <Grid item>
-          <Typography variant={"t3"}>
-            {t("filter.category")}{" "}
-            {loadingProducts && <CircularProgress size={20} />}{" "}
-          </Typography>
+            <Box>
+              <Stack>
+                <NameBox>
+                  {" "}
+                  <Typography variant="t4">{t("filter.color")}</Typography>
+                  <Typography variant="t4">
+                    <KeyboardArrowUpIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  {" "}
+                  <MultipleColorsSelector
+                    availableColors={availableColors}
+                    selectedColors={selectedColors}
+                    onSelectColor={handleColorSelection}
+                  />
+                </NameBox>
+              </Stack>
+            </Box>
+            <Box>
+              <Stack>
+                <NameBox>
+                  <Typography variant="t4">{t("filter.size")}</Typography>
+                  <Typography variant="t4">
+                    <KeyboardArrowUpIcon fontSize="large" />
+                  </Typography>
+                </NameBox>
+                <NameBox>
+                  <MultipleSizesSelector
+                    availableSizes={availableSizes}
+                    selectedSizes={selectedSizes}
+                    onSelectSize={handleSizeSelection}
+                  />
+                </NameBox>
+              </Stack>
+            </Box>
+          </Stack>
         </Grid>
-
         <Grid
-          item
-          direction="row"
-          justifyContent="center"
-          spacing={2}
-          flexWrap={"wrap"}
           container
+          item
+          xs={8}
+          justifyContent={"center"}
+          spacing={4}
+          direction={"row"}
         >
-          {products.map((product) => (
-            <Grid item key={product.name}>
-              <ProductCard product={product} />
-            </Grid>
-          ))}
+          <Grid item>
+            <Typography variant={"t3"}>
+              {t("filter.category")}: {productFilter.category}
+              {loadingProducts && <CircularProgress size={20} />}{" "}
+            </Typography>
+          </Grid>
+
+          <Grid
+            item
+            direction="row"
+            justifyContent="center"
+            spacing={2}
+            flexWrap={"wrap"}
+            container
+          >
+            {products.map((product) => (
+              <Grid item key={product.name}>
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+      <Footer />
+    </>
   );
 };
 

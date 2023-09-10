@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
-import { Breadcrumbs, Button, Grid, Typography } from "@mui/material";
+import { Breadcrumbs, Button, Grid, Link, Typography } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SizeSelector from "./size-selector.comp";
@@ -16,6 +16,8 @@ import { AppDispatch, RootState } from "../../../store";
 import { addToCart } from "../../cart/store/cart.actions";
 import { userDetailsSelector } from "../../user/store/user.selectors";
 import useDecodeToken from "../../../utils/decode-token";
+import { useNavigate } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const Item = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(4.5),
@@ -30,6 +32,8 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   product,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const availableSizes = product?.sizes ?? null;
   const availableColors = product?.colors ?? null;
   const [selectedSize, setSelectedSize] = useState<ProductSizes | null>(null);
@@ -39,12 +43,10 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
 
   const handleSizeSelection = (size: ProductSizes): void => {
     setSelectedSize(size);
-    console.log("size", size);
   };
 
   const handleColorSelection = (color: ProductColors): void => {
     setSelectedColor(color);
-    console.log("color", color);
   };
 
   // const handleProductSelection = (product: ProductDto): void => {
@@ -83,9 +85,26 @@ const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
   return (
     <Stack spacing={2}>
       <Item>
-        <Breadcrumbs aria-label="breadCrumbs" separator={<ChevronRightIcon />}>
-          <Typography variant="t9">Shop</Typography>
-          <Typography variant="t9">{product?.category}</Typography>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <Link
+            variant="h6"
+            color={"mainText.main"}
+            underline="hover"
+            onClick={() => navigate("/")}
+          >
+            Shop
+          </Link>
+          <Link
+            underline="hover"
+            variant="h6"
+            color={"mainText.main"}
+            onClick={() => navigate(`/category/category=${product?.category}`)}
+          >
+            {product?.category}
+          </Link>
           <Typography variant="t9">{product?.type}</Typography>
         </Breadcrumbs>
         <Grid></Grid>

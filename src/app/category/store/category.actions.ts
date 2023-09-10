@@ -75,3 +75,11 @@ export const getSizes = createAsyncThunk<SizeDto[]>(
     }
   },
 );
+
+//очищаем контент
+
+// export const clearContent = () => {
+//   return {
+//     type: ACTIONS.CLEAR_CONTENT,
+//   };
+// };
