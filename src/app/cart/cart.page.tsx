@@ -125,7 +125,7 @@ export const CartPage: React.FC = () => {
                 key={cart.product.id + cart.color + cart.size}
                 id={cart.product.id}
                 title={cart.product.name}
-                imageUrl={cart.product.images[0]}
+                imageUrl={cart.product.image}
                 size={cart.size}
                 color={cart.color}
                 price={cart.product.price}

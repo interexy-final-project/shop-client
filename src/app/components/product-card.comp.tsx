@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }): JSX.Element => {
     <Stack key={product?.name}>
       <Box>
         <ProductImage
-          src={product?.images[0]}
+          src={product?.image}
           alt={product?.name}
           onClick={handleClick}
         />
