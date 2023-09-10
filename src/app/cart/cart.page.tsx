@@ -21,6 +21,7 @@ import useDecodeToken from "../../utils/decode-token";
 import CommonHeader from "../components/common-header";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
+import { RoutesEnum } from "../../routes.enum";
 
 const SubtotalBox = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grayMain?.main,
@@ -52,11 +53,15 @@ const CartPage: React.FC = () => {
     loadCartItems();
   }, [decodedToken?.id]);
 
-  function calculateTotalPrice(cartItems: CartItemDto[]) {
+  const calculateTotalPrice = (cartItems: CartItemDto[]) => {
     return cartItems.reduce((accumulator: number, cartItem) => {
       return accumulator + cartItem.product.price * cartItem.quantity;
     }, 0);
-  }
+  };
+
+  const handleToCheckout = () => {
+    navigate(RoutesEnum.CHECKOUT);
+  };
 
   return (
     <Box>
@@ -161,7 +166,11 @@ const CartPage: React.FC = () => {
                 </Stack>
               </Stack>
               <Stack>
-                <Button variant="shop-purple-filled" type="submit">
+                <Button
+                  onClick={handleToCheckout}
+                  variant="shop-purple-filled"
+                  type="submit"
+                >
                   {t("cart.toCheckout")}
                 </Button>
               </Stack>
