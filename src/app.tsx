@@ -6,8 +6,8 @@ import isTokenValid from "./utils/isTokenValid";
 
 function App(): JSX.Element {
   const token = useDecodeToken();
-  if(token) {
-    isTokenValid(token)
+  if (token) {
+    isTokenValid(token);
   }
 
   return (
