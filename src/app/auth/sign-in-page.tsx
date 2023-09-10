@@ -21,9 +21,9 @@ const SignIn = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch<any>(logOut)
-  },[])
+  useEffect(() => {
+    dispatch<any>(logOut);
+  }, []);
   const {
     register,
     handleSubmit,
