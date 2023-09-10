@@ -58,10 +58,6 @@ interface CategoryFilter {
 }
 
 const Category: React.FC = () => {
-  const { categoryId } = useParams();
-  console.log(categoryId, "categoryId");
-  const productFilter = queryString.parse(categoryId ?? "lol");
-
   const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -216,7 +212,7 @@ const Category: React.FC = () => {
         >
           <Grid item>
             <Typography variant={"t3"}>
-              {t("filter.category")}: {productFilter.category}
+              {t("filter.category")}
               {loadingProducts && <CircularProgress size={20} />}{" "}
             </Typography>
           </Grid>

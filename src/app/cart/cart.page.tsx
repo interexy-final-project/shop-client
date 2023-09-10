@@ -30,7 +30,7 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
   alignItems: "flex-end",
 }));
 
-export const CartPage: React.FC = () => {
+const CartPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -173,3 +173,5 @@ export const CartPage: React.FC = () => {
     </Box>
   );
 };
+
+export default CartPage;

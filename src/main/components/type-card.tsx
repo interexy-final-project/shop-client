@@ -49,7 +49,7 @@ export const TypeCard: React.FC<ITypeCardProps> = ({
     dispatch(setCategory(category));
     dispatch(setType(typeName));
     dispatch(getProducts(filter)); //первый клик просто byFilter, на второй клик выдает тип предыдущего клика
-    navigate(`/category/category=${category}&type=${typeName}`);
+    navigate(`/category/?category=${category}&type=${typeName}`);
     console.log("click", typeName, category);
   };
 

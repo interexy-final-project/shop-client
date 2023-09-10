@@ -8,7 +8,7 @@ import { resetPassword } from "./store/auth.actions";
 import { authSelector } from "./store/auth.selectors";
 import { useTranslation } from "react-i18next";
 
-const ResetPassword = () => {
+const ResetPassword: React.FC = () => {
   const { t } = useTranslation();
   const { resetToken } = useSelector(authSelector);
   const dispatch = useDispatch();

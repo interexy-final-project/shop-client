@@ -30,7 +30,7 @@ import HeroLeaves from "../assets/imgs/hero-leaves.png";
 import HeroShopnow from "../assets/imgs/hero-shopnow.png";
 import HeroImage from "../assets/imgs/shop-hero.png";
 
-export const MainPage: React.FC = () => {
+const MainPage: React.FC = () => {
   const { t } = useTranslation();
 
   const typesMen = [
@@ -129,15 +129,15 @@ export const MainPage: React.FC = () => {
   // };
 
   const handleCategoryWomen = () => {
-    navigate("/category/category=women");
+    navigate("/category/?category=women");
   };
 
   const handleCategoryMen = () => {
-    navigate("/category/category=men");
+    navigate("/category/?category=men");
   };
 
   const handleCategoryChildren = () => {
-    navigate("/category/category=children");
+    navigate("/category/?category=children");
   };
 
   return (
@@ -310,3 +310,5 @@ export const MainPage: React.FC = () => {
     </>
   );
 };
+
+export default MainPage;
