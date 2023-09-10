@@ -1,16 +1,43 @@
-import { Box, Button, Paper, Stack } from "@mui/material";
+import { Box, Button, Menu, MenuItem, Paper, Stack } from "@mui/material";
 import Logo from "../../assets/Logo.png";
 import LanguageSelect from "./languageSelect";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { RoutesEnum } from "../../routes.enum";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../auth/store/auth.actions";
 
 const CommonHeader = () => {
+  const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isLoggedIn = localStorage.getItem("accessToken");
+  const menuHandleClose = () => {
+    setMenuOpen(false);
+  };
+  const handleLogOut = () => {
+    dispatch<any>(logOut());
+    navigate(RoutesEnum.MAIN);
+  };
+
+  const handleProfileClick = () => {
+    navigate(RoutesEnum.USERPROFILE);
+  };
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const handleProfileIconClick = () => {
-    navigate(RoutesEnum.SIGNIN);
+  const handleProfileIconClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    if (isLoggedIn) {
+      setAnchorEl(event.currentTarget);
+      setMenuOpen(true);
+    } else {
+      navigate(RoutesEnum.SIGNIN);
+    }
   };
 
   const handleCart = () => {
@@ -29,7 +56,15 @@ const CommonHeader = () => {
           <Button variant="outlined" onClick={handleProfileIconClick}>
             <PersonIcon />
           </Button>
-          <Button variant="outlined" onClick={handleCart}>
+          {isLoggedIn && (
+            <Menu open={menuOpen} onClose={menuHandleClose} anchorEl={anchorEl}>
+              <MenuItem onClick={handleProfileClick}>
+                {t("header.profile")}
+              </MenuItem>
+              <MenuItem onClick={handleLogOut}>{t("header.logOut")}</MenuItem>
+            </Menu>
+          )}
+          <Button variant="outlined">
             <ShoppingCartIcon />
           </Button>
         </Stack>

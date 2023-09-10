@@ -11,15 +11,19 @@ import LoginHeader from "../components/login-header";
 import img from "../../assets/signinimg.jpg";
 import { RoutesEnum } from "../../routes.enum";
 import { useForm } from "react-hook-form";
-import { signIn } from "./store/auth.actions";
+import { logOut, signIn } from "./store/auth.actions";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const SignIn = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch<any>(logOut);
+  }, []);
   const {
     register,
     handleSubmit,

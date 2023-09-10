@@ -55,6 +55,21 @@ export const changePassword = createAsyncThunk<
   }
 });
 
+export const logOut = createAsyncThunk<SignUpDto>(
+  "POST/log-out",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await repository.post("auth/log-out");
+
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 export const resetPassword = createAsyncThunk<string, ResetPasswordForm>(
   "POST/resetPassword",
   async (ResetPasswordForm, { rejectWithValue }) => {
