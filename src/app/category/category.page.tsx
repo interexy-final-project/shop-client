@@ -36,6 +36,8 @@ import {
   countSelector,
   pageSelector,
   numberOfProductsSelector,
+  productsSelector,
+  filterSelector,
 } from "./store/category.selectors";
 
 const NameBox = styled(Box)(({ theme }) => ({
@@ -54,20 +56,23 @@ interface CategoryFilter {
 }
 
 const Category: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get("category");
   const type = searchParams.get("type");
 
-  const { t } = useTranslation();
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<ProductSizes[]>([]);
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const products = useSelector((state: RootState) => state.products.products);
-  const filter = useSelector((state: RootState) => state.products.filter);
-  const numberOfProducts = useSelector(numberOfProductsSelector);
   const [totalPages, setTotalPages] = useState<number | null>(null);
+  const products = useSelector(productsSelector);
+  const filter = useSelector(filterSelector);
+  const numberOfProducts = useSelector(numberOfProductsSelector);
+
   const availableColors = useSelector(
     (state: RootState) => state.products.colors,
   );
@@ -75,8 +80,6 @@ const Category: React.FC = () => {
     (state: RootState) => state.products.sizes,
   );
   const menu = [ProductTypes.JEANS, ProductTypes.SHIRT, ProductTypes.TSHIRT];
-
-  const dispatch: AppDispatch = useDispatch();
 
   const handleSizeSelection = (sizes: ProductSizes[]) => {
     setSelectedSizes(sizes);

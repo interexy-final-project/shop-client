@@ -28,10 +28,10 @@ const SubtotalBox = styled(Stack)(({ theme }) => ({
 }));
 
 export const CartPage: React.FC = () => {
-  const { t } = useTranslation();
-
-  const decodedToken = useDecodeToken();
   const dispatch: AppDispatch = useDispatch();
+  const { t } = useTranslation();
+  const decodedToken = useDecodeToken();
+
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   useEffect(() => {

@@ -95,7 +95,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
       <PaymentBox>
         <FormControl>
           <RadioGroup
-            defaultValue="Credit Card"
+            defaultValue="card"
             name="controlled-radio-buttons-group"
             onChange={handleRadioChange}
             value={paymentMethod}
@@ -103,7 +103,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
             <Stack spacing={4} divider={<Divider />}>
               <Stack>
                 <FormControlLabel
-                  value="Card"
+                  value="card"
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
@@ -172,7 +172,7 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
 
               <Stack>
                 <FormControlLabel
-                  value="Cash"
+                  value="cash"
                   control={<Radio />}
                   label={
                     <Typography variant="h6">
