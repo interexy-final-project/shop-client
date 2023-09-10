@@ -27,7 +27,9 @@ import { UserDto } from "../user/types/user-dto.type";
 import { getUser } from "../user/store/user.actions";
 import { userSelector } from "../user/store/user.selectors";
 
-export const CheckoutPage: React.FC = () => {
+const CheckoutPage: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
   const [isUseExisting, setIsUseExisting] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>(
     PaymentMethods.CARD,
@@ -35,13 +37,9 @@ export const CheckoutPage: React.FC = () => {
   const [isAlertInvoked, setIsAlertInvoked] = useState<boolean>(false);
   const [alertMesssage, setAlertMessage] = useState<string>("");
   const [isWarning, setIsWarning] = useState<boolean>(false);
-  // const user = {
-  //   id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
-  //   firstName: "name",
-  //   lastName: "family",
-  // };
+
   const decodedToken = useDecodeToken();
-  const dispatch: AppDispatch = useDispatch();
+
   const shippingAddress = useSelector(addressSelector);
   const checkoutPending = useSelector(pendingSelector);
   const [street, setStreet] = useState<string>("");
@@ -176,3 +174,5 @@ export const CheckoutPage: React.FC = () => {
     </>
   );
 };
+
+export default CheckoutPage;

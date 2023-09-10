@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "./store/auth.selectors";
 import { useTranslation } from "react-i18next";
 
-const ChangePassword = () => {
+const ChangePassword: React.FC = () => {
   const { t } = useTranslation();
   const { resetToken } = useSelector(authSelector);
   const navigate = useNavigate();

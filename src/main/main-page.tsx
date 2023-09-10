@@ -24,7 +24,7 @@ import { useNavigate } from "react-router";
 import { ProductCategories } from "../enums/product-categories.enum";
 import { useTranslation } from "react-i18next";
 
-export const MainPage: React.FC = () => {
+const MainPage: React.FC = () => {
   const { t } = useTranslation();
 
   const typesMen = [
@@ -217,3 +217,5 @@ export const MainPage: React.FC = () => {
     </>
   );
 };
+
+export default MainPage;
