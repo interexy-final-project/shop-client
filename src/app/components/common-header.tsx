@@ -64,7 +64,7 @@ const CommonHeader = () => {
               <MenuItem onClick={handleLogOut}>{t("header.logOut")}</MenuItem>
             </Menu>
           )}
-          <Button variant="outlined">
+          <Button onClick={handleCart} variant="outlined">
             <ShoppingCartIcon />
           </Button>
         </Stack>
