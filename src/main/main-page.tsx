@@ -129,15 +129,15 @@ const MainPage: React.FC = () => {
   // };
 
   const handleCategoryWomen = () => {
-    navigate("/category/category=women");
+    navigate("/category/?category=women");
   };
 
   const handleCategoryMen = () => {
-    navigate("/category/category=men");
+    navigate("/category/?category=men");
   };
 
   const handleCategoryChildren = () => {
-    navigate("/category/category=children");
+    navigate("/category/?category=children");
   };
 
   return (
