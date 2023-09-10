@@ -2,17 +2,13 @@ import { Box, Typography, Stack, IconButton, Divider } from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import React, { useCallback, useMemo, useState } from "react";
-import { AppDispatch, useAppDispatch } from "../../../store";
-import { CartItem } from "../types/cart.types";
+import React, { useMemo, useState } from "react";
+import { AppDispatch } from "../../../store";
 import { useDebouncedCallback } from "use-debounce";
-import ItemImage from "../../../assets/imgs/item.png";
-import { theme } from "../../../assets/themes";
 import { ProductSizes } from "../../../enums/product-sizes.enum";
 import { ProductColors } from "../../../enums/product-colors.enum";
 import { useDispatch } from "react-redux";
 import { deleteCartItem, updateCartItem } from "../store/cart.actions";
-import { debounce } from "lodash";
 import { useTranslation } from "react-i18next";
 
 type TCartItemProps = {
@@ -79,16 +75,6 @@ export const CartItemBlock: React.FC<TCartItemProps> = ({
   const handleDeleteItem = () => {
     dispatch(deleteCartItem(cartItemId));
   };
-
-  const debouncedAddItemHandler = useMemo(
-    () => debounce(handleAddItem, 300),
-    [handleAddItem],
-  );
-
-  const debouncedMinusItemHandler = useMemo(
-    () => debounce(handleMinusItem, 300),
-    [handleMinusItem],
-  );
 
   const { t } = useTranslation();
 

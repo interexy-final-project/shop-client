@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import repository from "../../../repository";
 import { CartItemDto } from "../types/cart-item-dto.type";
 import { ProductDto } from "../../../types/product-dto.type";
-import { CartItem } from "../types/cart.types";
 
 export const getCartItems = createAsyncThunk<CartItemDto[], string>(
   "GET/cart items",

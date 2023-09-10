@@ -55,10 +55,5 @@ export const checkoutSlice = createSlice({
           state.errors.order = action.error.message;
         },
       );
-
-    // .addCase(getUsers.rejected, (state, action: any & { payload: any }) => {
-    //   state.pending.users = false;
-    //   state.errors.users = action.payload.message;
-    // })
   },
 });

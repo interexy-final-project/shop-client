@@ -27,19 +27,3 @@ export const createOrder = createAsyncThunk<void, OrderDto>(
     }
   },
 );
-
-// export const updateCartItem = createAsyncThunk<
-//   CartItemDto,
-//   Partial<CartItemDto>
-// >("PUT/cartitem", async (updatedCartItem, { rejectWithValue }) => {
-//   try {
-//     console.log(updatedCartItem);
-//     const response = await repository.put(
-//       `/cart/${updatedCartItem.id}`,
-//       updatedCartItem,
-//     );
-//     return response.data;
-//   } catch (error: any) {
-//     return rejectWithValue(error);
-//   }
-// });

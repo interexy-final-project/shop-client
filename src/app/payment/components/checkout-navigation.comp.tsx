@@ -3,6 +3,7 @@ import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { RoutesEnum } from "../../../routes.enum";
 
 export const CheckoutNavigation: React.FC = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export const CheckoutNavigation: React.FC = () => {
         <Link
           color={"mainText.main"}
           variant="h6"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(RoutesEnum.MAIN)}
           underline="hover"
         >
           {t("navigation.home")}
@@ -27,7 +28,7 @@ export const CheckoutNavigation: React.FC = () => {
           underline="hover"
           variant="h6"
           color={"mainText.main"}
-          onClick={() => navigate("/user/profile")}
+          onClick={() => navigate(RoutesEnum.USERPROFILE)}
         >
           {t("navigation.myAccount")}
         </Link>

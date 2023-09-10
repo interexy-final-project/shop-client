@@ -3,7 +3,7 @@ import { CheckoutNavigation } from "./components/checkout-navigation.comp";
 import { BillingDetails } from "./components/billing-details.comp";
 import { PaymentMethod } from "./components/payment-method.comp";
 import { ShippingAddress } from "./components/shipping-address.comp";
-import { Alert, FormControl, Box, Stack } from "@mui/material";
+import { FormControl, Box, Stack } from "@mui/material";
 import { AppDispatch } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, getAddress } from "./store/checkout.actions";
@@ -22,10 +22,7 @@ import { OrderSummary } from "./components/order-summary.comp";
 import Footer from "../components/footer";
 import CommonHeader from "../components/common-header";
 import useDecodeToken from "../../utils/decode-token";
-import { Token } from "../../types/token.type";
-import { UserDto } from "../user/types/user-dto.type";
 import { getUser } from "../user/store/user.actions";
-import { userSelector } from "../user/store/user.selectors";
 
 const CheckoutPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -37,14 +34,14 @@ const CheckoutPage: React.FC = () => {
   const [isAlertInvoked, setIsAlertInvoked] = useState<boolean>(false);
   const [alertMesssage, setAlertMessage] = useState<string>("");
   const [isWarning, setIsWarning] = useState<boolean>(false);
+  const [street, setStreet] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [postalCode, setPostalCode] = useState<string>("");
 
   const decodedToken = useDecodeToken();
 
   const shippingAddress = useSelector(addressSelector);
   const checkoutPending = useSelector(pendingSelector);
-  const [street, setStreet] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [postalCode, setPostalCode] = useState<string>("");
   const cartItems = useSelector(cartItemsSelector);
   const orderErrors = useSelector(orderErrorsSelector);
 

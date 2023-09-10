@@ -21,20 +21,11 @@ import { ProductColors } from "../../enums/product-colors.enum";
 import { ProductTypes } from "../../enums/product-types.enum";
 import { useTranslation } from "react-i18next";
 import { PriceFilter } from "./components/price-filter";
-import { useLocation, useParams } from "react-router-dom";
-import queryString from "query-string";
-import { CategoryState } from "./types/products-state.type";
+import { useLocation } from "react-router-dom";
 import { ProductCategories } from "../../enums/product-categories.enum";
-import {
-  setCategory,
-  setCount,
-  setPage,
-  setType,
-} from "./store/category.slice";
+import { setCategory, setPage, setType } from "./store/category.slice";
 import Pagination from "@mui/material/Pagination";
 import {
-  countSelector,
-  pageSelector,
   numberOfProductsSelector,
   productsSelector,
   filterSelector,
@@ -52,11 +43,6 @@ const NameBox = styled(Box)(({ theme }) => ({
   display: "flex",
 }));
 
-interface CategoryFilter {
-  category: ProductCategories | "";
-  type: ProductTypes | "";
-}
-
 const Category: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { t } = useTranslation();
@@ -71,6 +57,7 @@ const Category: React.FC = () => {
   const [selectedColors, setSelectedColors] = useState<ProductColors[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);
+
   const products = useSelector(productsSelector);
   const filter = useSelector(filterSelector);
   const numberOfProducts = useSelector(numberOfProductsSelector);
