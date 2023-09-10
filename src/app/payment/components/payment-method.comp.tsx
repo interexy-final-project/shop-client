@@ -30,6 +30,34 @@ import { PaymentMethods } from "../../../enums/payment-methods.enum";
 import { resetCartItems } from "../../cart/store/cart.slice";
 import { useTranslation } from "react-i18next";
 
+const BillingTextField = styled(TextField)(({ theme }) => ({
+  "& .MuiInputBase-root": {
+    backgroundColor: theme.palette.grayMain?.main,
+    borderRadius: "8px",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: theme.palette.black?.main,
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.black?.main,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.primaryButtonHoverAndFocused?.main,
+    },
+  },
+  "& label.Mui-focused": {
+    color: theme.palette.black?.main,
+  },
+}));
+
+const PaymentBox = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.grayMain?.main,
+  borderRadius: "0,75rem",
+  padding: "2.8rem 1.75rem",
+  marginBottom: "1.5rem",
+}));
+
 interface PaymentMethodProps {
   paymentMethod: PaymentMethods;
   setPaymentMethod: (arg: PaymentMethods) => void;
@@ -39,46 +67,11 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
   paymentMethod,
   setPaymentMethod,
 }: PaymentMethodProps) => {
-  const user = {
-    id: "7a530b8e-2968-41ec-8b0f-8e83b6e453c8",
-    firstName: "name",
-    lastName: "family",
-    phone: "212394852972",
-  };
+  const { t } = useTranslation();
 
   const handleRadioChange = (event: any) => {
     setPaymentMethod(event.target.value);
   };
-
-  const BillingTextField = styled(TextField)(({ theme }) => ({
-    "& .MuiInputBase-root": {
-      backgroundColor: theme.palette.grayMain?.main,
-      borderRadius: "8px",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: theme.palette.black?.main,
-      },
-      "&:hover fieldset": {
-        borderColor: theme.palette.black?.main,
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: theme.palette.primaryButtonHoverAndFocused?.main,
-      },
-    },
-    "& label.Mui-focused": {
-      color: theme.palette.black?.main,
-    },
-  }));
-
-  const { t } = useTranslation();
-
-  const PaymentBox = styled(Box)(({ theme }) => ({
-    backgroundColor: theme.palette.grayMain?.main,
-    borderRadius: "0,75rem",
-    padding: "2.8rem 1.75rem",
-    marginBottom: "1.5rem",
-  }));
 
   return (
     <Box>
@@ -127,47 +120,6 @@ export const PaymentMethod: React.FC<PaymentMethodProps> = ({
                     <img src={PayPass} loading="lazy" />
                   </ImageListItem>
                 </ImageList>
-
-                {/* <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <BillingTextField
-                      required
-                      id="card-number"
-                      label="Card number"
-                      fullWidth
-                      autoComplete="cc-number"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <BillingTextField
-                      required
-                      id="card-name"
-                      label="Name of card"
-                      fullWidth
-                      autoComplete="cc-name"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <BillingTextField
-                      required
-                      id="expDate"
-                      label="Expiration date (MM/YY)"
-                      fullWidth
-                      autoComplete="cc-exp"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <BillingTextField
-                      required
-                      id="cvv"
-                      label="Security Code"
-                      helperText="Last three digits on signature strip"
-                      fullWidth
-                      autoComplete="cc-csc"
-                      type="password"
-                    />
-                  </Grid>
-                </Grid> */}
               </Stack>
 
               <Stack>

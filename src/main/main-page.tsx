@@ -118,16 +118,6 @@ const MainPage: React.FC = () => {
 
   const filter = useSelector((state: RootState) => state.products.filter);
 
-  // const category = useSelector((state: RootState) => state.products.category);
-
-  // const [selectedType, setSelectedType] = useState<ProductTypes | null>(null);
-
-  // const handleCategory = (type: ProductTypes): void => {
-  //   setSelectedType(type);
-  //   dispatch(setType(type));
-  //   console.log("click");
-  // };
-
   const handleCategoryWomen = () => {
     navigate("/category/?category=women");
   };

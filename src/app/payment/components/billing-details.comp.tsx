@@ -76,12 +76,14 @@ export const BillingDetails: React.FC<BillingDetailsProps> = ({
 }: BillingDetailsProps) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useDispatch();
-  const [isDisabled, setIsDisabled] = useState(false);
+
   const user = useSelector(userSelector);
+
+  const [isDisabled, setIsDisabled] = useState(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-  console.log(user, "ser");
+
   const handleStreetInput = (event: any) => {
     setStreet(event.target.value);
   };

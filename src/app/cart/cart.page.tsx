@@ -13,7 +13,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { CartItemBlock } from "./components/cart-item.comp";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { getCartItems, getProducts } from "./store/cart.actions";
+import { getCartItems } from "./store/cart.actions";
 import { CartItemDto } from "./types/cart-item-dto.type";
 import { EmptyCart } from "./components/cart-empty.comp";
 import { useTranslation } from "react-i18next";

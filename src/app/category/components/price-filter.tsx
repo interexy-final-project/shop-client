@@ -25,7 +25,6 @@ const NameBox = styled(Box)(({ theme }) => ({
 
 export const PriceFilter: React.FC = () => {
   const { t } = useTranslation();
-  const [priceFilter, setPriceFilter] = useState<string | null>(null);
 
   const dispatch: AppDispatch = useDispatch();
 

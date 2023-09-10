@@ -7,7 +7,6 @@ import {
   getProductsByCategory,
   getSizes,
 } from "./category.actions";
-import { ProductCategories } from "../../../enums/product-categories.enum";
 
 const initialState: CategoryState = {
   category: "",
